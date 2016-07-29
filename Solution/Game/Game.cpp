@@ -3,18 +3,14 @@
 #include <AssetContainer.h>
 #include <Camera.h>
 #include <DeferredRenderer.h>
-#include <Effect.h>
 #include <Engine.h>
 #include "Game.h"
 #include <MathHelper.h>
-#include <PointLight.h>
 #include <PostMaster.h>
 #include <RenderMessage.h>
 #include <RendererProxy.h>
-#include <TimerManager.h>
 #include <XMLReader.h>
 
-#include <BaseComponent.h>
 #include <RenderComponent.h>
 #include <TranslationComponent.h>
 #include <InputComponent.h>
