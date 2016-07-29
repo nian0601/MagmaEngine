@@ -1,10 +1,10 @@
 #pragma once
-#include "BaseProcessor.h"
+#include <Entity/Include/BaseProcessor.h>
 
-class RenderProcessor : public BaseProcessor
+class RenderProcessor : public Magma::BaseProcessor
 {
 public:
-	RenderProcessor(World& aWorld);
+	RenderProcessor(Magma::World& aWorld);
 	~RenderProcessor();
 
 	void Update(float aDelta) override;

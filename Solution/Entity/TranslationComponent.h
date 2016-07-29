@@ -1,9 +1,9 @@
 #pragma once
-#include "BaseComponent.h"
+#include <Entity/Include/BaseComponent.h>
 #include <Matrix.h>
 #include <Vector.h>
 
-class TranslationComponent : public BaseComponent
+class TranslationComponent : public Magma::BaseComponent
 {
 public:
 	TranslationComponent();

@@ -1,7 +1,7 @@
 #pragma once
-#include "BaseComponent.h"
+#include <Entity/Include/BaseComponent.h>
 
-class InputComponent : public BaseComponent
+class InputComponent : public Magma::BaseComponent
 {
 public:
 	InputComponent();

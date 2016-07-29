@@ -15,20 +15,12 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Precompile</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp" />
-    <ClCompile Include="BaseProcessor.cpp">
-      <Filter>Processors</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="TranslationComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="RenderComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentStorage.cpp" />
     <ClCompile Include="RenderProcessor.cpp">
       <Filter>Processors</Filter>
     </ClCompile>
@@ -43,23 +35,12 @@
     <ClInclude Include="stdafx.h">
       <Filter>Precompile</Filter>
     </ClInclude>
-    <ClInclude Include="World.h" />
-    <ClInclude Include="BaseProcessor.h">
-      <Filter>Processors</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="TranslationComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="RenderComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentStorage.h" />
-    <ClInclude Include="TypeID.h" />
-    <ClInclude Include="CustomEntityTypes.h" />
-    <ClInclude Include="ComponentFilter.h" />
     <ClInclude Include="RenderProcessor.h">
       <Filter>Processors</Filter>
     </ClInclude>

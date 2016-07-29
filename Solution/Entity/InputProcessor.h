@@ -1,12 +1,11 @@
 #pragma once
-#include "BaseProcessor.h"
-class InputProcessor :
-	public BaseProcessor
+#include <Entity/Include/BaseProcessor.h>
+
+class InputProcessor : public Magma::BaseProcessor
 {
 public:
-	InputProcessor(World& aWorld);
+	InputProcessor(Magma::World& aWorld);
 	~InputProcessor();
 
 	void Update(float aDelta) override;
 };
-

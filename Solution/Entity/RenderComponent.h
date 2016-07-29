@@ -1,8 +1,8 @@
 #pragma once
-#include "BaseComponent.h"
+#include <Entity/Include/BaseComponent.h>
 #include <EngineTypes.h>
 
-class RenderComponent : public BaseComponent
+class RenderComponent : public Magma::BaseComponent
 {
 public:
 	RenderComponent();

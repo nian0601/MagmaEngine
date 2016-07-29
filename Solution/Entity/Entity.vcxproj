@@ -42,13 +42,13 @@
     <OutDir>$(SolutionDir)..\Libs\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\PostMaster;$(SolutionDir)\CommonUtilities;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\PostMaster;$(SolutionDir)\Engine;$(SolutionDir)\CommonUtilities;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Libs\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\PostMaster;$(SolutionDir)\CommonUtilities;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\PostMaster;$(SolutionDir)\Engine;$(SolutionDir)\CommonUtilities;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -77,24 +77,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BaseComponent.h" />
-    <ClInclude Include="BaseProcessor.h" />
-    <ClInclude Include="ComponentFilter.h" />
-    <ClInclude Include="CustomEntityTypes.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputProcessor.h" />
     <ClInclude Include="RenderProcessor.h" />
-    <ClInclude Include="TypeID.h" />
-    <ClInclude Include="ComponentStorage.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TranslationComponent.h" />
-    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BaseComponent.cpp" />
-    <ClCompile Include="BaseProcessor.cpp" />
-    <ClCompile Include="ComponentStorage.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
@@ -104,11 +94,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TranslationComponent.cpp" />
-    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonUtilities\CommonUtilities.vcxproj">
       <Project>{32412318-0112-4dce-87c5-86ca64df6630}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Engine\Engine.vcxproj">
+      <Project>{0f706091-0f34-4fcd-b5e7-dfdd141a45b6}</Project>
     </ProjectReference>
     <ProjectReference Include="..\PostMaster\PostMaster.vcxproj">
       <Project>{ef362edc-8fff-400b-a5ff-05a9bc551d65}</Project>

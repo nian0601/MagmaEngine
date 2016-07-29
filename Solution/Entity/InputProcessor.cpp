@@ -6,8 +6,8 @@
 
 #include <InputWrapper.h>
 
-InputProcessor::InputProcessor(World& aWorld)
-	: BaseProcessor(aWorld, CreateFilter<Requires<InputComponent, TranslationComponent>>())
+InputProcessor::InputProcessor(Magma::World& aWorld)
+	: Magma::BaseProcessor(aWorld, Magma::CreateFilter<Magma::Requires<InputComponent, TranslationComponent>>())
 {
 }
 
@@ -21,8 +21,8 @@ void InputProcessor::Update(float aDelta)
 	CU::InputWrapper* inputWrapper = CU::InputWrapper::GetInstance();
 
 	float speed = 10.f;
-	CU::GrowingArray<Entity> entities = GetEntities();
-	for each (const Entity& entity in entities)
+	CU::GrowingArray<Magma::Entity> entities = GetEntities();
+	for each (const Magma::Entity& entity in entities)
 	{
 		TranslationComponent& translation = GetComponent<TranslationComponent>(entity);
 

@@ -11,8 +11,6 @@
 #include "GPUContext.h"
 #include "GPUData.h"
 
-#include <PostMaster.h>
-
 namespace Magma
 {
 	Renderer::Renderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext)

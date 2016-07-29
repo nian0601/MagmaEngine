@@ -2,7 +2,7 @@
 
 #include <IGame.h>
 #include <GrowingArray.h>
-#include <World.h>
+#include <Entity/Include/World.h>
 
 #include <Subscriber.h>
 
@@ -32,6 +32,6 @@ private:
 	Magma::Camera* myCamera;
 	Magma::RendererProxy* myRendererProxy;
 
-	World myWorld;
+	Magma::World myWorld;
 };
 

@@ -15,9 +15,9 @@
 #include <TranslationComponent.h>
 #include <InputComponent.h>
 
-#include <TypeID.h>
+#include <Entity/Include/TypeID.h>
 
-#include <ComponentFilter.h>
+#include <Entity/Include/ComponentFilter.h>
 #include <RenderProcessor.h>
 #include <InputProcessor.h>
 
@@ -128,7 +128,7 @@ void Game::UpdateCamera(float aDelta)
 
 void Game::LoadLevel(Magma::AssetContainer& aAssetContainer)
 {
-	Entity lastEntity = 0;
+	Magma::Entity lastEntity = 0;
 	XMLReader reader;
 	reader.OpenDocument("Data/Resource/Level/Level_01.xml");
 	for (tinyxml2::XMLElement* cube = reader.ForceFindFirstChild("Cube"); cube != nullptr; cube = reader.FindNextElement(cube, "Cube"))
@@ -146,7 +146,7 @@ void Game::LoadLevel(Magma::AssetContainer& aAssetContainer)
 		rotation.z = CU::Math::DegreeToRad(rotation.z);
 
 
-		Entity entity = myWorld.CreateEntity();
+		Magma::Entity entity = myWorld.CreateEntity();
 		myWorld.AddComponent<TranslationComponent>(entity);
 		myWorld.AddComponent<RenderComponent>(entity);
 		TranslationComponent& comp = myWorld.GetComponent<TranslationComponent>(entity);

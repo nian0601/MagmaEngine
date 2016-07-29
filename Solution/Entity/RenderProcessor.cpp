@@ -7,8 +7,8 @@
 #include <PostMaster.h>
 #include <RenderMessage.h>
 
-RenderProcessor::RenderProcessor(World& aWorld)
-	: BaseProcessor(aWorld, CreateFilter<Requires<TranslationComponent, RenderComponent>>())
+RenderProcessor::RenderProcessor(Magma::World& aWorld)
+	: Magma::BaseProcessor(aWorld, Magma::CreateFilter<Magma::Requires<TranslationComponent, RenderComponent>>())
 {
 }
 
@@ -19,8 +19,8 @@ RenderProcessor::~RenderProcessor()
 
 void RenderProcessor::Update(float aDelta)
 {
-	CU::GrowingArray<Entity> entities = GetEntities();
-	for each (const Entity& entity in entities)
+	CU::GrowingArray<Magma::Entity> entities = GetEntities();
+	for each (const Magma::Entity& entity in entities)
 	{
 		TranslationComponent& translation = GetComponent<TranslationComponent>(entity);
 		RenderComponent& render = GetComponent<RenderComponent>(entity);
