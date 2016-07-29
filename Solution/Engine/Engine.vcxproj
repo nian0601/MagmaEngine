@@ -42,14 +42,14 @@
     <OutDir>$(SolutionDir)..\Libs\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\..\ThirdParty\FBX\Include\;$(SolutionDir)\..\ThirdParty\DirectX\Include\;$(SolutionDir)\PostMaster;$(SolutionDir)\CommonUtilities;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\ThirdParty\FBX\Include\;$(SolutionDir)\..\ThirdParty\DirectX\Include\;$(SolutionDir)\CommonUtilities;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(SolutionDir)\..\ThirdParty\FBX\Lib\;$(SolutionDir)\..\ThirdParty\DirectX\Lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Libs\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\..\ThirdParty\FBX\Include\;$(SolutionDir)\..\ThirdParty\DirectX\Include\;$(SolutionDir)\PostMaster;$(SolutionDir)\CommonUtilities;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\ThirdParty\FBX\Include\;$(SolutionDir)\..\ThirdParty\DirectX\Include\;$(SolutionDir)\CommonUtilities;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(SolutionDir)\..\ThirdParty\FBX\Lib\;$(SolutionDir)\..\ThirdParty\DirectX\Lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -154,9 +154,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CommonUtilities\CommonUtilities.vcxproj">
       <Project>{32412318-0112-4dce-87c5-86ca64df6630}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\PostMaster\PostMaster.vcxproj">
-      <Project>{ef362edc-8fff-400b-a5ff-05a9bc551d65}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

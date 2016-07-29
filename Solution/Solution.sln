@@ -11,10 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonUtilities", "CommonUt
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Application", "Application\Application.vcxproj", "{A3325650-09E3-4A3A-8159-FC1620B5FEC1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Entity", "Entity\Entity.vcxproj", "{FE86362F-E4C6-422A-9D7E-123AE160651E}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PostMaster", "PostMaster\PostMaster.vcxproj", "{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		DataExporter|Win32 = DataExporter|Win32
@@ -55,22 +51,6 @@ Global
 		{A3325650-09E3-4A3A-8159-FC1620B5FEC1}.Internal|Win32.Build.0 = Release|Win32
 		{A3325650-09E3-4A3A-8159-FC1620B5FEC1}.Release|Win32.ActiveCfg = Release|Win32
 		{A3325650-09E3-4A3A-8159-FC1620B5FEC1}.Release|Win32.Build.0 = Release|Win32
-		{FE86362F-E4C6-422A-9D7E-123AE160651E}.DataExporter|Win32.ActiveCfg = Debug|Win32
-		{FE86362F-E4C6-422A-9D7E-123AE160651E}.DataExporter|Win32.Build.0 = Debug|Win32
-		{FE86362F-E4C6-422A-9D7E-123AE160651E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{FE86362F-E4C6-422A-9D7E-123AE160651E}.Debug|Win32.Build.0 = Debug|Win32
-		{FE86362F-E4C6-422A-9D7E-123AE160651E}.Internal|Win32.ActiveCfg = Release|Win32
-		{FE86362F-E4C6-422A-9D7E-123AE160651E}.Internal|Win32.Build.0 = Release|Win32
-		{FE86362F-E4C6-422A-9D7E-123AE160651E}.Release|Win32.ActiveCfg = Release|Win32
-		{FE86362F-E4C6-422A-9D7E-123AE160651E}.Release|Win32.Build.0 = Release|Win32
-		{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}.DataExporter|Win32.ActiveCfg = DataExporter|Win32
-		{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}.DataExporter|Win32.Build.0 = DataExporter|Win32
-		{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}.Debug|Win32.ActiveCfg = Debug|Win32
-		{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}.Debug|Win32.Build.0 = Debug|Win32
-		{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}.Internal|Win32.ActiveCfg = Internal|Win32
-		{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}.Internal|Win32.Build.0 = Internal|Win32
-		{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}.Release|Win32.ActiveCfg = Release|Win32
-		{EF362EDC-8FFF-400B-A5FF-05A9BC551D65}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

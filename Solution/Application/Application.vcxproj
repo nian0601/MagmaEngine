@@ -42,14 +42,14 @@
     <OutDir>$(SolutionDir)..\Workbed\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\PostMaster;$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Entity;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)..\Workbed\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\PostMaster;$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Entity;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -88,14 +88,8 @@
     <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{0f706091-0f34-4fcd-b5e7-dfdd141a45b6}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Entity\Entity.vcxproj">
-      <Project>{fe86362f-e4c6-422a-9d7e-123ae160651e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Game\Game.vcxproj">
       <Project>{d19e4f72-cade-4aed-8ef1-835407517fc0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\PostMaster\PostMaster.vcxproj">
-      <Project>{ef362edc-8fff-400b-a5ff-05a9bc551d65}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
