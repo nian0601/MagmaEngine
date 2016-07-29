@@ -29,6 +29,7 @@
 
 
 Libs/
+Release/
 
 *.ipch
 *.cache

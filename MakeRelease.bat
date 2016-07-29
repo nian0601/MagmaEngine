@@ -1,1 +1,2 @@
-xcopy /e Solution\Engine\*.h Release\
+xcopy /e Solution\Engine\*.h Release\Include\
+del Release\Include\stdafx.h
