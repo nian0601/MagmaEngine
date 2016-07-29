@@ -3,7 +3,7 @@
 #include "Instance.h"
 #include "Scene.h"
 
-namespace Easy3D
+namespace Magma
 {
 	Scene::Scene()
 		: myCamera(nullptr)

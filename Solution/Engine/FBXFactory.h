@@ -17,7 +17,7 @@ namespace FBX
 	class FbxModelData;
 }
 
-namespace Easy3D
+namespace Magma
 {
 	class AssetContainer;
 	class ModelData;

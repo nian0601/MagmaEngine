@@ -8,7 +8,7 @@ public:
 	RenderComponent();
 	~RenderComponent();
 
-	Easy3D::ModelID myModelID;
-	Easy3D::EffectID myEffectID;
+	Magma::ModelID myModelID;
+	Magma::EffectID myEffectID;
 };
 

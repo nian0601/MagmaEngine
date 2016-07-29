@@ -4,7 +4,7 @@
 struct ID3D11Device;
 struct ID3D11DeviceContext;
 
-namespace Easy3D
+namespace Magma
 {
 	struct Backbuffer;
 

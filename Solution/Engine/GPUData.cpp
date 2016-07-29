@@ -9,7 +9,7 @@
 #include "GPUData.h"
 
 
-namespace Easy3D
+namespace Magma
 {
 	GPUData::GPUData()
 		: myShaderResourceNames(8)

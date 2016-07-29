@@ -4,7 +4,7 @@
 #include "Texture.h"
 #include "GPUContext.h"
 
-namespace Easy3D
+namespace Magma
 {
 	Texture::Texture()
 		: myTexture(nullptr)

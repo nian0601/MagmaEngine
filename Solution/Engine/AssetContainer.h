@@ -10,7 +10,7 @@ namespace std
 	class thread;
 }
 
-namespace Easy3D
+namespace Magma
 {
 	class Effect;
 	class GPUContext;

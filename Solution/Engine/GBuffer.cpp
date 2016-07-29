@@ -7,7 +7,7 @@
 #include "Texture.h"
 
 
-namespace Easy3D
+namespace Magma
 {
 	GBuffer::GBuffer(GPUContext& aGPUContext, const CU::Vector2<float>& aWindowSize)
 		: myGPUContext(aGPUContext)

@@ -1,7 +1,7 @@
 #pragma once
 #include <GrowingArray.h>
 
-namespace Easy3D
+namespace Magma
 {
 	class Camera;
 	class Instance;

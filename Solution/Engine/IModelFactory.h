@@ -2,7 +2,7 @@
 #include <CUString.h>
 #include "EngineTypes.h"
 
-namespace Easy3D
+namespace Magma
 {
 	class Effect;
 	class GPUContext;

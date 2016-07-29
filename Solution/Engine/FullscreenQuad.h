@@ -4,7 +4,7 @@
 #include <GrowingArray.h>
 #include "GPUData.h"
 
-namespace Easy3D
+namespace Magma
 {
 	class Effect;
 	class GPUContext;

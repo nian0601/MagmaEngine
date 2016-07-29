@@ -5,7 +5,7 @@ struct ID3D11RenderTargetView;
 struct ID3D11Texture2D;
 struct ID3D11ShaderResourceView;
 
-namespace Easy3D
+namespace Magma
 {
 	struct Backbuffer
 	{

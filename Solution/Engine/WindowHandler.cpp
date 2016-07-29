@@ -2,7 +2,7 @@
 #include "WindowHandler.h"
 
 
-namespace Easy3D
+namespace Magma
 {
 	WindowHandler::WindowHandler(const CU::Vector2<float>& aWindowSize)
 	{

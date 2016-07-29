@@ -11,7 +11,7 @@
 #include <TimerManager.h>
 #include "WindowHandler.h"
 
-namespace Easy3D
+namespace Magma
 {
 	Engine::Engine(const CU::Vector2<float>& aSize, IGame& aGame)
 		: myGPUContext(nullptr)

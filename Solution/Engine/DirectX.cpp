@@ -4,7 +4,7 @@
 #include "DirectX.h"
 #include <d3d11.h>
 
-namespace Easy3D
+namespace Magma
 {
 	DirectX::DirectX()
 		: myDevice(nullptr)

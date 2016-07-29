@@ -3,7 +3,7 @@
 #include "DirectX.h"
 #include "GPUContext.h"
 
-namespace Easy3D
+namespace Magma
 {
 	GPUContext::GPUContext(const CU::Vector2<float>& aScreenSize, const HWND& aHwnd)
 	{

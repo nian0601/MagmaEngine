@@ -9,7 +9,7 @@
 #include <PostMaster.h>
 #include <RenderMessage.h>
 
-namespace Easy3D
+namespace Magma
 {
 	Instance::Instance(ModelID aModelID, EffectID aEffect)
 		: myModelID(aModelID)

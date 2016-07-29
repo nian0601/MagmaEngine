@@ -13,7 +13,7 @@ struct ID3D11Texture2D;
 struct ID3D11ShaderResourceView;
 struct IDXGISwapChain;
 
-namespace Easy3D
+namespace Magma
 {
 	struct Backbuffer;
 

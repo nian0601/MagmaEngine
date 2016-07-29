@@ -17,7 +17,7 @@ struct ID3D11DepthStencilView;
 struct ID3D11RasterizerState;
 struct ID3D11DepthStencilState;
 
-namespace Easy3D
+namespace Magma
 {
 	class AssetContainer;
 	class Camera;

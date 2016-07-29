@@ -11,7 +11,7 @@
 
 namespace CU
 {
-	const CU::String<80> group("/Distortion GamesEasy3D/");
+	const CU::String<80> group("/Distortion GamesMagma/");
 	const CU::String<80> game("");
 
 	static bool canSave;

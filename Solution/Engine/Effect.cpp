@@ -9,7 +9,7 @@
 #include "GPUContext.h"
 #include "Texture.h"
 
-namespace Easy3D
+namespace Magma
 {
 	Effect::Effect()
 		: myEffect(nullptr)

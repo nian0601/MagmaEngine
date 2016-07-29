@@ -4,7 +4,7 @@
 #include <GrowingArray.h>
 #include <World.h>
 
-namespace Easy3D
+namespace Magma
 {
 	class AssetContainer;
 	class Camera;
@@ -15,21 +15,21 @@ namespace CU
 	class TimerManager;
 }
 
-class Game : public Easy3D::IGame
+class Game : public Magma::IGame
 {
 public:
 	Game();
 	~Game();
 
-	void Init(Easy3D::Engine& aEngine) override;
+	void Init(Magma::Engine& aEngine) override;
 	bool Update(float aDelta) override;
 	void OnResize(float aWidth, float aHeight) override;
 
 private:
 	void UpdateCamera(float aDelta);
-	void LoadLevel(Easy3D::AssetContainer& aAssetContainer);
+	void LoadLevel(Magma::AssetContainer& aAssetContainer);
 
-	Easy3D::Camera* myCamera;
+	Magma::Camera* myCamera;
 
 	World myWorld;
 };

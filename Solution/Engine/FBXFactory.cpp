@@ -11,7 +11,7 @@
 #include "GPUData.h"
 
 
-namespace Easy3D
+namespace Magma
 {
 	FBXFactory::FBXFactory(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
 		: myAssetContainer(aAssetContainer)

@@ -2,7 +2,7 @@
 
 #include <Matrix.h>
 
-namespace Easy3D
+namespace Magma
 {
 	class Camera
 	{

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Camera.h"
 
-namespace Easy3D
+namespace Magma
 {
 	Camera::Camera()
 		: myIsDirty(true)

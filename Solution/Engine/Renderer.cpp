@@ -13,7 +13,7 @@
 
 #include <PostMaster.h>
 
-namespace Easy3D
+namespace Magma
 {
 	Renderer::Renderer(EffectID aFullscreenEffect, AssetContainer& aAssetContainer, GPUContext& aGPUContext)
 		: myRenderBuffer(128)

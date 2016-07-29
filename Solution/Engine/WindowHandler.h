@@ -1,7 +1,7 @@
 #pragma once
 #include <Vector.h>
 
-namespace Easy3D
+namespace Magma
 {
 	class WindowHandler
 	{

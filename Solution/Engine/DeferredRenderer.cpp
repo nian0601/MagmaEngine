@@ -9,7 +9,7 @@
 #include "Renderer.h"
 #include "PointLight.h"
 
-namespace Easy3D
+namespace Magma
 {
 	DeferredRenderer::DeferredRenderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext, const CU::Vector2<float>& aWindowSize)
 	{

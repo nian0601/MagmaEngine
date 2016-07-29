@@ -7,7 +7,7 @@ struct ID3D11RenderTargetView;
 struct ID3D11ShaderResourceView;
 struct ID3D11Texture2D;
 
-namespace Easy3D
+namespace Magma
 {
 	class GPUContext;
 

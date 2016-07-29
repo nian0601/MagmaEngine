@@ -8,7 +8,7 @@
 #include "Effect.h"
 
 
-namespace Easy3D
+namespace Magma
 {
 	FullscreenQuad::FullscreenQuad()
 	{

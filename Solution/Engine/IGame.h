@@ -1,4 +1,4 @@
-namespace Easy3D
+namespace Magma
 {
 	class Engine;
 	class IGame

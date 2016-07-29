@@ -1,7 +1,7 @@
 #pragma once
 #include "FullscreenQuad.h"
 
-namespace Easy3D
+namespace Magma
 {
 	class AssetContainer;
 	class Camera;

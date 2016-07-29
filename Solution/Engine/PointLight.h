@@ -3,7 +3,7 @@
 #include <Matrix.h>
 #include <Vector.h>
 
-namespace Easy3D
+namespace Magma
 {
 	struct PointLightData
 	{

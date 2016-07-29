@@ -5,9 +5,9 @@
 #include "FBXFactory.h"
 #include "Texture.h"
 
-namespace Easy3D
+namespace Magma
 {
-	Easy3D::Instance* AssetContainer::CreateInstance(const CU::String<64>& aModelPath, const CU::String<64>& aEffectPath)
+	Magma::Instance* AssetContainer::CreateInstance(const CU::String<64>& aModelPath, const CU::String<64>& aEffectPath)
 	{
 		EffectID effect = LoadEffect(aEffectPath);
 
@@ -39,7 +39,7 @@ namespace Easy3D
 		return myModelID[aModelPath];
 	}
 
-	Easy3D::ModelData* AssetContainer::GetModel(ModelID aID)
+	Magma::ModelData* AssetContainer::GetModel(ModelID aID)
 	{
 		if (myModels.KeyExists(aID) == true)
 		{

@@ -11,7 +11,7 @@ struct ID3DX11EffectScalarVariable;
 
 struct ID3D11ShaderResourceView;
 
-namespace Easy3D
+namespace Magma
 {
 	class GPUContext;
 	class Texture;

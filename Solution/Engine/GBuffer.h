@@ -2,7 +2,7 @@
 
 #include <Vector.h>
 
-namespace Easy3D
+namespace Magma
 {
 	class Effect;
 	class GPUContext;

@@ -2,7 +2,7 @@
 #include "ModelData.h"
 #include "GPUData.h"
 
-namespace Easy3D
+namespace Magma
 {
 
 	ModelData::ModelData()

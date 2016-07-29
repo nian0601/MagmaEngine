@@ -4,7 +4,7 @@
 #include <Matrix.h>
 #include "EngineTypes.h"
 
-namespace Easy3D
+namespace Magma
 {
 	class GPUContext;
 	class GPUData;

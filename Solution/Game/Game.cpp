@@ -36,14 +36,14 @@ Game::~Game()
 	PostMaster::GetInstance()->Destroy();
 }
 
-void Game::Init(Easy3D::Engine& aEngine)
+void Game::Init(Magma::Engine& aEngine)
 {
 	myCamera = &aEngine.GetCamera();
 	myCamera->Move({ 0.f, 0.f, -30.f });
 
 	LoadLevel(aEngine.GetAssetContainer());
 
-	//aEngine.GetScene().AddLight(new Easy3D::PointLight({ -1.2f, -1.f, 3.f }, { 1.f, 0.f, 0.f, 3.f }, 4.f));
+	//aEngine.GetScene().AddLight(new Magma::PointLight({ -1.2f, -1.f, 3.f }, { 1.f, 0.f, 0.f, 3.f }, 4.f));
 
 	myWorld.AddProcessor<RenderProcessor>();
 	myWorld.AddProcessor<InputProcessor>();
@@ -126,7 +126,7 @@ void Game::UpdateCamera(float aDelta)
 	}
 }
 
-void Game::LoadLevel(Easy3D::AssetContainer& aAssetContainer)
+void Game::LoadLevel(Magma::AssetContainer& aAssetContainer)
 {
 	Entity lastEntity = 0;
 	XMLReader reader;

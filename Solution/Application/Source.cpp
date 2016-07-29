@@ -6,7 +6,7 @@
 int main()
 {
 	Game game;
-	Easy3D::Engine engine({ 1280.f, 720.f }, game);
+	Magma::Engine engine({ 1280.f, 720.f }, game);
 
 	engine.Run();
 

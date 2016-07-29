@@ -15,7 +15,7 @@ namespace CU
 	class TimerManager;
 }
 
-namespace Easy3D
+namespace Magma
 {
 	struct Backbuffer;
 
