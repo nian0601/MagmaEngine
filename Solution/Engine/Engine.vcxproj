@@ -113,6 +113,7 @@
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="DeferredRenderer.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RendererProxy.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Texture.h" />
@@ -135,6 +136,7 @@
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="DeferredRenderer.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="RendererProxy.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

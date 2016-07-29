@@ -16,7 +16,8 @@ namespace Magma
 	class DeferredRenderer
 	{
 	public:
-		DeferredRenderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext, const CU::Vector2<float>& aWindowSize);
+		DeferredRenderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext,
+			Renderer& aRenderer, const CU::Vector2<float>& aWindowSize);
 		~DeferredRenderer();
 
 		void Render(Scene* aScene);
@@ -24,6 +25,8 @@ namespace Magma
 		void Resize(float aWidth, float aHeight);
 
 	private:
+		void operator=(DeferredRenderer&) = delete;
+
 		void RenderToGBuffer(Scene* aScene);
 		void RenderAmbientPass(const Camera& aCamera);
 		void RenderPointLights(Scene* aScene);
@@ -33,7 +36,7 @@ namespace Magma
 		GBuffer* myGBuffer;
 		Texture* myCubemap;
 
-		Renderer* myRenderer;
+		Renderer& myRenderer;
 		Instance* myPointLightInstance;
 	};
 }

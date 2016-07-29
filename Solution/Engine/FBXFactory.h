@@ -33,6 +33,8 @@ namespace Magma
 		ModelData* LoadModel(const CU::String<64>& aFilePath, EffectID aEffect) override;
 		
 	private:
+		void operator=(FBXFactory&) = delete;
+
 		ModelData* CreateModel(FBX::FbxModelData* someModelData);
 		void LoadData(GPUData& someGPUData, FBX::ModelData* someFBXData);
 

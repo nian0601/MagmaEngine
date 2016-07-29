@@ -35,6 +35,8 @@ namespace Magma
 		Texture* RequestTexture(const CU::String<64>& aFilePath);
 
 	private:
+		void operator=(AssetContainer&) = delete;
+
 		void Run();
 
 		IModelFactory* myModelFactory;

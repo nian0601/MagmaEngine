@@ -42,14 +42,14 @@
     <OutDir>$(SolutionDir)..\Workbed\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Entity;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\PostMaster;$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Entity;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)..\Workbed\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Entity;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\PostMaster;$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Entity;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

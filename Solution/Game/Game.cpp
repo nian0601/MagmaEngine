@@ -2,18 +2,19 @@
 
 #include <AssetContainer.h>
 #include <Camera.h>
+#include <DeferredRenderer.h>
 #include <Effect.h>
 #include <Engine.h>
 #include "Game.h"
 #include <Instance.h>
-#include <Scene.h>
-#include <TimerManager.h>
-#include <DeferredRenderer.h>
+#include <MathHelper.h>
 #include <PointLight.h>
 #include <PostMaster.h>
+#include <RenderMessage.h>
+#include <RendererProxy.h>
+#include <Scene.h>
+#include <TimerManager.h>
 #include <XMLReader.h>
-#include <MathHelper.h>
-
 
 #include <BaseComponent.h>
 #include <RenderComponent.h>
@@ -40,6 +41,8 @@ void Game::Init(Magma::Engine& aEngine)
 {
 	myCamera = &aEngine.GetCamera();
 	myCamera->Move({ 0.f, 0.f, -30.f });
+
+	myRendererProxy = &aEngine.GetRendererProxy();
 
 	LoadLevel(aEngine.GetAssetContainer());
 
@@ -68,6 +71,11 @@ bool Game::Update(float aDelta)
 void Game::OnResize(float aWidth, float aHeight)
 {
 	//throw std::logic_error("The method or operation is not implemented.");
+}
+
+void Game::ReceiveMessage(const RenderMessage& aMessage)
+{
+	myRendererProxy->RenderModel(aMessage.myModelID, aMessage.myEffectID, aMessage.myOrientation, aMessage.myScale);
 }
 
 void Game::UpdateCamera(float aDelta)

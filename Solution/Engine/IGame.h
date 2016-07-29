@@ -1,6 +1,7 @@
 namespace Magma
 {
 	class Engine;
+	class RendererProxy;
 	class IGame
 	{
 	public:

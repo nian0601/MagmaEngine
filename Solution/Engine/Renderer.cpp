@@ -15,42 +15,41 @@
 
 namespace Magma
 {
-	Renderer::Renderer(EffectID aFullscreenEffect, AssetContainer& aAssetContainer, GPUContext& aGPUContext)
+	Renderer::Renderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
 		: myRenderBuffer(128)
 		, myGPUContext(aGPUContext)
 		, myAssetContainer(aAssetContainer)
 	{
-		InitFullscreenQuad(aFullscreenEffect, myGPUContext, myAssetContainer);
+		InitFullscreenQuad(myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_fullscreen.fx"), myGPUContext, myAssetContainer);
 		myGPUContext.GetBackbuffer(myBackbuffer);
 
 		CreateDepthStencilStates();
 		CreateRasterizerStates();
-
-		PostMaster::GetInstance()->Subscribe(this, eMessageType::RENDER);
 	}
 
 
 	Renderer::~Renderer()
 	{
-		PostMaster::GetInstance()->UnSubscribe(this, 0);
 	}
 
-	void Renderer::ReceiveMessage(const RenderMessage& aMessage)
+	void Renderer::AddRenderCommand(ModelID aModelID, EffectID aEffectID
+		, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale)
 	{
-		myRenderBuffer.Add(aMessage);
+		myRenderBuffer.Add(RenderCommand(aModelID, aEffectID, aOrientation, aScale));
 	}
+
 
 	void Renderer::RenderModels(const Camera& aCamera)
 	{
-		for each (const RenderMessage& msg in myRenderBuffer)
+		for each (const RenderCommand& command in myRenderBuffer)
 		{
-			SetEffect(msg.myEffectID);
+			SetEffect(command.myEffectID);
 			SetMatrix("ViewProjection", aCamera.GetViewProjection());
-			SetMatrix("World", msg.myOrientation);
+			SetMatrix("World", command.myOrientation);
 			SetVector("CameraPosition", aCamera.GetPosition());
-			SetVector("Scale", msg.myScale);
+			SetVector("Scale", command.myScale);
 
-			RenderModel(msg.myModelID);
+			RenderModel(command.myModelID);
 		}
 
 		myRenderBuffer.RemoveAll();

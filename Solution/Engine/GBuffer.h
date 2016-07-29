@@ -27,5 +27,8 @@ namespace Magma
 		Texture* myDepthStencil;
 
 		GPUContext& myGPUContext;
+
+	private:
+		void operator=(GBuffer&) = delete;
 	};
 }

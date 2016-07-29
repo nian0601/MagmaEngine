@@ -7,9 +7,7 @@
 #include <Matrix.h>
 #include "ModelData.h"
 #include <Vector.h>
-#include <Subscriber.h>
 #include <GrowingArray.h>
-#include <RenderMessage.h>
 
 struct ID3DX11EffectVariable;
 struct ID3D11RenderTargetView;
@@ -42,13 +40,14 @@ namespace Magma
 		_RAZTER_COUNT
 	};
 
-	class Renderer : public FullscreenQuad, public Subscriber
+	class Renderer : public FullscreenQuad
 	{
 	public:
-		Renderer(EffectID aFullscreenEffect, AssetContainer& aAssetContainer, GPUContext& aGPUContext);
+		Renderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext);
 		~Renderer();
 
-		void ReceiveMessage(const RenderMessage& aMessage) override;
+		void AddRenderCommand(ModelID myModelID, EffectID aEffectID
+			, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale);
 		void RenderModels(const Camera& aCamera);
 
 		void SetEffect(EffectID aEffect);
@@ -75,6 +74,8 @@ namespace Magma
 		void RenderModel(ModelID aModelID);
 
 	private:
+		void operator=(Renderer&) = delete;
+
 		ID3DX11EffectVariable* GetEffectVariable(const CU::String<64>& aName);
 		void RenderModelData(const ModelData& someData);
 		void RenderGPUData(const GPUData& someData);
@@ -96,7 +97,24 @@ namespace Magma
 		ID3D11RasterizerState* myRasterizerStates[static_cast<int>(eRasterizer::_RAZTER_COUNT)];
 		ID3D11DepthStencilState* myDepthStencilStates[static_cast<int>(eDepthState::_DEPTH_COUNT)];
 
-		CU::GrowingArray<RenderMessage> myRenderBuffer;
 		AssetContainer& myAssetContainer;
+
+		struct RenderCommand
+		{
+			RenderCommand()
+			{}
+			RenderCommand(ModelID aModelID, EffectID aEffectID
+				, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale)
+				: myModelID(aModelID)
+				, myEffectID(aEffectID)
+				, myOrientation(aOrientation)
+				, myScale(aScale)
+			{}
+			CU::Matrix44<float> myOrientation;
+			CU::Vector3<float> myScale;
+			Magma::ModelID myModelID;
+			Magma::EffectID myEffectID;
+		};
+		CU::GrowingArray<RenderCommand> myRenderBuffer;
 	};
 }

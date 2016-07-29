@@ -26,6 +26,8 @@ namespace Magma
 	class GPUContext;
 	class WindowHandler;
 	class IGame;
+	class Renderer;
+	class RendererProxy;
 	class Scene;
 
 	class Engine
@@ -40,9 +42,12 @@ namespace Magma
 		AssetContainer& GetAssetContainer();
 		Scene& GetScene();
 		Camera& GetCamera();
+		RendererProxy& GetRendererProxy();
 		const CU::Vector2<float>& GetWindowSize() const;
 
 	private:
+		void operator=(Engine&) = delete;
+
 		void OnResize();
 
 		IGame& myGame;
@@ -51,8 +56,11 @@ namespace Magma
 		WindowHandler* myWindowHandler;
 		AssetContainer* myAssetContainer;
 		Scene* myScene;
-		DeferredRenderer* myRenderer;
 		Camera* myCamera;
+
+		Renderer* myRenderer;
+		RendererProxy* myRendererProxy;
+		DeferredRenderer* myDeferredRenderer;
 		CU::TimerManager* myTimerManager;
 
 		CU::Vector2<float> myWindowSize;
@@ -82,5 +90,10 @@ namespace Magma
 	inline Camera& Engine::GetCamera()
 	{
 		return *myCamera;
+	}
+
+	inline RendererProxy& Engine::GetRendererProxy()
+	{
+		return *myRendererProxy;
 	}
 }
