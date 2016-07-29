@@ -1,14 +1,14 @@
 #include "stdafx.h"
 
-#include <AssetContainer.h>
-#include <Camera.h>
-#include <DeferredRenderer.h>
+#include <Rendering/AssetContainer.h>
+#include <Rendering/Camera.h>
+#include <Rendering/DeferredRenderer.h>
 #include <Engine.h>
 #include "Game.h"
 #include <MathHelper.h>
 #include <PostMaster.h>
 #include <RenderMessage.h>
-#include <RendererProxy.h>
+#include <Rendering/RendererProxy.h>
 #include <XMLReader.h>
 
 #include <RenderComponent.h>

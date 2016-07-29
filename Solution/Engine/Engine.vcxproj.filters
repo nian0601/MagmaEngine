@@ -5,64 +5,85 @@
     <ClInclude Include="stdafx.h">
       <Filter>Precompile</Filter>
     </ClInclude>
-    <ClInclude Include="AssetContainer.h">
-      <Filter>AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="IModelFactory.h">
-      <Filter>AssetManagement\ModelLoaders</Filter>
-    </ClInclude>
-    <ClInclude Include="FBXFactory.h">
-      <Filter>AssetManagement\ModelLoaders</Filter>
-    </ClInclude>
-    <ClInclude Include="FBX\FbxLoader.h">
-      <Filter>AssetManagement\ModelLoaders\FBX</Filter>
-    </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="FullscreenQuad.h">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="GBuffer.h">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="PointLight.h">
-      <Filter>Rendering\Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="DeferredRenderer.h">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="GfxStructs.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelData.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Backbuffer.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="GPUData.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectX.h">
-      <Filter>Rendering\GPUContext</Filter>
-    </ClInclude>
-    <ClInclude Include="GPUContext.h">
-      <Filter>Rendering\GPUContext</Filter>
-    </ClInclude>
     <ClInclude Include="WindowHandler.h" />
     <ClInclude Include="IGame.h" />
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="Entity\Include\BaseComponent.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Include\BaseProcessor.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Include\ComponentFilter.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Include\ComponentStorage.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Include\CustomEntityTypes.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Include\TypeID.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Include\World.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Camera.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="RendererProxy.h">
+    <ClInclude Include="Rendering\Renderer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="Rendering\RendererProxy.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\PointLight.h">
+      <Filter>Rendering\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Backbuffer.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\GfxStructs.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\GPUData.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ModelData.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\DirectX.h">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\GPUContext.h">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\DeferredRenderer.h">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\FullscreenQuad.h">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\GBuffer.h">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\AssetContainer.h">
+      <Filter>Rendering\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Effect.h">
+      <Filter>Rendering\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Texture.h">
+      <Filter>Rendering\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\FBXFactory.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\IModelFactory.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\FBX\FbxLoader.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -70,54 +91,63 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Precompile</Filter>
     </ClCompile>
-    <ClCompile Include="AssetContainer.cpp">
-      <Filter>AssetManagement</Filter>
+    <ClCompile Include="WindowHandler.cpp" />
+    <ClCompile Include="Entity\Source\BaseProcessor.cpp">
+      <Filter>Entity</Filter>
     </ClCompile>
-    <ClCompile Include="FBXFactory.cpp">
-      <Filter>AssetManagement\ModelLoaders</Filter>
+    <ClCompile Include="Entity\Source\ComponentStorage.cpp">
+      <Filter>Entity</Filter>
     </ClCompile>
-    <ClCompile Include="FBX\FbxLoader.cpp">
-      <Filter>AssetManagement\ModelLoaders\FBX</Filter>
+    <ClCompile Include="Entity\Source\World.cpp">
+      <Filter>Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>AssetManagement</Filter>
+    <ClCompile Include="Rendering\Camera.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>AssetManagement</Filter>
+    <ClCompile Include="Rendering\Renderer.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="FullscreenQuad.cpp">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
+    <ClCompile Include="Rendering\RendererProxy.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="GBuffer.cpp">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="PointLight.cpp">
+    <ClCompile Include="Rendering\PointLight.cpp">
       <Filter>Rendering\Lights</Filter>
     </ClCompile>
-    <ClCompile Include="DeferredRenderer.cpp">
+    <ClCompile Include="Rendering\GPUData.cpp">
+      <Filter>Rendering\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\ModelData.cpp">
+      <Filter>Rendering\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\DirectX.cpp">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\GPUContext.cpp">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\DeferredRenderer.cpp">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="ModelData.cpp">
-      <Filter>Rendering\Structs</Filter>
+    <ClCompile Include="Rendering\FullscreenQuad.cpp">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="GPUData.cpp">
-      <Filter>Rendering\Structs</Filter>
+    <ClCompile Include="Rendering\GBuffer.cpp">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX.cpp">
-      <Filter>Rendering\GPUContext</Filter>
+    <ClCompile Include="Rendering\AssetContainer.cpp">
+      <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
-    <ClCompile Include="GPUContext.cpp">
-      <Filter>Rendering\GPUContext</Filter>
+    <ClCompile Include="Rendering\Effect.cpp">
+      <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
-    <ClCompile Include="WindowHandler.cpp" />
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Rendering</Filter>
+    <ClCompile Include="Rendering\Texture.cpp">
+      <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
-    <ClCompile Include="RendererProxy.cpp">
-      <Filter>Rendering</Filter>
+    <ClCompile Include="Rendering\FBXFactory.cpp">
+      <Filter>Rendering\AssetManagement\ModelLoaders</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Rendering</Filter>
+    <ClCompile Include="Rendering\FBX\FbxLoader.cpp">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,15 +156,6 @@
     </Filter>
     <Filter Include="Rendering">
       <UniqueIdentifier>{6044f429-b27f-4d29-b884-2ce5b17ad9b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AssetManagement">
-      <UniqueIdentifier>{f4630e69-0f8b-4315-9c63-4362c4573a08}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AssetManagement\ModelLoaders">
-      <UniqueIdentifier>{c1af0d62-40bc-46c2-aa71-6d3f4a1f84b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AssetManagement\ModelLoaders\FBX">
-      <UniqueIdentifier>{a06aad34-e3f4-4132-a2f3-458687353b4c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Rendering\Fullscreen Rendering">
       <UniqueIdentifier>{72ee9903-58f6-4ec8-bdab-e16d02a11869}</UniqueIdentifier>
@@ -147,6 +168,18 @@
     </Filter>
     <Filter Include="Rendering\Structs">
       <UniqueIdentifier>{410dad21-b6c2-4984-8c24-d2667e787ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{504fd70a-1d15-42db-b8be-8fac93dc237d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\AssetManagement">
+      <UniqueIdentifier>{f4630e69-0f8b-4315-9c63-4362c4573a08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\AssetManagement\ModelLoaders">
+      <UniqueIdentifier>{c1af0d62-40bc-46c2-aa71-6d3f4a1f84b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\AssetManagement\ModelLoaders\FBX">
+      <UniqueIdentifier>{a06aad34-e3f4-4132-a2f3-458687353b4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
