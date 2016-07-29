@@ -6,13 +6,11 @@
 #include <Effect.h>
 #include <Engine.h>
 #include "Game.h"
-#include <Instance.h>
 #include <MathHelper.h>
 #include <PointLight.h>
 #include <PostMaster.h>
 #include <RenderMessage.h>
 #include <RendererProxy.h>
-#include <Scene.h>
 #include <TimerManager.h>
 #include <XMLReader.h>
 
@@ -45,8 +43,6 @@ void Game::Init(Magma::Engine& aEngine)
 	myRendererProxy = &aEngine.GetRendererProxy();
 
 	LoadLevel(aEngine.GetAssetContainer());
-
-	//aEngine.GetScene().AddLight(new Magma::PointLight({ -1.2f, -1.f, 3.f }, { 1.f, 0.f, 0.f, 3.f }, 4.f));
 
 	myWorld.AddProcessor<RenderProcessor>();
 	myWorld.AddProcessor<InputProcessor>();

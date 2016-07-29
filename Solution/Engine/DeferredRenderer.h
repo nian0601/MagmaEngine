@@ -8,8 +8,6 @@ namespace Magma
 	class Effect;
 	class GBuffer;
 	class GPUContext;
-	class Instance;
-	class Scene;
 	class Texture;
 	class Renderer;
 
@@ -20,16 +18,16 @@ namespace Magma
 			Renderer& aRenderer, const CU::Vector2<float>& aWindowSize);
 		~DeferredRenderer();
 
-		void Render(Scene* aScene);
+		void Render(const Camera& aCamera);
 
 		void Resize(float aWidth, float aHeight);
 
 	private:
 		void operator=(DeferredRenderer&) = delete;
 
-		void RenderToGBuffer(Scene* aScene);
+		void RenderToGBuffer(const Camera& aCamera);
 		void RenderAmbientPass(const Camera& aCamera);
-		void RenderPointLights(Scene* aScene);
+		void RenderPointLights(const Camera& aCamera);
 
 		EffectID myFullscreenEffect;
 		EffectID myPointLightEffect;
@@ -37,6 +35,6 @@ namespace Magma
 		Texture* myCubemap;
 
 		Renderer& myRenderer;
-		Instance* myPointLightInstance;
+		//Instance* myPointLightInstance;
 	};
 }

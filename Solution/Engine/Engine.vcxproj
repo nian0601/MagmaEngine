@@ -108,13 +108,11 @@
     <ClInclude Include="GPUData.h" />
     <ClInclude Include="IGame.h" />
     <ClInclude Include="IModelFactory.h" />
-    <ClInclude Include="Instance.h" />
     <ClInclude Include="ModelData.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="DeferredRenderer.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererProxy.h" />
-    <ClInclude Include="Scene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="WindowHandler.h" />
@@ -131,13 +129,11 @@
     <ClCompile Include="GBuffer.cpp" />
     <ClCompile Include="GPUContext.cpp" />
     <ClCompile Include="GPUData.cpp" />
-    <ClCompile Include="Instance.cpp" />
     <ClCompile Include="ModelData.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="DeferredRenderer.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RendererProxy.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

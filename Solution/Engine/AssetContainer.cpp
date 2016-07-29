@@ -1,28 +1,11 @@
 #include "stdafx.h"
 #include "AssetContainer.h"
 #include "Effect.h"
-#include "Instance.h"
 #include "FBXFactory.h"
 #include "Texture.h"
 
 namespace Magma
 {
-	Magma::Instance* AssetContainer::CreateInstance(const CU::String<64>& aModelPath, const CU::String<64>& aEffectPath)
-	{
-		EffectID effect = LoadEffect(aEffectPath);
-
-		if (myModelID.KeyExists(aModelPath) == false)
-		{
-			ModelData* modelData = myModelFactory->LoadModel(aModelPath, effect);
-
-			myModels[myNextModelID] = modelData;
-			myModelID[aModelPath] = myNextModelID;
-			++myNextModelID;
-		}
-
-		return new Instance(myModelID[aModelPath], effect);
-	}
-
 	ModelID AssetContainer::LoadModel(const CU::String<64>& aModelPath, const CU::String<64>& aEffectPath)
 	{
 		EffectID effect = LoadEffect(aEffectPath);

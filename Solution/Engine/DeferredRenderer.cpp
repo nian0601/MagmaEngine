@@ -4,8 +4,6 @@
 #include "Camera.h"
 #include "GBuffer.h"
 #include "DeferredRenderer.h"
-#include "Instance.h"
-#include "Scene.h"
 #include "Renderer.h"
 #include "PointLight.h"
 
@@ -22,7 +20,7 @@ namespace Magma
 
 		myCubemap = aAssetContainer.RequestTexture("Data/Resource/Texture/church_cubemap.dds");
 
-		myPointLightInstance = aAssetContainer.CreateInstance("Data/Resource/Model/Light_Mesh/SM_sphere.fbx", "Data/Resource/Shader/S_effect_deferred_pointlight.fx");
+		//myPointLightInstance = aAssetContainer.CreateInstance("Data/Resource/Model/Light_Mesh/SM_sphere.fbx", "Data/Resource/Shader/S_effect_deferred_pointlight.fx");
 	}
 
 
@@ -31,11 +29,10 @@ namespace Magma
 		SAFE_DELETE(myGBuffer);
 	}
 
-	void DeferredRenderer::Render(Scene* aScene)
+	void DeferredRenderer::Render(const Camera& aCamera)
 	{
-		
-		RenderToGBuffer(aScene);
-		RenderAmbientPass(aScene->GetCamera());
+		RenderToGBuffer(aCamera);
+		RenderAmbientPass(aCamera);
 		//RenderPointLights(aScene);
 	}
 
@@ -44,7 +41,7 @@ namespace Magma
 		myGBuffer->Resize(aWidth, aHeight);
 	}
 
-	void DeferredRenderer::RenderToGBuffer(Scene* aScene)
+	void DeferredRenderer::RenderToGBuffer(const Camera& aCamera)
 	{
 		myRenderer.SetDepthStencilState(ENABLED);
 		myRenderer.SetRasterizerState(CULL_BACK);
@@ -60,8 +57,7 @@ namespace Magma
 		myRenderer.SetDepthStencil(myGBuffer->myDepthStencil);
 		myRenderer.ApplyRenderTargetAndDepthStencil();
 
-		myRenderer.RenderModels(aScene->GetCamera());
-		//aScene->Render(myRenderer);
+		myRenderer.RenderModels(aCamera);
 	}
 
 	void DeferredRenderer::RenderAmbientPass(const Camera& aCamera)
@@ -83,7 +79,7 @@ namespace Magma
 		myRenderer.RenderFullScreen("Deferred_Ambient");
 	}
 
-	void DeferredRenderer::RenderPointLights(Scene* aScene)
+	void DeferredRenderer::RenderPointLights(const Camera& aCamera)
 	{
 		myRenderer.UseOriginalRenderTarget();
 		myRenderer.SetDepthStencil(myGBuffer->myDepthStencil);
@@ -96,16 +92,16 @@ namespace Magma
 		myRenderer.SetTexture("AlbedoMetalnessTexture", myGBuffer->myAlbedoAndMetalness);
 		myRenderer.SetTexture("NormalRoughnessTexture", myGBuffer->myNormalAndRoughness);
 		myRenderer.SetTexture("DepthTexture", myGBuffer->myDepth);
-		myRenderer.SetMatrix("InvertedProjection", CU::InverseReal(aScene->GetCamera().GetProjection()));
-		myRenderer.SetMatrix("NotInvertedView", aScene->GetCamera().GetNotInvertedView());
+		myRenderer.SetMatrix("InvertedProjection", CU::InverseReal(aCamera.GetProjection()));
+		myRenderer.SetMatrix("NotInvertedView", aCamera.GetNotInvertedView());
 
-		const CU::GrowingArray<PointLight*>& pointLights = aScene->GetPointLights();
+		/*const CU::GrowingArray<PointLight*>& pointLights = aScene->GetPointLights();
 		for each (const PointLight* light in pointLights)
 		{
-			myRenderer.SetRawData("PointLight", sizeof(light->GetData()), &light->GetData());
-			myPointLightInstance->SetPosition(light->GetPosition());
-			myPointLightInstance->Render(&myRenderer, aScene->GetCamera());
-		}
+		myRenderer.SetRawData("PointLight", sizeof(light->GetData()), &light->GetData());
+		myPointLightInstance->SetPosition(light->GetPosition());
+		myPointLightInstance->Render(&myRenderer, aScene->GetCamera());
+		}*/
 
 
 		myRenderer.SetDepthStencilState(ENABLED);

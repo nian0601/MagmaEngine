@@ -9,7 +9,6 @@
 #include <InputWrapper.h>
 #include "Renderer.h"
 #include "RendererProxy.h"
-#include "Scene.h"
 #include <TimerManager.h>
 #include "WindowHandler.h"
 
@@ -32,8 +31,6 @@ namespace Magma
 
 		myCamera = new Camera();
 		myCamera->Resize(myWindowSize);
-		myScene = new Scene();
-		myScene->SetCamera(*myCamera);
 
 		myTimerManager = new CU::TimerManager();
 
@@ -47,7 +44,6 @@ namespace Magma
 	Engine::~Engine()
 	{
 		SAFE_DELETE(myTimerManager);
-		SAFE_DELETE(myScene);
 		SAFE_DELETE(myCamera);
 		SAFE_DELETE(myDeferredRenderer);
 		SAFE_DELETE(myRendererProxy);
@@ -84,7 +80,7 @@ namespace Magma
 
 				myIsRunning = myGame.Update(myTimerManager->GetMasterTimer().GetTime().GetFrameTime());
 
-				myDeferredRenderer->Render(myScene);
+				myDeferredRenderer->Render(*myCamera);
 				myGPUContext->FinishFrame();
 
 				myTimerManager->CapFrameRate(60.f);

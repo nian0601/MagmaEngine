@@ -14,7 +14,6 @@ namespace Magma
 {
 	class Effect;
 	class GPUContext;
-	class Instance;
 	class IModelFactory;
 	class ModelData;
 	class Texture;
@@ -25,7 +24,6 @@ namespace Magma
 		AssetContainer(GPUContext& aGPUContext);
 		~AssetContainer();
 
-		Instance* CreateInstance(const CU::String<64>& aModelPath, const CU::String<64>& aEffectPath);
 		ModelID LoadModel(const CU::String<64>& aModelPath, const CU::String<64>& aEffectPath);
 		ModelData* GetModel(ModelID aID);
 
