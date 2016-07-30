@@ -40,15 +40,18 @@ namespace Magma
 		_RAZTER_COUNT
 	};
 
-	class Renderer : public FullscreenQuad
+	class Renderer
 	{
 	public:
 		Renderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext);
 		~Renderer();
 
-		void AddRenderCommand(ModelID myModelID, EffectID aEffectID
+		void AddModelCommand(ModelID myModelID, EffectID aEffectID
 			, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale);
+		void AddSpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
+			, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale);
 		void RenderModels(const Camera& aCamera);
+		void RenderSprites(const Camera& aCamera);
 
 		void SetEffect(EffectID aEffect);
 		void SetTexture(const CU::String<64>& aName, Texture* aTexture);
@@ -98,12 +101,13 @@ namespace Magma
 		ID3D11DepthStencilState* myDepthStencilStates[static_cast<int>(eDepthState::_DEPTH_COUNT)];
 
 		AssetContainer& myAssetContainer;
+		FullscreenQuad myFullscreenQuad;
 
-		struct RenderCommand
+		struct ModelCommand
 		{
-			RenderCommand()
+			ModelCommand()
 			{}
-			RenderCommand(ModelID aModelID, EffectID aEffectID
+			ModelCommand(ModelID aModelID, EffectID aEffectID
 				, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale)
 				: myModelID(aModelID)
 				, myEffectID(aEffectID)
@@ -115,6 +119,27 @@ namespace Magma
 			Magma::ModelID myModelID;
 			Magma::EffectID myEffectID;
 		};
-		CU::GrowingArray<RenderCommand> myRenderBuffer;
+		CU::GrowingArray<ModelCommand> myModelCommands;
+
+		struct SpriteCommand
+		{
+			SpriteCommand()
+			{}
+			SpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
+				, const CU::Vector4<float>& aSizeAndHotSpot
+				, const CU::Vector4<float>& aPositionAndScale)
+				: myTexture(aTexture)
+				, myOrientation(aOrientation)
+				, mySizeAndHotSpot(aSizeAndHotSpot)
+				, myPositionAndScale(aPositionAndScale)
+			{}
+
+			Texture* myTexture;
+			CU::Matrix44<float> myOrientation;
+			CU::Vector4<float> mySizeAndHotSpot;
+			CU::Vector4<float> myPositionAndScale;
+		};
+		CU::GrowingArray<SpriteCommand> mySpriteCommands;
+		EffectID mySpriteEffect;
 	};
 }

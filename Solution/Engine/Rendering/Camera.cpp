@@ -27,6 +27,9 @@ namespace Magma
 	void Camera::Resize(const CU::Vector2<float>& aSize)
 	{
 		myProjection = CU::Matrix44<float>::CreateProjectionMatrixLH(0.1f, 100.f, aSize.y / aSize.x, PI * 0.5f);
+		myOrthagonalProjection = CU::Matrix44<float>::CreateOrthogonalMatrixLH(aSize.x
+			, aSize.y, 0.1f, 1000.f);
+
 		myIsDirty = true;
 	}
 

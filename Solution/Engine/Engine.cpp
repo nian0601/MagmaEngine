@@ -81,6 +81,7 @@ namespace Magma
 				myIsRunning = myGame.Update(myTimerManager->GetMasterTimer().GetTime().GetFrameTime());
 
 				myDeferredRenderer->Render(*myCamera);
+				myRenderer->RenderSprites(*myCamera);
 				myGPUContext->FinishFrame();
 
 				myTimerManager->CapFrameRate(60.f);

@@ -51,7 +51,6 @@ struct Pixel_LightMesh
 	float4 Tex : POSITION;
 };
 
-
 struct GBuffer
 {
 	float4 AlbedoMetalness;

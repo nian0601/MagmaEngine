@@ -2,6 +2,7 @@
 
 #include "AssetContainer.h"
 #include "Camera.h"
+#include "CommonHelper.h"
 #include <d3d11.h>
 #include <D3DX11async.h>
 #include <d3dx11effect.h>
@@ -14,15 +15,18 @@
 namespace Magma
 {
 	Renderer::Renderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
-		: myRenderBuffer(128)
+		: myModelCommands(128)
+		, mySpriteCommands(128)
 		, myGPUContext(aGPUContext)
 		, myAssetContainer(aAssetContainer)
+		, myFullscreenQuad(aAssetContainer, aGPUContext)
 	{
-		InitFullscreenQuad(myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_fullscreen.fx"), myGPUContext, myAssetContainer);
 		myGPUContext.GetBackbuffer(myBackbuffer);
 
 		CreateDepthStencilStates();
 		CreateRasterizerStates();
+
+		mySpriteEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_sprite.fx");
 	}
 
 
@@ -30,16 +34,22 @@ namespace Magma
 	{
 	}
 
-	void Renderer::AddRenderCommand(ModelID aModelID, EffectID aEffectID
+	void Renderer::AddModelCommand(ModelID aModelID, EffectID aEffectID
 		, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale)
 	{
-		myRenderBuffer.Add(RenderCommand(aModelID, aEffectID, aOrientation, aScale));
+		myModelCommands.Add(ModelCommand(aModelID, aEffectID, aOrientation, aScale));
 	}
 
 
+	void Renderer::AddSpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
+		, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale)
+	{
+		mySpriteCommands.Add(SpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, aPositionAndScale));
+	}
+
 	void Renderer::RenderModels(const Camera& aCamera)
 	{
-		for each (const RenderCommand& command in myRenderBuffer)
+		for each (const ModelCommand& command in myModelCommands)
 		{
 			SetEffect(command.myEffectID);
 			SetMatrix("ViewProjection", aCamera.GetViewProjection());
@@ -50,7 +60,25 @@ namespace Magma
 			RenderModel(command.myModelID);
 		}
 
-		myRenderBuffer.RemoveAll();
+		myModelCommands.RemoveAll();
+	}
+
+	void Renderer::RenderSprites(const Camera& aCamera)
+	{
+		myFullscreenQuad.Activate();
+		myCurrentEffect = mySpriteEffect;
+		SetEffect(myCurrentEffect);
+		SetMatrix("Projection", aCamera.GetOrthagonalProjection());
+
+		for each (SpriteCommand command in mySpriteCommands)
+		{
+			SetMatrix("SpriteOrientation", command.myOrientation);
+			SetVector("SpriteSizeAndHotSpot", command.mySizeAndHotSpot);
+			SetVector("SpritePositionAndScale", command.myPositionAndScale);
+			SetTexture("AlbedoTexture", command.myTexture);
+
+			myFullscreenQuad.Render(myCurrentEffect, "Render");
+		}
 	}
 
 	void Renderer::SetEffect(EffectID aEffect)
@@ -148,8 +176,8 @@ namespace Magma
 
 	void Renderer::RenderFullScreen(const CU::String<30>& aTechnique)
 	{
-		ActivateFullscreenQuad(myGPUContext);
-		RenderFullscreenQuad(myCurrentEffect, aTechnique, myGPUContext, myAssetContainer);
+		myFullscreenQuad.Activate();
+		myFullscreenQuad.Render(myCurrentEffect, aTechnique);
 	}
 
 	void Renderer::RenderModel(ModelID aModelID)

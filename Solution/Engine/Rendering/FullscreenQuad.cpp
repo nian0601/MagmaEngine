@@ -10,16 +10,9 @@
 
 namespace Magma
 {
-	FullscreenQuad::FullscreenQuad()
-	{
-	}
-
-
-	FullscreenQuad::~FullscreenQuad()
-	{
-	}
-
-	void FullscreenQuad::InitFullscreenQuad(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
+	FullscreenQuad::FullscreenQuad(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
+		: myAssetContainer(aAssetContainer)
+		, myGPUContext(aGPUContext)
 	{
 		CU::GrowingArray<VertexPosUV> vertices(4);
 		vertices.Add({ { -1.f, -1.f, 0.f }, { 0.f, 1.f } }); //topleft
@@ -41,14 +34,20 @@ namespace Magma
 		myGPUData.SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		myGPUData.AddInputElement(new D3D11_INPUT_ELEMENT_DESC({ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }));
 		myGPUData.AddInputElement(new D3D11_INPUT_ELEMENT_DESC({ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }));
-		myGPUData.Init(aEffect, indices.Size(), reinterpret_cast<char*>(&indices[0]), vertices.Size()
-			, sizeof(VertexPosUV), reinterpret_cast<char*>(&vertices[0]), aGPUContext, aAssetContainer);
+		myGPUData.Init(aAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_fullscreen.fx")
+			, indices.Size(), reinterpret_cast<char*>(&indices[0]), vertices.Size()
+			, sizeof(VertexPosUV), reinterpret_cast<char*>(&vertices[0]), myGPUContext, myAssetContainer);
 	}
 
-	void FullscreenQuad::ActivateFullscreenQuad(GPUContext& aGPUContext)
+
+	FullscreenQuad::~FullscreenQuad()
+	{
+	}
+
+	void FullscreenQuad::Activate()
 	{
 		const unsigned int byteOffset = 0;
-		ID3D11DeviceContext* context = aGPUContext.GetContext();
+		ID3D11DeviceContext* context = myGPUContext.GetContext();
 		const IndexBuffer& indexBuffer = myGPUData.GetIndexBuffer();
 		const VertexBuffer& vertexBuffer = myGPUData.GetVertexBuffer();
 
@@ -58,10 +57,10 @@ namespace Magma
 		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY(myGPUData.GetTopology()));
 	}
 
-	void FullscreenQuad::RenderFullscreenQuad(EffectID aEffect, const CU::String<30>& aTechnique, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
+	void FullscreenQuad::Render(EffectID aEffect, const CU::String<30>& aTechnique)
 	{
-		ID3D11DeviceContext* context = aGPUContext.GetContext();
-		Effect* effect = aAssetContainer.GetEffect(aEffect);
+		ID3D11DeviceContext* context = myGPUContext.GetContext();
+		Effect* effect = myAssetContainer.GetEffect(aEffect);
 
 		D3DX11_TECHNIQUE_DESC techDesc;
 		effect->GetTechnique(aTechnique)->GetDesc(&techDesc);

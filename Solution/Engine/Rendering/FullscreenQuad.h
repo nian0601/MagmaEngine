@@ -12,15 +12,17 @@ namespace Magma
 	class FullscreenQuad
 	{
 	public:
-		FullscreenQuad();
+		FullscreenQuad(AssetContainer& aAssetContainer, GPUContext& aGPUContext);
 		~FullscreenQuad();
 
-		void InitFullscreenQuad(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
-		void ActivateFullscreenQuad(GPUContext& aGPUContext);
-		void RenderFullscreenQuad(EffectID aEffect, const CU::String<30>& aTechnique, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
+		void Activate();
+		void Render(EffectID aEffect, const CU::String<30>& aTechnique);
 
 	private:
+		void operator=(FullscreenQuad&) = delete;
+
+		AssetContainer& myAssetContainer;
+		GPUContext& myGPUContext;
 		GPUData myGPUData;
-		
 	};
 }

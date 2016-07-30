@@ -21,10 +21,12 @@ namespace Magma
 		const CU::Matrix44<float>& GetNotInvertedView() const;
 		const CU::Matrix44<float>& GetProjection() const;
 		const CU::Matrix44<float>& GetViewProjection() const;
+		const CU::Matrix44<float>& GetOrthagonalProjection() const;
 
 		CU::Vector3<float> GetPosition() const;
 
 	private:
+		CU::Matrix44<float> myOrthagonalProjection;
 		CU::Matrix44<float> myProjection;
 		CU::Matrix44<float> myView;
 		CU::Matrix44<float> myViewProjection;
@@ -51,6 +53,11 @@ namespace Magma
 	inline const CU::Matrix44<float>& Camera::GetViewProjection() const
 	{
 		return myViewProjection;
+	}
+
+	inline const CU::Matrix44<float>& Camera::GetOrthagonalProjection() const
+	{
+		return myOrthagonalProjection;
 	}
 
 	inline CU::Vector3<float> Camera::GetPosition() const
