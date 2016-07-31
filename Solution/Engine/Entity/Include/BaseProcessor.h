@@ -16,10 +16,13 @@ namespace Magma
 		const CU::GrowingArray<Entity>& GetEntities();
 
 		template<typename T>
-		T& GetComponent(Entity aEntity);
+		void AddComponent(Entity aEntity);
 
 		template<typename T>
 		void RemoveComponent(Entity aEntity);
+
+		template<typename T>
+		T& GetComponent(Entity aEntity);
 
 	private:
 		void operator=(BaseProcessor&) = delete;
@@ -28,14 +31,20 @@ namespace Magma
 	};
 
 	template<typename T>
-	T& BaseProcessor::GetComponent(Entity aEntity)
+	void BaseProcessor::AddComponent(Entity aEntity)
 	{
-		return myWorld.GetComponent<T>(aEntity);
+		myWorld.AddComponent<T>(aEntity);
 	}
 
 	template<typename T>
 	void BaseProcessor::RemoveComponent(Entity aEntity)
 	{
 		myWorld.RemoveComponent<T>(aEntity);
+	}
+
+	template<typename T>
+	T& BaseProcessor::GetComponent(Entity aEntity)
+	{
+		return myWorld.GetComponent<T>(aEntity);
 	}
 }
