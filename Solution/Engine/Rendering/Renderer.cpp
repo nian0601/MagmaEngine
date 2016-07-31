@@ -16,17 +16,14 @@ namespace Magma
 {
 	Renderer::Renderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
 		: myModelCommands(128)
-		, mySpriteCommands(128)
 		, myGPUContext(aGPUContext)
 		, myAssetContainer(aAssetContainer)
-		, myFullscreenQuad(aAssetContainer, aGPUContext)
+		, myQuadRenderer(aAssetContainer, aGPUContext)
 	{
 		myGPUContext.GetBackbuffer(myBackbuffer);
 
 		CreateDepthStencilStates();
 		CreateRasterizerStates();
-
-		mySpriteEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_sprite.fx");
 	}
 
 
@@ -44,7 +41,7 @@ namespace Magma
 	void Renderer::AddSpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
 		, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale)
 	{
-		mySpriteCommands.Add(SpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, aPositionAndScale));
+		myQuadRenderer.AddSpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, aPositionAndScale);
 	}
 
 	void Renderer::RenderModels(const Camera& aCamera)
@@ -65,20 +62,7 @@ namespace Magma
 
 	void Renderer::RenderSprites(const Camera& aCamera)
 	{
-		myFullscreenQuad.Activate();
-		myCurrentEffect = mySpriteEffect;
-		SetEffect(myCurrentEffect);
-		SetMatrix("Projection", aCamera.GetOrthagonalProjection());
-
-		for each (SpriteCommand command in mySpriteCommands)
-		{
-			SetMatrix("SpriteOrientation", command.myOrientation);
-			SetVector("SpriteSizeAndHotSpot", command.mySizeAndHotSpot);
-			SetVector("SpritePositionAndScale", command.myPositionAndScale);
-			SetTexture("AlbedoTexture", command.myTexture);
-
-			myFullscreenQuad.Render(myCurrentEffect, "Render");
-		}
+		myQuadRenderer.RenderSprites(aCamera, *this);
 	}
 
 	void Renderer::SetEffect(EffectID aEffect)
@@ -176,8 +160,8 @@ namespace Magma
 
 	void Renderer::RenderFullScreen(const CU::String<30>& aTechnique)
 	{
-		myFullscreenQuad.Activate();
-		myFullscreenQuad.Render(myCurrentEffect, aTechnique);
+		myQuadRenderer.Activate();
+		myQuadRenderer.Render(myCurrentEffect, aTechnique);
 	}
 
 	void Renderer::RenderModel(ModelID aModelID)

@@ -3,7 +3,7 @@
 #include "Backbuffer.h"
 #include <CUMap.h>
 #include <CUString.h>
-#include "FullscreenQuad.h"
+#include "QuadRenderer.h"
 #include <Matrix.h>
 #include "ModelData.h"
 #include <Vector.h>
@@ -101,7 +101,7 @@ namespace Magma
 		ID3D11DepthStencilState* myDepthStencilStates[static_cast<int>(eDepthState::_DEPTH_COUNT)];
 
 		AssetContainer& myAssetContainer;
-		FullscreenQuad myFullscreenQuad;
+		QuadRenderer myQuadRenderer;
 
 		struct ModelCommand
 		{
@@ -120,26 +120,5 @@ namespace Magma
 			Magma::EffectID myEffectID;
 		};
 		CU::GrowingArray<ModelCommand> myModelCommands;
-
-		struct SpriteCommand
-		{
-			SpriteCommand()
-			{}
-			SpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
-				, const CU::Vector4<float>& aSizeAndHotSpot
-				, const CU::Vector4<float>& aPositionAndScale)
-				: myTexture(aTexture)
-				, myOrientation(aOrientation)
-				, mySizeAndHotSpot(aSizeAndHotSpot)
-				, myPositionAndScale(aPositionAndScale)
-			{}
-
-			Texture* myTexture;
-			CU::Matrix44<float> myOrientation;
-			CU::Vector4<float> mySizeAndHotSpot;
-			CU::Vector4<float> myPositionAndScale;
-		};
-		CU::GrowingArray<SpriteCommand> mySpriteCommands;
-		EffectID mySpriteEffect;
 	};
 }

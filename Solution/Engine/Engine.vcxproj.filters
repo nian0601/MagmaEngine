@@ -61,9 +61,6 @@
     <ClInclude Include="Rendering\DeferredRenderer.h">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\FullscreenQuad.h">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\GBuffer.h">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClInclude>
@@ -84,6 +81,9 @@
     </ClInclude>
     <ClInclude Include="Rendering\FBX\FbxLoader.h">
       <Filter>Rendering\AssetManagement\ModelLoaders\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\QuadRenderer.h">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -128,9 +128,6 @@
     <ClCompile Include="Rendering\DeferredRenderer.cpp">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\FullscreenQuad.cpp">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\GBuffer.cpp">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
@@ -148,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="Rendering\FBX\FbxLoader.cpp">
       <Filter>Rendering\AssetManagement\ModelLoaders\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\QuadRenderer.cpp">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

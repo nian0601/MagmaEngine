@@ -6,39 +6,6 @@ float4 SpritePositionAndScale;
 
 Pixel_FullscreenQuad VertexShader_Sprite(Vertex_FullscreenQuad aInput)
 {
-/*
-	float2 size = SpriteSizeAndHotSpot.xy / 2.f;
-	float2 hotspot = SpriteSizeAndHotSpot.zw / 2.f;
-
-	float4 position = aInput.Pos;
-	
-
-	//First we set the size of the sprite
-	position.xy *= size;
-
-	//Then we need to fix the hotspot
-	//Adding half of the size moves the hotspot from center to bottomleft
-	position.xy += size/2;
-
-	//After that its easier to do real hotspot-adjustments
-	position.xy -= hotspot;
-
-	//Then we do rotations
-	position = mul(position, SpriteOrientation);
-
-	//And scaling
-	position.xy *= SpritePositionAndScale.zw;
-
-	//And positioning
-	position.xy += SpritePositionAndScale.xy;
-	
-	//Move into Projectionspace
-	position = mul(position, Projection);
-
-	//Moves the sprite from center (0, 0), to bottomleft (-1, -1)
-	//position.xy -= 1;
-*/
-
 	float2 size = SpriteSizeAndHotSpot.xy / 2;
 	float2 hotspot = SpriteSizeAndHotSpot.zw;
 	float2 position = SpritePositionAndScale.xy;

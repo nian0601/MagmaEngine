@@ -2,17 +2,21 @@
 
 #include "AssetContainer.h"
 #include <d3dx11effect.h>
-#include "FullscreenQuad.h"
+#include "QuadRenderer.h"
 #include "GPUContext.h"
 #include "GPUData.h"
 #include "Effect.h"
 
+#include "Renderer.h"
+#include "Camera.h"
+
 
 namespace Magma
 {
-	FullscreenQuad::FullscreenQuad(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
+	QuadRenderer::QuadRenderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
 		: myAssetContainer(aAssetContainer)
 		, myGPUContext(aGPUContext)
+		, mySpriteCommands(128)
 	{
 		CU::GrowingArray<VertexPosUV> vertices(4);
 		vertices.Add({ { -1.f, -1.f, 0.f }, { 0.f, 1.f } }); //topleft
@@ -37,14 +41,22 @@ namespace Magma
 		myGPUData.Init(aAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_fullscreen.fx")
 			, indices.Size(), reinterpret_cast<char*>(&indices[0]), vertices.Size()
 			, sizeof(VertexPosUV), reinterpret_cast<char*>(&vertices[0]), myGPUContext, myAssetContainer);
+
+		mySpriteEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_sprite.fx");
 	}
 
 
-	FullscreenQuad::~FullscreenQuad()
+	QuadRenderer::~QuadRenderer()
 	{
 	}
 
-	void FullscreenQuad::Activate()
+	void QuadRenderer::AddSpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
+		, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale)
+	{
+		mySpriteCommands.Add(SpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, aPositionAndScale));
+	}
+
+	void QuadRenderer::Activate()
 	{
 		const unsigned int byteOffset = 0;
 		ID3D11DeviceContext* context = myGPUContext.GetContext();
@@ -57,7 +69,26 @@ namespace Magma
 		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY(myGPUData.GetTopology()));
 	}
 
-	void FullscreenQuad::Render(EffectID aEffect, const CU::String<30>& aTechnique)
+	void QuadRenderer::RenderSprites(const Camera& aCamera, Renderer& aRenderer)
+	{
+		Activate();
+		aRenderer.SetEffect(mySpriteEffect);
+		aRenderer.SetMatrix("Projection", aCamera.GetOrthagonalProjection());
+
+		for each (SpriteCommand command in mySpriteCommands)
+		{
+			aRenderer.SetMatrix("SpriteOrientation", command.myOrientation);
+			aRenderer.SetVector("SpriteSizeAndHotSpot", command.mySizeAndHotSpot);
+			aRenderer.SetVector("SpritePositionAndScale", command.myPositionAndScale);
+			aRenderer.SetTexture("AlbedoTexture", command.myTexture);
+
+			Render(mySpriteEffect, "Render");
+		}
+
+		mySpriteCommands.RemoveAll();
+	}
+
+	void QuadRenderer::Render(EffectID aEffect, const CU::String<30>& aTechnique)
 	{
 		ID3D11DeviceContext* context = myGPUContext.GetContext();
 		Effect* effect = myAssetContainer.GetEffect(aEffect);

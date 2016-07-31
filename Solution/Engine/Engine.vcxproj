@@ -110,7 +110,7 @@
     <ClInclude Include="Rendering\Effect.h" />
     <ClInclude Include="Rendering\FBXFactory.h" />
     <ClInclude Include="Rendering\FBX\FbxLoader.h" />
-    <ClInclude Include="Rendering\FullscreenQuad.h" />
+    <ClInclude Include="Rendering\QuadRenderer.h" />
     <ClInclude Include="Rendering\GBuffer.h" />
     <ClInclude Include="Rendering\GfxStructs.h" />
     <ClInclude Include="Rendering\GPUContext.h" />
@@ -136,7 +136,7 @@
     <ClCompile Include="Rendering\Effect.cpp" />
     <ClCompile Include="Rendering\FBXFactory.cpp" />
     <ClCompile Include="Rendering\FBX\FbxLoader.cpp" />
-    <ClCompile Include="Rendering\FullscreenQuad.cpp" />
+    <ClCompile Include="Rendering\QuadRenderer.cpp" />
     <ClCompile Include="Rendering\GBuffer.cpp" />
     <ClCompile Include="Rendering\GPUContext.cpp" />
     <ClCompile Include="Rendering\GPUData.cpp" />
