@@ -35,7 +35,7 @@ namespace Magma
 
 	void ComponentStorage::AddComponent(Entity aEntity, BaseComponent* aComponent, unsigned int aComponentID)
 	{
-		DL_ASSERT_EXP(myComponents.Size() >= aEntity, "Invalid Entity-ID");
+		DL_ASSERT_EXP(myEntityComponents.Size() > aEntity, "Invalid Entity-ID");
 		DL_ASSERT_EXP(myEntityComponents[aEntity][aComponentID] == -1, "Tried to add a component twice");
 
 		myComponents[aComponentID].Add(aComponent);
