@@ -25,6 +25,9 @@ namespace Magma
 		void AddComponent(Entity aEntity);
 
 		template<typename T>
+		void RemoveComponent(Entity aEntity);
+
+		template<typename T>
 		T& GetComponent(Entity aEntity);
 
 		template<typename T>
@@ -43,6 +46,12 @@ namespace Magma
 	{
 		T* component = new T();
 		myComponentStorage->AddComponent(aEntity, component, TypeID<BaseComponent>::GetID<T>());
+	}
+
+	template<typename T>
+	void World::RemoveComponent(Entity aEntity)
+	{
+		myComponentStorage->RemoveComponent(aEntity, TypeID<BaseComponent>::GetID<T>());
 	}
 
 	template<typename T>

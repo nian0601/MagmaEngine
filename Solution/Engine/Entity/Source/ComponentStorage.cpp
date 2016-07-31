@@ -35,8 +35,21 @@ namespace Magma
 
 	void ComponentStorage::AddComponent(Entity aEntity, BaseComponent* aComponent, unsigned int aComponentID)
 	{
+		DL_ASSERT_EXP(myComponents.Size() >= aEntity, "Invalid Entity-ID");
+		DL_ASSERT_EXP(myEntityComponents[aEntity][aComponentID] == -1, "Tried to add a component twice");
+
 		myComponents[aComponentID].Add(aComponent);
 		myEntityComponents[aEntity][aComponentID] = myComponents[aComponentID].Size() - 1;
+	}
+
+	void ComponentStorage::RemoveComponent(Entity aEntity, unsigned int aComponentID)
+	{
+		DL_ASSERT_EXP(HasComponent(aEntity, aComponentID), "Tried to Remove an invalid component");
+
+
+		int index = myEntityComponents[aEntity][aComponentID];
+		SAFE_DELETE(myComponents[aComponentID][index]);
+		myEntityComponents[aEntity][aComponentID] = -1;
 	}
 
 	BaseComponent& ComponentStorage::GetComponent(Entity aEntity, unsigned int aComponentID)

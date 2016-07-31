@@ -18,6 +18,9 @@ namespace Magma
 		template<typename T>
 		T& GetComponent(Entity aEntity);
 
+		template<typename T>
+		void RemoveComponent(Entity aEntity);
+
 	private:
 		void operator=(BaseProcessor&) = delete;
 		World& myWorld;
@@ -28,5 +31,11 @@ namespace Magma
 	T& BaseProcessor::GetComponent(Entity aEntity)
 	{
 		return myWorld.GetComponent<T>(aEntity);
+	}
+
+	template<typename T>
+	void BaseProcessor::RemoveComponent(Entity aEntity)
+	{
+		myWorld.RemoveComponent<T>(aEntity);
 	}
 }
