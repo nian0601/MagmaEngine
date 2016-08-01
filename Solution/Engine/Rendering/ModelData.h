@@ -2,7 +2,7 @@
 
 #include <GrowingArray.h>
 #include <Matrix.h>
-#include "EngineTypes.h"
+#include "Types.h"
 
 namespace Magma
 {

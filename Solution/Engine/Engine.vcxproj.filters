@@ -85,6 +85,9 @@
     <ClInclude Include="Rendering\QuadRenderer.h">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Types.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />

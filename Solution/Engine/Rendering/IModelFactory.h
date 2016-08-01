@@ -1,6 +1,6 @@
 #pragma once
 #include <CUString.h>
-#include "EngineTypes.h"
+#include "Types.h"
 
 namespace Magma
 {

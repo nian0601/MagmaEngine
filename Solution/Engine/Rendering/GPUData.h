@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GrowingArray.h>
-#include "EngineTypes.h"
+#include "Types.h"
 
 struct ID3D11InputLayout;
 struct D3D11_INPUT_ELEMENT_DESC;

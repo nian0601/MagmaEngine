@@ -138,7 +138,6 @@
     <ClInclude Include="CUMapIterator.h" />
     <ClInclude Include="HashHelper.h" />
     <ClInclude Include="FileStream.h" />
-    <ClInclude Include="EngineTypes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileWatcher.cpp" />

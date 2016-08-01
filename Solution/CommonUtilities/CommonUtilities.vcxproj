@@ -83,7 +83,6 @@
     <ClInclude Include="DL_Assert.h" />
     <ClInclude Include="DL_Debug.h" />
     <ClInclude Include="DL_StackWalker.h" />
-    <ClInclude Include="EngineTypes.h" />
     <ClInclude Include="FileStream.h" />
     <ClInclude Include="FileWatcher.h" />
     <ClInclude Include="Fov90Frustum.h" />

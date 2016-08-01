@@ -121,6 +121,7 @@
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\RendererProxy.h" />
     <ClInclude Include="Rendering\Texture.h" />
+    <ClInclude Include="Rendering\Types.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="WindowHandler.h" />
   </ItemGroup>

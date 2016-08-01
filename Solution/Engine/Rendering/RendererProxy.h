@@ -1,6 +1,6 @@
 #pragma once
 
-#include <EngineTypes.h>
+#include "Types.h"
 
 namespace Magma
 {

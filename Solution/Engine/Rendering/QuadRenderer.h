@@ -1,5 +1,5 @@
 #pragma once
-#include "EngineTypes.h"
+#include "Types.h"
 #include "GfxStructs.h"
 #include <GrowingArray.h>
 #include "GPUData.h"
