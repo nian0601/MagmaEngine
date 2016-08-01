@@ -2,6 +2,7 @@
 
 #include "../Include/ComponentFilter.h"
 #include "../Include/ComponentStorage.h"
+#include "../Include/BaseComponent.h"
 
 namespace Magma
 {
