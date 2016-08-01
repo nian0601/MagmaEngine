@@ -99,6 +99,7 @@
     <ClInclude Include="Entity\Include\ComponentFilter.h" />
     <ClInclude Include="Entity\Include\ComponentStorage.h" />
     <ClInclude Include="Entity\Include\CustomEntityTypes.h" />
+    <ClInclude Include="Entity\Include\Event.h" />
     <ClInclude Include="Entity\Include\TypeID.h" />
     <ClInclude Include="Entity\Include\World.h" />
     <ClInclude Include="IGame.h" />

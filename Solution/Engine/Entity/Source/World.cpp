@@ -40,4 +40,13 @@ namespace Magma
 	{
 		return myComponentStorage->GetEntities(aFilter);
 	}
+
+	void World::SendEvent(const Event& aEvent)
+	{
+		for each (BaseProcessor* processor in myProcessors)
+		{
+			processor->OnEvent(aEvent);
+		}
+	}
+
 }

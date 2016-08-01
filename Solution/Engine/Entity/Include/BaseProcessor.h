@@ -4,6 +4,7 @@
 
 namespace Magma
 {
+	struct Event;
 	class BaseProcessor
 	{
 	public:
@@ -23,6 +24,8 @@ namespace Magma
 
 		template<typename T>
 		T& GetComponent(Entity aEntity);
+
+		virtual void OnEvent(const Event& aEvent);
 
 	private:
 		void operator=(BaseProcessor&) = delete;

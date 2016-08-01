@@ -9,6 +9,7 @@
 namespace Magma
 {
 	struct ComponentFilter;
+	struct Event;
 
 	class BaseProcessor;
 	class World
@@ -32,6 +33,8 @@ namespace Magma
 
 		template<typename T>
 		void AddProcessor();
+
+		void SendEvent(const Event& aEvent);
 
 	private:
 		Entity myNextEntity;

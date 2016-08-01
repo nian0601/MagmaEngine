@@ -88,6 +88,9 @@
     <ClInclude Include="Rendering\Types.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Include\Event.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />

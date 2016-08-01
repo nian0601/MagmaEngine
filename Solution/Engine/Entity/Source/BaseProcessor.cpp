@@ -26,4 +26,9 @@ namespace Magma
 	{
 		return myWorld.GetEntities(myComponentFilter);
 	}
+
+	void BaseProcessor::OnEvent(const Event&)
+	{
+	}
+
 }
