@@ -58,6 +58,7 @@ namespace Magma
 	void Engine::Run()
 	{
 		myIsRunning = true;
+		CU::String<30> windowTitle;
 		while (myIsRunning == true)
 		{
 			if (myWindowHandler->PumpEvent() == false)
@@ -78,13 +79,19 @@ namespace Magma
 				myTimerManager->Update();
 				CU::InputWrapper::GetInstance()->Update();
 
-				myIsRunning = myGame.Update(myTimerManager->GetMasterTimer().GetTime().GetFrameTime());
+				float deltaTime = myTimerManager->GetMasterTimer().GetTime().GetFrameTime();
+				windowTitle = "FPS: ";
+				windowTitle += 1.f / deltaTime;
+				windowTitle += ", DT: ";
+				windowTitle += deltaTime * 1000.f;
+				myWindowHandler->SetTitle(windowTitle);
+				myIsRunning = myGame.Update(deltaTime);
 
 				myDeferredRenderer->Render(*myCamera);
 				myRenderer->RenderSprites(*myCamera);
 				myGPUContext->FinishFrame();
 
-				myTimerManager->CapFrameRate(60.f);
+				//myTimerManager->CapFrameRate(60.f);
 			}
 		}
 	}
