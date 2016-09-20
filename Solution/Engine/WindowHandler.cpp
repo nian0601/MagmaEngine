@@ -70,6 +70,11 @@ namespace Magma
 		return true;
 	}
 
+	void WindowHandler::SetTitle(const CU::String<30>& aText)
+	{
+		SetWindowText(myHwnd, aText.c_str());
+	}
+
 	LRESULT CALLBACK WindowHandler::StaticWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		WindowHandler* directX = nullptr;
