@@ -3,6 +3,7 @@
 #include <D3DX11tex.h>
 #include "Texture.h"
 #include "GPUContext.h"
+#include <CommonHelper.h>
 
 namespace Magma
 {
@@ -37,7 +38,7 @@ namespace Magma
 		}
 	}
 
-	void Texture::LoadTexture(const CU::String<64>& aPath, GPUContext& aGpuContext)
+	void Texture::LoadTexture(const CU::String& aPath, GPUContext& aGpuContext)
 	{
 		myFilePath = aPath;
 

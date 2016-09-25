@@ -1,6 +1,7 @@
 #pragma once
 
 #include <CUString.h>
+#include <Matrix.h>
 
 struct ID3DX11Effect;
 struct ID3DX11EffectTechnique;
@@ -22,10 +23,10 @@ namespace Magma
 		Effect();
 		~Effect();
 
-		void Init(const CU::String<64>& aFilePath, GPUContext& aGPUContext);
+		void Init(const CU::String& aFilePath, GPUContext& aGPUContext);
 
 		ID3DX11Effect* GetEffect() const;
-		ID3DX11EffectTechnique* GetTechnique(const CU::String<30>& aTechniqueName) const;
+		ID3DX11EffectTechnique* GetTechnique(const CU::String& aTechniqueName) const;
 
 
 		void SetWorldMatrix(const CU::Matrix44<float>& aWorldMatrix);
@@ -44,11 +45,11 @@ namespace Magma
 		void SetRoughness(float aValue);
 
 	private:
-		void LoadMatrix(ID3DX11EffectMatrixVariable*& aMatrix, const CU::String<30>& aVariableName, bool aForceFind = true);
-		void LoadShaderResource(ID3DX11EffectShaderResourceVariable*& aResource, const CU::String<30>& aVariableName, bool aForceFind = true);
-		void LoadVector(ID3DX11EffectVectorVariable*& aVector, const CU::String<30>& aVariableName, bool aForceFind = true);
-		void LoadScalar(ID3DX11EffectScalarVariable*& aScalar, const CU::String<30>& aVariableName, bool aForceFind = true);
-		void CheckVariable(const CU::String<30>& aName, const void* aVariable);
+		void LoadMatrix(ID3DX11EffectMatrixVariable*& aMatrix, const CU::String& aVariableName, bool aForceFind = true);
+		void LoadShaderResource(ID3DX11EffectShaderResourceVariable*& aResource, const CU::String& aVariableName, bool aForceFind = true);
+		void LoadVector(ID3DX11EffectVectorVariable*& aVector, const CU::String& aVariableName, bool aForceFind = true);
+		void LoadScalar(ID3DX11EffectScalarVariable*& aScalar, const CU::String& aVariableName, bool aForceFind = true);
+		void CheckVariable(const CU::String& aName, const void* aVariable);
 
 		ID3DX11Effect* myEffect;
 
@@ -67,7 +68,7 @@ namespace Magma
 		ID3DX11EffectScalarVariable* myMetalness;
 		ID3DX11EffectScalarVariable* myRoughness;
 
-		CU::String<64> myFileName;
-		CU::String<64> myFilePath;
+		CU::String myFileName;
+		CU::String myFilePath;
 	};
 }

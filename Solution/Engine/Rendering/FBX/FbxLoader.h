@@ -24,7 +24,7 @@ namespace FBX
 
 	struct TextureInfo
 	{
-		CU::String<256> myFileName;
+		CU::String myFileName;
 		FBXTextureType myType;
 	};
 
@@ -36,7 +36,7 @@ namespace FBX
 
 	struct Bone
 	{
-		CU::String<80> myName;
+		CU::String myName;
 		float myAnimationTime;
 		int myId;
 		CU::Matrix44<float> myBaseOrientation;
@@ -47,7 +47,7 @@ namespace FBX
 
 	struct AnimationData
 	{
-		CU::String<80> myName;
+		CU::String myName;
 
 		CU::Matrix44<float> myBindMatrix;
 		int myRootBone;
@@ -207,7 +207,7 @@ namespace FBX
 		FBXLoader();
 		~FBXLoader();
 
-		FbxModelData* loadModel(const char* aFile, CU::GrowingArray<CU::String<256>>& someOutErrors);
+		FbxModelData* loadModel(const char* aFile, CU::GrowingArray<CU::String>& someOutErrors);
 	private:
 		FbxScene* LoadScene(const char* aFile);
 		FbxModelData* myLoadingModel;

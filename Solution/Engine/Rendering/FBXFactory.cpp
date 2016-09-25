@@ -31,14 +31,14 @@ namespace Magma
 		SAFE_DELETE(myLoader);
 	}
 
-	ModelData* FBXFactory::LoadModel(const CU::String<64>& aFilePath, EffectID aEffect)
+	ModelData* FBXFactory::LoadModel(const CU::String& aFilePath, EffectID aEffect)
 	{
 		if (myModels.KeyExists(aFilePath) == true)
 		{
 			return myModels[aFilePath];
 		}
 
-		CU::GrowingArray<CU::String<256>> errors(16);
+		CU::GrowingArray<CU::String> errors(16);
 		FBX::FbxModelData* fbxModelData = myLoader->loadModel(aFilePath.c_str(), errors);
 
 		ModelData* modelData = CreateModel(fbxModelData);
@@ -153,7 +153,7 @@ namespace Magma
 		{
 			auto& currentTexture = someFBXData->myTextures[i];
 
-			CU::String<80> resourceName;
+			CU::String resourceName;
 			if (currentTexture.myType == FBX::ALBEDO)
 			{
 				resourceName = "AlbedoTexture";
@@ -180,7 +180,7 @@ namespace Magma
 			}
 
 			int dataIndex = currentTexture.myFileName.RFind("Data\\");
-			CU::String<256> fromData = currentTexture.myFileName.SubStr(dataIndex, currentTexture.myFileName.Size());
+			CU::String fromData = currentTexture.myFileName.SubStr(dataIndex, currentTexture.myFileName.Size());
 
 			someGPUData.myShaderResourceNames.Add(resourceName.c_str());
 			someGPUData.myTextures.Add(myAssetContainer.RequestTexture(fromData.c_str()));

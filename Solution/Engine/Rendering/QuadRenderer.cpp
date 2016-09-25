@@ -88,7 +88,7 @@ namespace Magma
 		mySpriteCommands.RemoveAll();
 	}
 
-	void QuadRenderer::Render(EffectID aEffect, const CU::String<30>& aTechnique)
+	void QuadRenderer::Render(EffectID aEffect, const CU::String& aTechnique)
 	{
 		ID3D11DeviceContext* context = myGPUContext.GetContext();
 		Effect* effect = myAssetContainer.GetEffect(aEffect);

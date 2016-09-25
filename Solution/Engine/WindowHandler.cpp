@@ -6,7 +6,7 @@ namespace Magma
 {
 	WindowHandler::WindowHandler(const CU::Vector2<float>& aWindowSize)
 	{
-		CU::String<30> title = "DirectX Window";
+		CU::String title = "DirectX Window";
 
 		WNDCLASSEX wcex;
 		wcex.cbSize = sizeof(WNDCLASSEX);
@@ -70,7 +70,7 @@ namespace Magma
 		return true;
 	}
 
-	void WindowHandler::SetTitle(const CU::String<30>& aText)
+	void WindowHandler::SetTitle(const CU::String& aText)
 	{
 		SetWindowText(myHwnd, aText.c_str());
 	}

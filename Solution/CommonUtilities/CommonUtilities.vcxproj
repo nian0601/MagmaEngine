@@ -79,7 +79,6 @@
     <ClInclude Include="CommonHelper.h" />
     <ClInclude Include="CUMapIterator.h" />
     <ClInclude Include="CUString.h" />
-    <ClInclude Include="CUStringDecl.h" />
     <ClInclude Include="DL_Assert.h" />
     <ClInclude Include="DL_Debug.h" />
     <ClInclude Include="DL_StackWalker.h" />

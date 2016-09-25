@@ -58,7 +58,7 @@ namespace Magma
 	void Engine::Run()
 	{
 		myIsRunning = true;
-		CU::String<30> windowTitle;
+		CU::String windowTitle;
 		while (myIsRunning == true)
 		{
 			if (myWindowHandler->PumpEvent() == false)

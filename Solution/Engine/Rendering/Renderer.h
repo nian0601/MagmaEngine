@@ -54,11 +54,11 @@ namespace Magma
 		void RenderSprites(const Camera& aCamera);
 
 		void SetEffect(EffectID aEffect);
-		void SetTexture(const CU::String<64>& aName, Texture* aTexture);
-		void SetMatrix(const CU::String<64>& aName, const CU::Matrix44<float>& aMatrix);
-		void SetVector(const CU::String<64>& aName, const CU::Vector3<float>& aVector);
-		void SetVector(const CU::String<64>& aName, const CU::Vector4<float>& aVector);
-		void SetRawData(const CU::String<64>& aName, int aDataSize, const void* someData);
+		void SetTexture(const CU::String& aName, Texture* aTexture);
+		void SetMatrix(const CU::String& aName, const CU::Matrix44<float>& aMatrix);
+		void SetVector(const CU::String& aName, const CU::Vector3<float>& aVector);
+		void SetVector(const CU::String& aName, const CU::Vector4<float>& aVector);
+		void SetRawData(const CU::String& aName, int aDataSize, const void* someData);
 
 		void SetClearColor(const CU::Vector4<float>& aColor);
 
@@ -73,13 +73,13 @@ namespace Magma
 		void UseOriginalRenderTarget();
 		void ApplyRenderTargetAndDepthStencil();
 
-		void RenderFullScreen(const CU::String<30>& aTechnique);
+		void RenderFullScreen(const CU::String& aTechnique);
 		void RenderModel(ModelID aModelID);
 
 	private:
 		void operator=(Renderer&) = delete;
 
-		ID3DX11EffectVariable* GetEffectVariable(const CU::String<64>& aName);
+		ID3DX11EffectVariable* GetEffectVariable(const CU::String& aName);
 		void RenderModelData(const ModelData& someData);
 		void RenderGPUData(const GPUData& someData);
 
@@ -95,7 +95,7 @@ namespace Magma
 		Backbuffer myBackbuffer;
 		GPUContext& myGPUContext;
 
-		CU::Map<EffectID, CU::Map<CU::String<64>, ID3DX11EffectVariable*>> myEffectVariables;
+		CU::Map<EffectID, CU::Map<CU::String, ID3DX11EffectVariable*>> myEffectVariables;
 
 		ID3D11RasterizerState* myRasterizerStates[static_cast<int>(eRasterizer::_RAZTER_COUNT)];
 		ID3D11DepthStencilState* myDepthStencilStates[static_cast<int>(eDepthState::_DEPTH_COUNT)];

@@ -24,13 +24,13 @@ namespace Magma
 		AssetContainer(GPUContext& aGPUContext);
 		~AssetContainer();
 
-		ModelID LoadModel(const CU::String<64>& aModelPath, const CU::String<64>& aEffectPath);
+		ModelID LoadModel(const CU::String& aModelPath, const CU::String& aEffectPath);
 		ModelData* GetModel(ModelID aID);
 
-		EffectID LoadEffect(const CU::String<64>& aFilePath);
+		EffectID LoadEffect(const CU::String& aFilePath);
 		Effect* GetEffect(EffectID aID);
 
-		Texture* RequestTexture(const CU::String<64>& aFilePath);
+		Texture* RequestTexture(const CU::String& aFilePath);
 
 	private:
 		void operator=(AssetContainer&) = delete;
@@ -40,14 +40,14 @@ namespace Magma
 		IModelFactory* myModelFactory;
 
 		CU::Map<EffectID, Effect*> myEffects;
-		CU::Map<CU::String<64>, EffectID> myEffectsID;
+		CU::Map<CU::String, EffectID> myEffectsID;
 		EffectID myNextEffectID;
 
 		CU::Map<ModelID, ModelData*> myModels;
-		CU::Map<CU::String<64>, ModelID> myModelID;
+		CU::Map<CU::String, ModelID> myModelID;
 		ModelID myNextModelID;
 
-		CU::Map<CU::String<64>, Texture*> myTextures;
+		CU::Map<CU::String, Texture*> myTextures;
 
 		GPUContext& myGpuContext;
 		static AssetContainer* myInstance;

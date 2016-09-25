@@ -133,7 +133,6 @@
     </ClInclude>
     <ClInclude Include="Murmur.h" />
     <ClInclude Include="CUMap.h" />
-    <ClInclude Include="CUStringDecl.h" />
     <ClInclude Include="CUString.h" />
     <ClInclude Include="CUMapIterator.h" />
     <ClInclude Include="HashHelper.h" />

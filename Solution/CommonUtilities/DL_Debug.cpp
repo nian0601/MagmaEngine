@@ -21,7 +21,7 @@ DL_Debug::Debug::Debug()
 
 	strftime(buf, sizeof(buf), "%Y-%m-%d_%H_%M_%S", &tstruct);
 
-	CU::String<256> logFolder = "log\\";
+	CU::String logFolder = "log\\";
 
 	CreateDirectory("log", NULL);
 
@@ -79,7 +79,7 @@ void DL_Debug::Debug::PrintMessageVA(const char *aFormattedString, ...)
 	ourInstance->myDebugFile.flush();
 }
 
-void DL_Debug::Debug::AssertMessageVA(const char *aFileName, int aLine, const char *aFunctionName, const CU::String<256>& aFormattedString, ...)
+void DL_Debug::Debug::AssertMessageVA(const char *aFileName, int aLine, const char *aFunctionName, const CU::String& aFormattedString, ...)
 {
 	char buffer[1024];
 	va_list args;
@@ -91,7 +91,7 @@ void DL_Debug::Debug::AssertMessageVA(const char *aFileName, int aLine, const ch
 	AssertMessage(aFileName, aLine, aFunctionName, buffer);
 }
 
-void DL_Debug::Debug::AssertMessage(bool aAssertExpression, const char *aFileName, int aLine, const char *aFunctionName, const CU::String<256>& aString)
+void DL_Debug::Debug::AssertMessage(bool aAssertExpression, const char *aFileName, int aLine, const char *aFunctionName, const CU::String& aString)
 {
 	if (aAssertExpression == false)
 	{
@@ -99,9 +99,9 @@ void DL_Debug::Debug::AssertMessage(bool aAssertExpression, const char *aFileNam
 	}
 }
 
-void DL_Debug::Debug::AssertMessage(const char *aFileName, int aLine, const char *aFunctionName, const CU::String<256>& aString)
+void DL_Debug::Debug::AssertMessage(const char *aFileName, int aLine, const char *aFunctionName, const CU::String& aString)
 {
-	CU::String<256> output("\nError Message: ");
+	CU::String output("\nError Message: ");
 	output += aString;
 	output += "\n\n";
 	output += "File: ";

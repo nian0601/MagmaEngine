@@ -19,7 +19,7 @@ namespace Magma
 
 		void InitForShader(float aWidth, float aHeight, unsigned int aBindFlag
 			, unsigned int aFormat, GPUContext& aGpuContext);
-		void LoadTexture(const CU::String<64>& aPath, GPUContext& aGpuContext);
+		void LoadTexture(const CU::String& aPath, GPUContext& aGpuContext);
 		void Resize(float aWidth, float aHeight, GPUContext& aGpuContext);
 
 		ID3D11ShaderResourceView* GetShaderView();
@@ -33,7 +33,7 @@ namespace Magma
 			, unsigned int aFormat, GPUContext& aGpuContext);
 		void CreateDepthStencil(float aWidth, float aHeight, GPUContext& aGpuContext);
 
-		CU::String<64> myFilePath;
+		CU::String myFilePath;
 		unsigned int myFormat;
 
 		ID3D11Texture2D* myTexture;

@@ -28,7 +28,7 @@ namespace Magma
 		SAFE_RELEASE(myEffect);
 	}
 
-	void Effect::Init(const CU::String<64>& aFilePath, GPUContext& aGPUContext)
+	void Effect::Init(const CU::String& aFilePath, GPUContext& aGPUContext)
 	{
 		myFileName = CU::GetFileNameFromFilePath(aFilePath);
 		myFilePath = aFilePath;
@@ -45,7 +45,7 @@ namespace Magma
 
 		if (FAILED(result))
 		{
-			CU::String<100> errorMessage = "";
+			CU::String errorMessage = "";
 
 			if (compilerMsg != nullptr)
 			{
@@ -96,7 +96,7 @@ namespace Magma
 		return myEffect;
 	}
 
-	ID3DX11EffectTechnique* Effect::GetTechnique(const CU::String<30>& aTechniqueName) const
+	ID3DX11EffectTechnique* Effect::GetTechnique(const CU::String& aTechniqueName) const
 	{
 		return myEffect->GetTechniqueByName(aTechniqueName.c_str());
 	}
@@ -168,7 +168,7 @@ namespace Magma
 		myRoughness->SetFloat(aValue);
 	}
 
-	void Effect::LoadMatrix(ID3DX11EffectMatrixVariable*& aMatrix, const CU::String<30>& aVariableName, bool aForceFind)
+	void Effect::LoadMatrix(ID3DX11EffectMatrixVariable*& aMatrix, const CU::String& aVariableName, bool aForceFind)
 	{
 		aMatrix = myEffect->GetVariableByName(aVariableName.c_str())->AsMatrix();
 		if (aMatrix->IsValid() == false)
@@ -176,12 +176,12 @@ namespace Magma
 			aMatrix = nullptr;
 			if (aForceFind == true)
 			{
-				DL_ASSERT(CU::Concatenate<256>("Shader: Failed to find variable: %s, in file: %s", aVariableName.c_str(), myFileName.c_str()));
+				DL_ASSERT(CU::Concatenate("Shader: Failed to find variable: %s, in file: %s", aVariableName.c_str(), myFileName.c_str()));
 			}
 		}
 	}
 
-	void Effect::LoadShaderResource(ID3DX11EffectShaderResourceVariable*& aResource, const CU::String<30>& aVariableName, bool aForceFind)
+	void Effect::LoadShaderResource(ID3DX11EffectShaderResourceVariable*& aResource, const CU::String& aVariableName, bool aForceFind)
 	{
 		aResource = myEffect->GetVariableByName(aVariableName.c_str())->AsShaderResource();
 		if (aResource->IsValid() == false)
@@ -189,12 +189,12 @@ namespace Magma
 			aResource = nullptr;
 			if (aForceFind == true)
 			{
-				DL_ASSERT(CU::Concatenate<256>("Shader: Failed to find variable: %s, in file: %s", aVariableName.c_str(), myFileName.c_str()));
+				DL_ASSERT(CU::Concatenate("Shader: Failed to find variable: %s, in file: %s", aVariableName.c_str(), myFileName.c_str()));
 			}
 		}
 	}
 
-	void Effect::LoadVector(ID3DX11EffectVectorVariable*& aVector, const CU::String<30>& aVariableName, bool aForceFind /*= true*/)
+	void Effect::LoadVector(ID3DX11EffectVectorVariable*& aVector, const CU::String& aVariableName, bool aForceFind /*= true*/)
 	{
 		aVector = myEffect->GetVariableByName(aVariableName.c_str())->AsVector();
 		if (aVector->IsValid() == false)
@@ -202,12 +202,12 @@ namespace Magma
 			aVector = nullptr;
 			if (aForceFind == true)
 			{
-				DL_ASSERT(CU::Concatenate<256>("Shader: Failed to find variable: %s, in file: %s", aVariableName.c_str(), myFileName.c_str()));
+				DL_ASSERT(CU::Concatenate("Shader: Failed to find variable: %s, in file: %s", aVariableName.c_str(), myFileName.c_str()));
 			}
 		}
 	}
 
-	void Effect::LoadScalar(ID3DX11EffectScalarVariable*& aScalar, const CU::String<30>& aVariableName, bool aForceFind /*= true*/)
+	void Effect::LoadScalar(ID3DX11EffectScalarVariable*& aScalar, const CU::String& aVariableName, bool aForceFind /*= true*/)
 	{
 		aScalar = myEffect->GetVariableByName(aVariableName.c_str())->AsScalar();
 		if (aScalar->IsValid() == false)
@@ -215,13 +215,13 @@ namespace Magma
 			aScalar = nullptr;
 			if (aForceFind == true)
 			{
-				DL_ASSERT(CU::Concatenate<256>("Shader: Failed to find variable: %s, in file: %s", aVariableName.c_str(), myFileName.c_str()));
+				DL_ASSERT(CU::Concatenate("Shader: Failed to find variable: %s, in file: %s", aVariableName.c_str(), myFileName.c_str()));
 			}
 		}
 	}
 
-	void Effect::CheckVariable(const CU::String<30>& aName, const void* aVariable)
+	void Effect::CheckVariable(const CU::String& aName, const void* aVariable)
 	{
-		DL_ASSERT_EXP(aVariable != nullptr, CU::Concatenate<256>("Variable: %s not found in shader: %s", aName.c_str(), myFileName.c_str()).c_str());
+		DL_ASSERT_EXP(aVariable != nullptr, CU::Concatenate("Variable: %s not found in shader: %s", aName.c_str(), myFileName.c_str()).c_str());
 	}
 }

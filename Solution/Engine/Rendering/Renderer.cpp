@@ -70,31 +70,31 @@ namespace Magma
 		myCurrentEffect = aEffect;
 	}
 
-	void Renderer::SetTexture(const CU::String<64>& aName, Texture* aTexture)
+	void Renderer::SetTexture(const CU::String& aName, Texture* aTexture)
 	{
 		ID3DX11EffectVariable* var = GetEffectVariable(aName);
 		var->AsShaderResource()->SetResource(aTexture->GetShaderView());
 	}
 
-	void Renderer::SetMatrix(const CU::String<64>& aName, const CU::Matrix44<float>& aMatrix)
+	void Renderer::SetMatrix(const CU::String& aName, const CU::Matrix44<float>& aMatrix)
 	{
 		ID3DX11EffectVariable* var = GetEffectVariable(aName);
 		var->AsMatrix()->SetMatrix(&aMatrix.myMatrix[0]);
 	}
 
-	void Renderer::SetVector(const CU::String<64>& aName, const CU::Vector3<float>& aVector)
+	void Renderer::SetVector(const CU::String& aName, const CU::Vector3<float>& aVector)
 	{
 		ID3DX11EffectVariable* var = GetEffectVariable(aName);
 		var->AsVector()->SetFloatVector(&aVector.x);
 	}
 
-	void Renderer::SetVector(const CU::String<64>& aName, const CU::Vector4<float>& aVector)
+	void Renderer::SetVector(const CU::String& aName, const CU::Vector4<float>& aVector)
 	{
 		ID3DX11EffectVariable* var = GetEffectVariable(aName);
 		var->AsVector()->SetFloatVector(&aVector.x);
 	}
 
-	void Renderer::SetRawData(const CU::String<64>& aName, int aDataSize, const void* someData)
+	void Renderer::SetRawData(const CU::String& aName, int aDataSize, const void* someData)
 	{
 		ID3DX11EffectVariable* var = GetEffectVariable(aName);
 		var->SetRawValue(someData, 0, aDataSize);
@@ -120,7 +120,7 @@ namespace Magma
 
 	void Renderer::AddRenderTarget(Texture* aTexture)
 	{
-		DL_ASSERT_EXP(myRenderTargetCount < 4, CU::Concatenate<256>("Added to many RenderTargets, only %i supported", 4));
+		DL_ASSERT_EXP(myRenderTargetCount < 4, CU::Concatenate("Added to many RenderTargets, only %i supported", 4));
 		myRenderTargets[myRenderTargetCount] = aTexture->GetRenderTarget();
 		++myRenderTargetCount;
 	}
@@ -147,7 +147,7 @@ namespace Magma
 
 	void Renderer::UseOriginalRenderTarget()
 	{
-		DL_ASSERT_EXP(myRenderTargetCount < 4, CU::Concatenate<256>("Added to many RenderTargets, only %i supported", 4));
+		DL_ASSERT_EXP(myRenderTargetCount < 4, CU::Concatenate("Added to many RenderTargets, only %i supported", 4));
 		myRenderTargets[myRenderTargetCount] = myBackbuffer.myBackbufferTarget;
 		++myRenderTargetCount;
 	}
@@ -158,7 +158,7 @@ namespace Magma
 		myRenderTargetCount = 0;
 	}
 
-	void Renderer::RenderFullScreen(const CU::String<30>& aTechnique)
+	void Renderer::RenderFullScreen(const CU::String& aTechnique)
 	{
 		myQuadRenderer.Activate();
 		myQuadRenderer.Render(myCurrentEffect, aTechnique);
@@ -170,7 +170,7 @@ namespace Magma
 		RenderModelData(*modelData);
 	}
 
-	ID3DX11EffectVariable* Renderer::GetEffectVariable(const CU::String<64>& aName)
+	ID3DX11EffectVariable* Renderer::GetEffectVariable(const CU::String& aName)
 	{
 		if (myEffectVariables[myCurrentEffect].KeyExists(aName) == false)
 		{
@@ -178,7 +178,7 @@ namespace Magma
 
 			DL_ASSERT_EXP(effect != nullptr, "Cant GetEffectVariable without an Effect");
 			ID3DX11EffectVariable* var = effect->GetEffect()->GetVariableByName(aName.c_str());
-			DL_ASSERT_EXP(var->IsValid() == TRUE, CU::Concatenate<256>("ShaderVar: %s not found", aName.c_str()));
+			DL_ASSERT_EXP(var->IsValid() == TRUE, CU::Concatenate("ShaderVar: %s not found", aName.c_str()));
 			
 			myEffectVariables[myCurrentEffect][aName] = var;
 		}

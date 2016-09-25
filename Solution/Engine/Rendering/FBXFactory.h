@@ -30,7 +30,7 @@ namespace Magma
 		FBXFactory(AssetContainer& aAssetContainer, GPUContext& aGPUContext);
 		~FBXFactory();
 
-		ModelData* LoadModel(const CU::String<64>& aFilePath, EffectID aEffect) override;
+		ModelData* LoadModel(const CU::String& aFilePath, EffectID aEffect) override;
 		
 	private:
 		void operator=(FBXFactory&) = delete;
@@ -42,6 +42,6 @@ namespace Magma
 		GPUContext& myGPUContext;
 
 		FBX::FBXLoader *myLoader;
-		CU::Map<CU::String<64>, ModelData*> myModels;
+		CU::Map<CU::String, ModelData*> myModels;
 	};
 }

@@ -26,7 +26,7 @@ namespace Magma
 		void Activate();
 
 		void RenderSprites(const Camera& aCamera, Renderer& aRenderer);
-		void Render(EffectID aEffect, const CU::String<30>& aTechnique);
+		void Render(EffectID aEffect, const CU::String& aTechnique);
 
 	private:
 		void operator=(QuadRenderer&) = delete;

@@ -6,7 +6,7 @@
 
 namespace Magma
 {
-	ModelID AssetContainer::LoadModel(const CU::String<64>& aModelPath, const CU::String<64>& aEffectPath)
+	ModelID AssetContainer::LoadModel(const CU::String& aModelPath, const CU::String& aEffectPath)
 	{
 		EffectID effect = LoadEffect(aEffectPath);
 
@@ -33,7 +33,7 @@ namespace Magma
 		return nullptr;
 	}
 
-	EffectID AssetContainer::LoadEffect(const CU::String<64>& aFilePath)
+	EffectID AssetContainer::LoadEffect(const CU::String& aFilePath)
 	{
 		if (myEffectsID.KeyExists(aFilePath) == false)
 		{
@@ -59,7 +59,7 @@ namespace Magma
 		return nullptr;
 	}
 
-	Texture* AssetContainer::RequestTexture(const CU::String<64>& aFilePath)
+	Texture* AssetContainer::RequestTexture(const CU::String& aFilePath)
 	{
 		if (myTextures.KeyExists(aFilePath) == false)
 		{

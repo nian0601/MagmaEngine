@@ -18,7 +18,7 @@ namespace Magma
 		HWND GetHwnd() const;
 		const CU::Vector2<float>& GetNewSize() const;
 
-		void SetTitle(const CU::String<30>& aText);
+		void SetTitle(const CU::String& aText);
 
 	private:
 

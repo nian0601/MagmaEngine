@@ -1,5 +1,6 @@
 #pragma once
 
+#include <CUString.h>
 #include <GrowingArray.h>
 #include "Types.h"
 
@@ -37,7 +38,7 @@ namespace Magma
 		ID3D11InputLayout* GetInputLayout() const;
 		int GetTopology() const;
 
-		const CU::String<30>& GetTechniqueName() const;
+		const CU::String& GetTechniqueName() const;
 	private:
 		void InitInputLayout(D3D11_INPUT_ELEMENT_DESC* aVertexDescArray, int aArraySize, EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void InitVertexBuffer(int aVertexSize, int aBufferUsage, int aCPUUsage);
@@ -54,9 +55,9 @@ namespace Magma
 		int myPrimitiveTopology;
 		CU::GrowingArray<D3D11_INPUT_ELEMENT_DESC*> myVertexFormat;
 
-		CU::GrowingArray<CU::String<64>> myShaderResourceNames;
+		CU::GrowingArray<CU::String> myShaderResourceNames;
 		CU::GrowingArray<Texture*> myTextures;
-		CU::String<30> myTechniqueName;
+		CU::String myTechniqueName;
 	};
 
 	inline const VertexBuffer& GPUData::GetVertexBuffer() const
@@ -79,7 +80,7 @@ namespace Magma
 		return myPrimitiveTopology;
 	}
 
-	inline const CU::String<30>& GPUData::GetTechniqueName() const
+	inline const CU::String& GPUData::GetTechniqueName() const
 	{
 		return myTechniqueName;
 	}
