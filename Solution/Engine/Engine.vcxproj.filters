@@ -91,6 +91,33 @@
     <ClInclude Include="Entity\Include\Event.h">
       <Filter>Entity</Filter>
     </ClInclude>
+    <ClInclude Include="Scripting\LuaFiles\lauxlib.h">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\LuaFiles\lua.h">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\LuaFiles\lua.hpp">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\LuaFiles\luaconf.h">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\LuaFiles\lualib.h">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\ScriptSystem.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\Node.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\NodeGraph.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\NodePinData.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -155,6 +182,15 @@
     <ClCompile Include="Rendering\QuadRenderer.cpp">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Scripting\ScriptSystem.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripting\Node.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripting\NodeGraph.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompile">
@@ -186,6 +222,12 @@
     </Filter>
     <Filter Include="Rendering\AssetManagement\ModelLoaders\FBX">
       <UniqueIdentifier>{a06aad34-e3f4-4132-a2f3-458687353b4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripting">
+      <UniqueIdentifier>{80c1916a-1788-4286-a113-083a15a6a38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripting\LuaFiles">
+      <UniqueIdentifier>{09153024-ef31-4790-a0d1-64c8e1bf8749}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

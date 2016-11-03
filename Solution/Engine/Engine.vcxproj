@@ -66,7 +66,7 @@
     <Lib>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
-      <AdditionalDependencies>Effects11_$(Configuration).lib;D3D11.lib;D3DX11.lib;D3DCompiler.lib;dxguid.lib;dxgi.lib;libfbxsdk-md_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Effects11_$(Configuration).lib;D3D11.lib;D3DX11.lib;D3DCompiler.lib;dxguid.lib;dxgi.lib;libfbxsdk-md_$(Configuration).lib;Lua_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099,4221,4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -88,7 +88,7 @@
     <Lib>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
-      <AdditionalDependencies>Effects11_$(Configuration).lib;D3D11.lib;D3DX11.lib;D3DCompiler.lib;dxguid.lib;dxgi.lib;libfbxsdk-md_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Effects11_$(Configuration).lib;D3D11.lib;D3DX11.lib;D3DCompiler.lib;dxguid.lib;dxgi.lib;libfbxsdk-md_$(Configuration).lib;Lua_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099,4221,4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -123,6 +123,15 @@
     <ClInclude Include="Rendering\RendererProxy.h" />
     <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Rendering\Types.h" />
+    <ClInclude Include="Scripting\LuaFiles\lauxlib.h" />
+    <ClInclude Include="Scripting\LuaFiles\lua.h" />
+    <ClInclude Include="Scripting\LuaFiles\lua.hpp" />
+    <ClInclude Include="Scripting\LuaFiles\luaconf.h" />
+    <ClInclude Include="Scripting\LuaFiles\lualib.h" />
+    <ClInclude Include="Scripting\Node.h" />
+    <ClInclude Include="Scripting\NodeGraph.h" />
+    <ClInclude Include="Scripting\NodePinData.h" />
+    <ClInclude Include="Scripting\ScriptSystem.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="WindowHandler.h" />
   </ItemGroup>
@@ -147,6 +156,9 @@
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\RendererProxy.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
+    <ClCompile Include="Scripting\Node.cpp" />
+    <ClCompile Include="Scripting\NodeGraph.cpp" />
+    <ClCompile Include="Scripting\ScriptSystem.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
