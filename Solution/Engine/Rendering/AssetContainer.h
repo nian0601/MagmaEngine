@@ -30,7 +30,7 @@ namespace Magma
 		EffectID LoadEffect(const CU::String& aFilePath);
 		Effect* GetEffect(EffectID aID);
 
-		Texture* RequestTexture(const CU::String& aFilePath);
+		Texture* LoadTexture(const CU::String& aFilePath);
 
 	private:
 		void operator=(AssetContainer&) = delete;

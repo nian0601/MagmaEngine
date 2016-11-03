@@ -96,6 +96,7 @@ namespace Magma
 		GPUContext& myGPUContext;
 
 		CU::Map<EffectID, CU::Map<CU::String, ID3DX11EffectVariable*>> myEffectVariables;
+		CU::Map<CU::String, ID3DX11EffectVariable*>* myCurrentEffectVariables;
 
 		ID3D11RasterizerState* myRasterizerStates[static_cast<int>(eRasterizer::_RAZTER_COUNT)];
 		ID3D11DepthStencilState* myDepthStencilStates[static_cast<int>(eDepthState::_DEPTH_COUNT)];

@@ -183,7 +183,7 @@ namespace Magma
 			CU::String fromData = currentTexture.myFileName.SubStr(dataIndex, currentTexture.myFileName.Size());
 
 			someGPUData.myShaderResourceNames.Add(resourceName.c_str());
-			someGPUData.myTextures.Add(myAssetContainer.RequestTexture(fromData.c_str()));
+			someGPUData.myTextures.Add(myAssetContainer.LoadTexture(fromData.c_str()));
 		}
 	}
 

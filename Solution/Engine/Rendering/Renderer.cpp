@@ -19,6 +19,7 @@ namespace Magma
 		, myGPUContext(aGPUContext)
 		, myAssetContainer(aAssetContainer)
 		, myQuadRenderer(aAssetContainer, aGPUContext)
+		, myCurrentEffectVariables(nullptr)
 	{
 		myGPUContext.GetBackbuffer(myBackbuffer);
 
@@ -68,6 +69,7 @@ namespace Magma
 	void Renderer::SetEffect(EffectID aEffect)
 	{
 		myCurrentEffect = aEffect;
+		myCurrentEffectVariables = &myEffectVariables[myCurrentEffect];
 	}
 
 	void Renderer::SetTexture(const CU::String& aName, Texture* aTexture)
@@ -172,7 +174,10 @@ namespace Magma
 
 	ID3DX11EffectVariable* Renderer::GetEffectVariable(const CU::String& aName)
 	{
-		if (myEffectVariables[myCurrentEffect].KeyExists(aName) == false)
+		DL_ASSERT_EXP(myCurrentEffectVariables != nullptr, "Need an effect to be able to GetEffectVariable");
+		CU::Map<CU::String, ID3DX11EffectVariable*>& variableMap = *myCurrentEffectVariables;
+
+		if (variableMap.KeyExists(aName) == false)
 		{
 			Effect* effect = myAssetContainer.GetEffect(myCurrentEffect);
 
@@ -180,10 +185,10 @@ namespace Magma
 			ID3DX11EffectVariable* var = effect->GetEffect()->GetVariableByName(aName.c_str());
 			DL_ASSERT_EXP(var->IsValid() == TRUE, CU::Concatenate("ShaderVar: %s not found", aName.c_str()));
 			
-			myEffectVariables[myCurrentEffect][aName] = var;
+			variableMap[aName] = var;
 		}
 
-		return myEffectVariables[myCurrentEffect][aName];
+		return variableMap[aName];
 	}
 
 	void Renderer::RenderModelData(const ModelData& someData)

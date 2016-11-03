@@ -59,7 +59,7 @@ namespace Magma
 		return nullptr;
 	}
 
-	Texture* AssetContainer::RequestTexture(const CU::String& aFilePath)
+	Texture* AssetContainer::LoadTexture(const CU::String& aFilePath)
 	{
 		if (myTextures.KeyExists(aFilePath) == false)
 		{

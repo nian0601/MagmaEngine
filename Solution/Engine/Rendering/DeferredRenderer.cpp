@@ -18,7 +18,7 @@ namespace Magma
 		myFullscreenEffect = aAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_fullscreen.fx");
 		myPointLightEffect = aAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_deferred_pointlight.fx");
 
-		myCubemap = aAssetContainer.RequestTexture("Data/Resource/Texture/church_cubemap.dds");
+		myCubemap = aAssetContainer.LoadTexture("Data/Resource/Texture/church_cubemap.dds");
 
 		//myPointLightInstance = aAssetContainer.CreateInstance("Data/Resource/Model/Light_Mesh/SM_sphere.fbx", "Data/Resource/Shader/S_effect_deferred_pointlight.fx");
 	}
