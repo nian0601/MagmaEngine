@@ -6,13 +6,24 @@
 #include "Game.h"
 #include <Rendering/RendererProxy.h>
 
+
+#include "Entity.h"
+#include "SpriteComponent.h"
+#include "ResourceComponent.h"
+#include "GOAPComponent.h"
+
+#include "PollingStation.h"
+
 Game::Game()
+	: myPollingStation(nullptr)
 {
 }
 
 
 Game::~Game()
 {
+	delete myPollingStation; myPollingStation = nullptr;
+	myEntities.DeleteAll();
 }
 
 void Game::Init(Magma::Engine& aEngine)
@@ -21,9 +32,82 @@ void Game::Init(Magma::Engine& aEngine)
 	myCamera->Move({ 0.f, 0.f, -30.f });
 
 	myRendererProxy = &aEngine.GetRendererProxy();
+	myPollingStation = new PollingStation();
 
+	myEntities.Init(128);
 
-	mySpriteTexture = aEngine.GetAssetContainer().RequestTexture("Data/Resource/Texture/T_background_nightmare.dds");
+	for (int x = 0; x < 10; ++x)
+	{
+		for (int y = 0; y < 10; ++y)
+		{
+			Entity* entity = new Entity();
+
+			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
+			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_ground.dds", { 32.f, 32.f });
+
+			CU::Vector2<float> pos;
+			pos.x = 128.f + x * (32.f + 1.f);
+			pos.y = 128.f + y * (32.f + 1.f);
+
+			entity->SetPosition(pos);
+
+			myEntities.Add(entity);
+		}
+	}
+
+	for (int x = 6; x < 9; ++x)
+	{
+		for (int y = 6; y < 9; ++y)
+		{
+			Entity* entity = new Entity();
+
+			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
+			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_tree.dds", { 32.f, 32.f });
+
+			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
+			resource->Init(TREE, *myPollingStation);
+
+			CU::Vector2<float> pos;
+			pos.x = 128.f + x * (32.f + 1.f);
+			pos.y = 128.f + y * (32.f + 1.f);
+
+			entity->SetPosition(pos);
+
+			myEntities.Add(entity);
+		}
+	}
+
+	for (int x = 1; x < 3; ++x)
+	{
+		for (int y = 1; y < 3; ++y)
+		{
+			Entity* entity = new Entity();
+
+			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
+			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_water.dds", { 32.f, 32.f });
+
+			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
+			resource->Init(WATER, *myPollingStation);
+
+			CU::Vector2<float> pos;
+			pos.x = 128.f + x * (32.f + 1.f);
+			pos.y = 128.f + y * (32.f + 1.f);
+
+			entity->SetPosition(pos);
+
+			myEntities.Add(entity);
+		}
+	}
+
+	Entity* entity = new Entity();
+
+	SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
+	sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_unit.dds", { 32.f, 32.f });
+
+	GOAPComponent* goap = entity->AddComponent<GOAPComponent>();
+	goap->Init(myPollingStation);
+
+	myEntities.Add(entity);
 }
 
 bool Game::Update(float aDelta)
@@ -35,7 +119,11 @@ bool Game::Update(float aDelta)
 		return false;
 	}
 
-	myRendererProxy->RenderSprite(mySpriteTexture, mySpriteOrientation, { 2048, 1024, 0, 0 }, { 4, 4, 0.5, 0.5 });
+	for each (Entity* entity in myEntities)
+	{
+		entity->Update(aDelta);
+		entity->Render(*myRendererProxy);
+	}
 
 	return true;
 }

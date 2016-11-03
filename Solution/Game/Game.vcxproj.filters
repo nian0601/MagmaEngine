@@ -5,16 +5,84 @@
     <ClInclude Include="stdafx.h">
       <Filter>Precompile</Filter>
     </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="IComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PollingStation.h" />
+    <ClInclude Include="GOAPComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityDefines.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="FiniteStateMachine.h">
+      <Filter>AI\State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="IState.h">
+      <Filter>AI\State Machine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>AI\State Machine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveToState.h">
+      <Filter>AI\State Machine\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="stdafx.cpp">
       <Filter>Precompile</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Entity\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceComponent.cpp">
+      <Filter>Entity\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PollingStation.cpp" />
+    <ClCompile Include="GOAPComponent.cpp">
+      <Filter>Entity\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteStateMachine.cpp">
+      <Filter>AI\State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>AI\State Machine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveToState.cpp">
+      <Filter>AI\State Machine\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompile">
       <UniqueIdentifier>{3c94b6b0-c318-47e6-b9dc-f30a78330a8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{47a94f0e-8b12-489d-81de-f1088901fae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Components">
+      <UniqueIdentifier>{f35a659e-5e14-4f91-ae12-19b9a054c163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{e93b71eb-4869-4ddd-aee4-981bd535718d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\State Machine">
+      <UniqueIdentifier>{8000935c-2a18-49d1-bfb2-1c399f5898aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\State Machine\States">
+      <UniqueIdentifier>{12de2304-d44f-427b-81f3-74f4039b0957}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
