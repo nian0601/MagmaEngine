@@ -8,5 +8,8 @@ public:
 	~IdleState();
 
 	virtual eStateStatus Update(float aDelta) override;
+
+private:
+	void operator=(IdleState&) = delete;
 };
 

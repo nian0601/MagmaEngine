@@ -85,11 +85,15 @@
   <ItemGroup>
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityDefines.h" />
+    <ClInclude Include="ExecuteActionState.h" />
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GatherWaterAction.h" />
+    <ClInclude Include="GatherWoodAction.h" />
     <ClInclude Include="GOAPComponent.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="IdleState.h" />
+    <ClInclude Include="IGOAPAction.h" />
     <ClInclude Include="IState.h" />
     <ClInclude Include="MoveToState.h" />
     <ClInclude Include="PollingStation.h" />
@@ -99,8 +103,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="ExecuteActionState.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GatherWaterAction.cpp" />
+    <ClCompile Include="GatherWoodAction.cpp" />
     <ClCompile Include="GOAPComponent.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="MoveToState.cpp" />

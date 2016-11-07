@@ -16,13 +16,15 @@ FiniteStateMachine::~FiniteStateMachine()
 		myStates.DeleteCyclicAtIndex(i);
 }
 
-void FiniteStateMachine::Update(float aDelta)
+bool FiniteStateMachine::Update(float aDelta)
 {
 	if (myStates.Size() == 0)
-		return;
+		return true;
 
 	eStateStatus currentStatus = myStates.GetLast()->Update(aDelta);
 
 	if (currentStatus == POP_STATE)
 		myStates.DeleteCyclicAtIndex(myStates.Size() - 1);
+
+	return false;
 }

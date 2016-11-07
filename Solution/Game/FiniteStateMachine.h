@@ -10,12 +10,14 @@ public:
 	FiniteStateMachine(Entity& anEntity);
 	~FiniteStateMachine();
 
-	void Update(float aDelta);
+	bool Update(float aDelta);
 
 	template <typename T>
 	T* PushState();
 
 private:
+	void operator=(FiniteStateMachine&) = delete;
+
 	Entity& myEntity;
 	CU::GrowingArray<IState*> myStates;
 };

@@ -3,6 +3,21 @@
 #include "Entity.h"
 #include "ResourceComponent.h"
 
+PollingStation* PollingStation::ourInstance = nullptr;
+PollingStation* PollingStation::GetInstance()
+{
+	if (!ourInstance)
+		ourInstance = new PollingStation();
+
+	return ourInstance;
+}
+
+void PollingStation::Destroy()
+{
+	delete ourInstance;
+	ourInstance = nullptr;
+}
+
 PollingStation::PollingStation()
 {
 	for (int i = 0; i < eResourceType::_COUNT; ++i)
@@ -13,6 +28,7 @@ PollingStation::PollingStation()
 PollingStation::~PollingStation()
 {
 }
+
 
 void PollingStation::RegisterResource(Entity* anEntity)
 {

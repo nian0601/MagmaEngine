@@ -15,7 +15,7 @@ ResourceComponent::~ResourceComponent()
 	switch (myResourceType)
 	{
 	case TREE:
-		myPollingStation->UnregisterResource(&myEntity);
+		PollingStation::GetInstance()->UnregisterResource(&myEntity);
 		break;
 	default:
 		DL_ASSERT("Invalid ResourceType");
@@ -23,10 +23,9 @@ ResourceComponent::~ResourceComponent()
 	}
 }
 
-void ResourceComponent::Init(eResourceType aResourceType, PollingStation& aPollingStation)
+void ResourceComponent::Init(eResourceType aResourceType)
 {
 	myResourceType = aResourceType;
-	myPollingStation = &aPollingStation;
 
 	switch (myResourceType)
 	{
@@ -35,7 +34,7 @@ void ResourceComponent::Init(eResourceType aResourceType, PollingStation& aPolli
 		DL_ASSERT("Invalid ResourceType");
 		break;
 	default:
-		myPollingStation->RegisterResource(&myEntity);
+		PollingStation::GetInstance()->RegisterResource(&myEntity);
 		break;
 	}
 }

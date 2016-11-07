@@ -3,8 +3,8 @@
 #include "IComponent.h"
 #include "EntityDefines.h"
 
-class PollingStation;
 class FiniteStateMachine;
+class IGOAPAction;
 
 class GOAPComponent : public IComponent
 {
@@ -12,17 +12,15 @@ public:
 	GOAPComponent(Entity& aEntity);
 	~GOAPComponent();
 
-	void Init(PollingStation* aPollingStation);
+	void Init();
 
 	virtual void Update(float) override;
 
 private:
-	Entity* GetClosestEntity(const CU::GrowingArray<Entity*>& someEntities) const;
-
-	PollingStation* myPollingStation;
 	eResourceType myCurrentResourceType;
-	Entity* myTargetEntity;
 
 	FiniteStateMachine* myStateMachine;
+
+	CU::GrowingArray<IGOAPAction*> myActions;
 };
 

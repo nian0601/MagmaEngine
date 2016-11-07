@@ -16,6 +16,8 @@ public:
 	virtual eStateStatus Update(float aDelta) = 0;
 
 protected:
+	void operator=(IState&) = delete;
+
 	IState(FiniteStateMachine& aStateMachine, Entity& anEntity) 
 		: myStateMachine(aStateMachine)
 		, myEntity(anEntity)

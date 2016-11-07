@@ -15,14 +15,13 @@
 #include "PollingStation.h"
 
 Game::Game()
-	: myPollingStation(nullptr)
 {
 }
 
 
 Game::~Game()
 {
-	delete myPollingStation; myPollingStation = nullptr;
+	PollingStation::Destroy();
 	myEntities.DeleteAll();
 }
 
@@ -32,7 +31,6 @@ void Game::Init(Magma::Engine& aEngine)
 	myCamera->Move({ 0.f, 0.f, -30.f });
 
 	myRendererProxy = &aEngine.GetRendererProxy();
-	myPollingStation = new PollingStation();
 
 	myEntities.Init(128);
 
@@ -65,7 +63,7 @@ void Game::Init(Magma::Engine& aEngine)
 			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_tree.dds", { 32.f, 32.f });
 
 			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
-			resource->Init(TREE, *myPollingStation);
+			resource->Init(TREE);
 
 			CU::Vector2<float> pos;
 			pos.x = 128.f + x * (32.f + 1.f);
@@ -87,7 +85,7 @@ void Game::Init(Magma::Engine& aEngine)
 			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_water.dds", { 32.f, 32.f });
 
 			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
-			resource->Init(WATER, *myPollingStation);
+			resource->Init(WATER);
 
 			CU::Vector2<float> pos;
 			pos.x = 128.f + x * (32.f + 1.f);
@@ -105,7 +103,7 @@ void Game::Init(Magma::Engine& aEngine)
 	sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_unit.dds", { 32.f, 32.f });
 
 	GOAPComponent* goap = entity->AddComponent<GOAPComponent>();
-	goap->Init(myPollingStation);
+	goap->Init();
 
 	myEntities.Add(entity);
 }

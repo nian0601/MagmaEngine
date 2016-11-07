@@ -36,6 +36,18 @@
     <ClInclude Include="MoveToState.h">
       <Filter>AI\State Machine\States</Filter>
     </ClInclude>
+    <ClInclude Include="ExecuteActionState.h">
+      <Filter>AI\State Machine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="IGOAPAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="GatherWoodAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="GatherWaterAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -64,6 +76,15 @@
     <ClCompile Include="MoveToState.cpp">
       <Filter>AI\State Machine\States</Filter>
     </ClCompile>
+    <ClCompile Include="ExecuteActionState.cpp">
+      <Filter>AI\State Machine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="GatherWoodAction.cpp">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="GatherWaterAction.cpp">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompile">
@@ -83,6 +104,12 @@
     </Filter>
     <Filter Include="AI\State Machine\States">
       <UniqueIdentifier>{12de2304-d44f-427b-81f3-74f4039b0957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\GOAP">
+      <UniqueIdentifier>{5eb7cbec-42a2-4b7a-8574-7f062875f198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\GOAP\Actions">
+      <UniqueIdentifier>{bcb3d385-9e63-405e-98a0-bc2c84976d11}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

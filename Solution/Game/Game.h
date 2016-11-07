@@ -27,7 +27,6 @@ private:
 	Magma::Camera* myCamera;
 	Magma::RendererProxy* myRendererProxy;
 
-	PollingStation* myPollingStation;
 	CU::GrowingArray<Entity*> myEntities;
 };
 

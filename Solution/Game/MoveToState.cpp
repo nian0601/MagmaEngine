@@ -5,7 +5,6 @@
 
 MoveToState::MoveToState(FiniteStateMachine& aStateMachine, Entity& anEntity)
 	: IState(aStateMachine, anEntity)
-	, myTargetEntity(nullptr)
 {
 }
 
@@ -14,17 +13,15 @@ MoveToState::~MoveToState()
 {
 }
 
-void MoveToState::Init(Entity* aTargetEntity)
+void MoveToState::Init(const CU::Vector2<float>& aTargetPosition)
 {
-	myTargetEntity = aTargetEntity;
+	myTargetPosition = aTargetPosition;
 }
 
 eStateStatus MoveToState::Update(float aDelta)
 {
-	DL_ASSERT_EXP(myTargetEntity != nullptr, "MoveToState needs a valid TargetEntity");
-
 	CU::Vector2<float> ownPosition = myEntity.GetPosition();
-	CU::Vector2<float> otherPosition = myTargetEntity->GetPosition();
+	CU::Vector2<float> otherPosition = myTargetPosition;
 	CU::Vector2<float> direction = otherPosition - ownPosition;
 	float distance = CU::Length(direction);
 	CU::Normalize(direction);
