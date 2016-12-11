@@ -83,14 +83,20 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CreateDrinkAction.h" />
+    <ClInclude Include="CreateGlassDrinkAction.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityDefines.h" />
     <ClInclude Include="ExecuteActionState.h" />
+    <ClInclude Include="FindGlassAction.h" />
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GatherWaterAction.h" />
     <ClInclude Include="GatherWoodAction.h" />
     <ClInclude Include="GOAPComponent.h" />
+    <ClInclude Include="GOAPGameState.h" />
+    <ClInclude Include="GOAPPlan.h" />
+    <ClInclude Include="GOAPPlanner.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="IGOAPAction.h" />
@@ -102,13 +108,19 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CreateDrinkAction.cpp" />
+    <ClCompile Include="CreateGlassDrinkAction.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExecuteActionState.cpp" />
+    <ClCompile Include="FindGlassAction.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GatherWaterAction.cpp" />
     <ClCompile Include="GatherWoodAction.cpp" />
     <ClCompile Include="GOAPComponent.cpp" />
+    <ClCompile Include="GOAPGameState.cpp" />
+    <ClCompile Include="GOAPPlan.cpp" />
+    <ClCompile Include="GOAPPlanner.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="MoveToState.cpp" />
     <ClCompile Include="PollingStation.cpp" />

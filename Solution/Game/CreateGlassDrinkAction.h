@@ -3,19 +3,18 @@
 #include "IGOAPAction.h"
 
 class Entity;
-class GatherWaterAction : public IGOAPAction
+class CreateGlassDrinkAction : public IGOAPAction
 {
 public:
-	GatherWaterAction(Entity& aEntity);
-	~GatherWaterAction();
+	CreateGlassDrinkAction(Entity& aEntity);
+	~CreateGlassDrinkAction();
 
 	virtual bool Update(float aDelta) override;
 	virtual bool IsInRange() override;
 	virtual CU::Vector2<float> GetTargetPosition() override;
 
 private:
-	void operator=(GatherWaterAction&) = delete;
+	void operator=(CreateGlassDrinkAction&) = delete;
 
-	Entity* myWaterToGatherFrom;
 	float myTimer;
 };

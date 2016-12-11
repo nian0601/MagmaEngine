@@ -4,10 +4,13 @@
 
 #include "Entity.h"
 GatherWaterAction::GatherWaterAction(Entity& aEntity)
-	: IGOAPAction(aEntity)
+	: IGOAPAction(aEntity, "GatherWaterAction")
 	, myTimer(2.f)
 {
-	myTreeToGatherFrom = PollingStation::GetInstance()->GetResources(WATER).GetLast();
+	myWaterToGatherFrom = PollingStation::GetInstance()->GetResources(WATER).GetLast();
+
+	myPreConditions.SetState(CAN_GATHER_WATER, true);
+	myEffects.SetState(HAS_WATER, true);
 }
 
 
@@ -26,7 +29,7 @@ bool GatherWaterAction::Update(float aDelta)
 
 bool GatherWaterAction::IsInRange()
 {
-	DL_ASSERT_EXP(myTreeToGatherFrom != nullptr, "Invalid TargetEntity");
+	DL_ASSERT_EXP(myWaterToGatherFrom != nullptr, "Invalid TargetEntity");
 
 	CU::Vector2<float> ownPosition = myEntity.GetPosition();
 	CU::Vector2<float> otherPosition = GetTargetPosition();
@@ -41,5 +44,6 @@ bool GatherWaterAction::IsInRange()
 
 CU::Vector2<float> GatherWaterAction::GetTargetPosition()
 {
-	return myTreeToGatherFrom->GetPosition();
+	return myWaterToGatherFrom->GetPosition();
 }
+

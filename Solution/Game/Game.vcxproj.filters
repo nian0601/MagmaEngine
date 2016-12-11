@@ -48,6 +48,24 @@
     <ClInclude Include="GatherWaterAction.h">
       <Filter>AI\GOAP\Actions</Filter>
     </ClInclude>
+    <ClInclude Include="GOAPPlanner.h">
+      <Filter>AI\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="GOAPPlan.h">
+      <Filter>AI\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="GOAPGameState.h">
+      <Filter>AI\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateDrinkAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="FindGlassAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateGlassDrinkAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -83,6 +101,24 @@
       <Filter>AI\GOAP\Actions</Filter>
     </ClCompile>
     <ClCompile Include="GatherWaterAction.cpp">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="GOAPPlanner.cpp">
+      <Filter>AI\GOAP</Filter>
+    </ClCompile>
+    <ClCompile Include="GOAPPlan.cpp">
+      <Filter>AI\GOAP</Filter>
+    </ClCompile>
+    <ClCompile Include="GOAPGameState.cpp">
+      <Filter>AI\GOAP</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateDrinkAction.cpp">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="FindGlassAction.cpp">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateGlassDrinkAction.cpp">
       <Filter>AI\GOAP\Actions</Filter>
     </ClCompile>
   </ItemGroup>

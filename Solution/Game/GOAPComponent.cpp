@@ -11,11 +11,19 @@
 
 #include "GatherWaterAction.h"
 #include "GatherWoodAction.h"
+#include "CreateDrinkAction.h"
+#include "FindGlassAction.h"
+#include "CreateGlassDrinkAction.h"
+
+#include "GOAPPlanner.h"
+#include "GOAPPlan.h"
 
 GOAPComponent::GOAPComponent(Entity& aEntity)
 	: IComponent(aEntity)
 	, myStateMachine(nullptr)
 	, myActions(8)
+	, myPlanner(nullptr)
+	, myPlan(nullptr)
 {
 }
 
@@ -25,6 +33,8 @@ GOAPComponent::~GOAPComponent()
 	delete myStateMachine;
 	myStateMachine = nullptr;
 	myActions.DeleteAll();
+	delete myPlanner;
+	myPlanner = nullptr;
 }
 
 void GOAPComponent::Init()
@@ -35,22 +45,34 @@ void GOAPComponent::Init()
 
 	myActions.Add(new GatherWaterAction(myEntity));
 	myActions.Add(new GatherWoodAction(myEntity));
-	myActions.Add(new GatherWaterAction(myEntity));
-	myActions.Add(new GatherWoodAction(myEntity));
+	myActions.Add(new CreateDrinkAction(myEntity));
+	myActions.Add(new FindGlassAction(myEntity));
+	myActions.Add(new CreateGlassDrinkAction(myEntity));
 
-	ExecuteActionState* actionState = myStateMachine->PushState<ExecuteActionState>();
-	actionState->Init(myActions.GetLast());
+
+	myPlanner = new GOAPPlanner();
+	GOAPGameState worldState;
+	worldState.SetState(CAN_GATHER_WATER, true);
+	worldState.SetState(CAN_GATHER_WOOD, true);
+
+	GOAPGameState goalState;
+	goalState.SetState(HAS_DRINK, true);
+
+	myPlan = myPlanner->CreatePlan(myActions, worldState, goalState);
 }
 
 void GOAPComponent::Update(float aDeltaTime)
 {
 	if (myStateMachine->Update(aDeltaTime))
 	{
-		if (myActions.Size() > 1)
+		if (myPlan && !myPlan->IsFinished())
 		{
-			myActions.DeleteCyclicAtIndex(myActions.Size()-1);
 			ExecuteActionState* actionState = myStateMachine->PushState<ExecuteActionState>();
-			actionState->Init(myActions.GetLast());
+			actionState->Init(myPlan->GetNextAction());
+		}
+		else
+		{
+			//Create new plan
 		}
 	}
 }

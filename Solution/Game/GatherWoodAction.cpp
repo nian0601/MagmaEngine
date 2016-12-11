@@ -4,10 +4,13 @@
 
 #include "Entity.h"
 GatherWoodAction::GatherWoodAction(Entity& aEntity)
-	: IGOAPAction(aEntity)
+	: IGOAPAction(aEntity, "GatherWoodAction")
 	, myTimer(2.f)
 {
 	myTreeToGatherFrom = PollingStation::GetInstance()->GetResources(TREE).GetLast();
+
+	myPreConditions.SetState(CAN_GATHER_WOOD, true);
+	myEffects.SetState(HAS_WOOD, true);
 }
 
 

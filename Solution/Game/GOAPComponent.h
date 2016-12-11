@@ -5,6 +5,8 @@
 
 class FiniteStateMachine;
 class IGOAPAction;
+class GOAPPlanner;
+class GOAPPlan;
 
 class GOAPComponent : public IComponent
 {
@@ -20,6 +22,8 @@ private:
 	eResourceType myCurrentResourceType;
 
 	FiniteStateMachine* myStateMachine;
+	GOAPPlanner* myPlanner;
+	GOAPPlan* myPlan;
 
 	CU::GrowingArray<IGOAPAction*> myActions;
 };
