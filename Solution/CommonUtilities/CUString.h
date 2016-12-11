@@ -49,6 +49,8 @@ namespace CU
 		char& operator[](const int aIndex);
 
 		void Resize(int aNewSize);
+		unsigned int GetHash() const;
+
 	private:
 		void UpdateHash();
 
@@ -436,6 +438,11 @@ namespace CU
 
 		delete[] myData;
 		myData = newData;
+	}
+
+	inline unsigned int String::GetHash() const
+	{
+		return myHash;
 	}
 
 	inline void String::UpdateHash()

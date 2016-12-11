@@ -5,10 +5,7 @@
 
 inline unsigned int Murmur(const CU::String& aValue)
 {
-	unsigned int result = 0;
-	MurmurHash3_x86_32(aValue.c_str(), aValue.Size(), 2654435761, &result);
-
-	return result;
+	return aValue.GetHash();
 }
 
 inline unsigned int Murmur(int aValue)
