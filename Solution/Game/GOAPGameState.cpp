@@ -24,6 +24,12 @@ void GOAPGameState::SetState(eEntityState aState, bool aStatus)
 		stateStatus = -1;
 }
 
+void GOAPGameState::ResetState(eEntityState aState)
+{
+	DL_ASSERT_EXP(aState >= 0 && aState < eEntityState::_STATE_COUNT, "Invalid EntityState");
+	myState[aState] = 0.f;
+}
+
 bool GOAPGameState::GetState(eEntityState aState) const
 {
 	DL_ASSERT_EXP(aState >= 0 && aState < eEntityState::_STATE_COUNT, "Invalid EntityState");

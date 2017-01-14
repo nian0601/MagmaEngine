@@ -6,15 +6,18 @@
 
 FindGlassAction::FindGlassAction(Entity& aEntity)
 	: IGOAPAction(aEntity, "FindGlassAction")
-	, myTimer(2.f)
 {
-
 	myEffects.SetState(HAS_GLASS, true);
 }
 
 
 FindGlassAction::~FindGlassAction()
 {
+}
+
+void FindGlassAction::Init()
+{
+	myTimer = 2.f;
 }
 
 bool FindGlassAction::Update(float aDelta)

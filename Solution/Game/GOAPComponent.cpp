@@ -14,6 +14,8 @@
 #include "CreateDrinkAction.h"
 #include "FindGlassAction.h"
 #include "CreateGlassDrinkAction.h"
+#include "DeliverWaterAction.h"
+#include "DeliverWoodAction.h"
 
 #include "GOAPPlanner.h"
 #include "GOAPPlan.h"
@@ -48,17 +50,17 @@ void GOAPComponent::Init()
 	myActions.Add(new CreateDrinkAction(myEntity));
 	myActions.Add(new FindGlassAction(myEntity));
 	myActions.Add(new CreateGlassDrinkAction(myEntity));
-
+	myActions.Add(new DeliverWaterAction(myEntity));
+	myActions.Add(new DeliverWoodAction(myEntity));
 
 	myPlanner = new GOAPPlanner();
-	GOAPGameState worldState;
-	worldState.SetState(CAN_GATHER_WATER, true);
-	worldState.SetState(CAN_GATHER_WOOD, true);
 
-	GOAPGameState goalState;
-	goalState.SetState(HAS_DRINK, true);
+	myWorldState.SetState(CAN_GATHER_WATER, true);
+	myWorldState.SetState(CAN_GATHER_WOOD, true);
 
-	myPlan = myPlanner->CreatePlan(myActions, worldState, goalState);
+	myGoalState.SetState(HAS_WATER_ON_STOCKPILE, true);
+
+	myPlan = myPlanner->CreatePlan(myActions, myWorldState, myGoalState);
 }
 
 void GOAPComponent::Update(float aDeltaTime)
@@ -73,6 +75,18 @@ void GOAPComponent::Update(float aDeltaTime)
 		else
 		{
 			//Create new plan
+			if (myGoalState.IsSet(HAS_WOOD_ON_STOCKPILE))
+			{
+				myGoalState.ResetState(HAS_WOOD_ON_STOCKPILE);
+				myGoalState.SetState(HAS_WATER_ON_STOCKPILE, true);
+			}
+			else
+			{
+				myGoalState.SetState(HAS_WOOD_ON_STOCKPILE, true);
+				myGoalState.ResetState(HAS_WATER_ON_STOCKPILE);
+			}
+
+			myPlan = myPlanner->CreatePlan(myActions, myWorldState, myGoalState);
 		}
 	}
 }

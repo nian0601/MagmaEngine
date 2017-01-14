@@ -2,7 +2,7 @@
 
 #include "IComponent.h"
 #include "EntityDefines.h"
-
+#include "GOAPGameState.h"
 class FiniteStateMachine;
 class IGOAPAction;
 class GOAPPlanner;
@@ -26,5 +26,8 @@ private:
 	GOAPPlan* myPlan;
 
 	CU::GrowingArray<IGOAPAction*> myActions;
+
+	GOAPGameState myWorldState;
+	GOAPGameState myGoalState;
 };
 

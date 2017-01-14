@@ -10,6 +10,7 @@ public:
 	~GOAPGameState();
 
 	void SetState(eEntityState aState, bool aStatus);
+	void ResetState(eEntityState aState);
 	bool GetState(eEntityState aState) const;
 	bool IsSet(eEntityState aState) const;
 

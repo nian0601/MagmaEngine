@@ -2,6 +2,7 @@
 #include "PollingStation.h"
 #include "Entity.h"
 #include "ResourceComponent.h"
+#include "StockpileComponent.h"
 
 PollingStation* PollingStation::ourInstance = nullptr;
 PollingStation* PollingStation::GetInstance()
@@ -20,8 +21,10 @@ void PollingStation::Destroy()
 
 PollingStation::PollingStation()
 {
-	for (int i = 0; i < eResourceType::_COUNT; ++i)
+	for (int i = 0; i < eResourceType::_RESOURCE_COUNT; ++i)
 		myResources[i].Init(16);
+
+	myStockpiles.Init(16);
 }
 
 
@@ -55,9 +58,31 @@ void PollingStation::UnregisterResource(Entity* anEntity)
 	}
 }
 
+void PollingStation::RegisterStockpile(Entity* anEntity)
+{
+	myStockpiles.AddUnique(anEntity);
+}
+
+void PollingStation::UnregisterStockpile(Entity* anEntity)
+{
+	myStockpiles.RemoveCyclic(anEntity);
+}
+
 const CU::GrowingArray<Entity*> PollingStation::GetResources(eResourceType aResourceType) const
 {
-	DL_ASSERT_EXP(aResourceType > INVALID && aResourceType < _COUNT, "Invalid resource type");
+	DL_ASSERT_EXP(aResourceType > INVALID && aResourceType < _RESOURCE_COUNT, "Invalid resource type");
 
 	return myResources[aResourceType];
+}
+
+Entity* PollingStation::FindFreeStockpile() const
+{
+	for (int i = 0; i < myStockpiles.Size(); ++i)
+	{
+		StockpileComponent* pileComponent = myStockpiles[i]->GetComponent<StockpileComponent>();
+		if (pileComponent && !pileComponent->IsFull())
+			return myStockpiles[i];
+	}
+
+	return nullptr;
 }

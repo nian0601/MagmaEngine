@@ -14,14 +14,21 @@ public:
 
 	void RegisterResource(Entity* anEntity);
 	void UnregisterResource(Entity* anEntity);
+
+	void RegisterStockpile(Entity* anEntity);
+	void UnregisterStockpile(Entity* anEntity);
+
 	const CU::GrowingArray<Entity*> GetResources(eResourceType aResourceType) const;
+	Entity* FindFreeStockpile() const;
 
 private:
 	PollingStation();
 	~PollingStation();
 
 	typedef CU::GrowingArray<Entity*> EntityArray;
-	CU::StaticArray<EntityArray, eResourceType::_COUNT> myResources;
+	CU::StaticArray<EntityArray, eResourceType::_RESOURCE_COUNT> myResources;
+	
+	EntityArray myStockpiles;
 
 	static PollingStation* ourInstance;
 };

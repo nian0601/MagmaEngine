@@ -66,6 +66,18 @@
     <ClInclude Include="CreateGlassDrinkAction.h">
       <Filter>AI\GOAP\Actions</Filter>
     </ClInclude>
+    <ClInclude Include="StockpileComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GatheringComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DeliverWaterAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="DeliverWoodAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -119,6 +131,18 @@
       <Filter>AI\GOAP\Actions</Filter>
     </ClCompile>
     <ClCompile Include="CreateGlassDrinkAction.cpp">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="StockpileComponent.cpp">
+      <Filter>Entity\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GatheringComponent.cpp">
+      <Filter>Entity\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="DeliverWaterAction.cpp">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="DeliverWoodAction.cpp">
       <Filter>AI\GOAP\Actions</Filter>
     </ClCompile>
   </ItemGroup>

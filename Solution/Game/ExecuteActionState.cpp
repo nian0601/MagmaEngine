@@ -19,7 +19,7 @@ ExecuteActionState::~ExecuteActionState()
 void ExecuteActionState::Init(IGOAPAction* anAction)
 {
 	myAction = anAction;
-
+	myAction->Init();
 	if (!myAction->IsInRange())
 	{
 		MoveToState* moveToState = myStateMachine.PushState<MoveToState>();

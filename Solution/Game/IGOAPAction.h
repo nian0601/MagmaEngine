@@ -8,6 +8,8 @@ class IGOAPAction
 public:
 	virtual ~IGOAPAction() {}
 
+	virtual void Init() = 0;
+
 	virtual bool Update(float) = 0;
 
 	virtual bool IsInRange() = 0;

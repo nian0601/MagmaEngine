@@ -11,6 +11,7 @@
 #include "SpriteComponent.h"
 #include "ResourceComponent.h"
 #include "GOAPComponent.h"
+#include "StockpileComponent.h"
 
 #include "PollingStation.h"
 
@@ -63,7 +64,7 @@ void Game::Init(Magma::Engine& aEngine)
 			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_tree.dds", { 32.f, 32.f });
 
 			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
-			resource->Init(TREE);
+			resource->Init(TREE, aEngine.GetAssetContainer());
 
 			CU::Vector2<float> pos;
 			pos.x = 128.f + x * (32.f + 1.f);
@@ -85,7 +86,29 @@ void Game::Init(Magma::Engine& aEngine)
 			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_water.dds", { 32.f, 32.f });
 
 			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
-			resource->Init(WATER);
+			resource->Init(WATER, aEngine.GetAssetContainer());
+
+			CU::Vector2<float> pos;
+			pos.x = 128.f + x * (32.f + 1.f);
+			pos.y = 128.f + y * (32.f + 1.f);
+
+			entity->SetPosition(pos);
+
+			myEntities.Add(entity);
+		}
+	}
+
+	for (int x = 1; x < 3; ++x)
+	{
+		for (int y = 7; y < 9; ++y)
+		{
+			Entity* entity = new Entity();
+
+			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
+			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_stock_pile.dds", { 32.f, 32.f });
+
+			StockpileComponent* stockpile = entity->AddComponent<StockpileComponent>();
+			stockpile->Init(aEngine.GetAssetContainer());
 
 			CU::Vector2<float> pos;
 			pos.x = 128.f + x * (32.f + 1.f);

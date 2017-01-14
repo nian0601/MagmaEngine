@@ -6,9 +6,7 @@
 
 CreateDrinkAction::CreateDrinkAction(Entity& aEntity)
 	: IGOAPAction(aEntity, "CreateDrinkAction")
-	, myTimer(2.f)
 {
-
 	myPreConditions.SetState(HAS_WATER, true);
 	myEffects.SetState(HAS_DRINK, true);
 }
@@ -16,6 +14,11 @@ CreateDrinkAction::CreateDrinkAction(Entity& aEntity)
 
 CreateDrinkAction::~CreateDrinkAction()
 {
+}
+
+void CreateDrinkAction::Init()
+{
+	myTimer = 2.f;
 }
 
 bool CreateDrinkAction::Update(float aDelta)

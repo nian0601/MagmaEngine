@@ -3,11 +3,11 @@
 #include "IGOAPAction.h"
 
 class Entity;
-class CreateDrinkAction : public IGOAPAction
+class DeliverWaterAction : public IGOAPAction
 {
 public:
-	CreateDrinkAction(Entity& aEntity);
-	~CreateDrinkAction();
+	DeliverWaterAction(Entity& aEntity);
+	~DeliverWaterAction();
 
 	virtual void Init() override;
 	virtual bool Update(float aDelta) override;
@@ -15,7 +15,7 @@ public:
 	virtual CU::Vector2<float> GetTargetPosition() override;
 
 private:
-	void operator=(CreateDrinkAction&) = delete;
+	void operator=(DeliverWaterAction&) = delete;
 
-	float myTimer;
+	Entity* myStockpileToDeliverTo;
 };

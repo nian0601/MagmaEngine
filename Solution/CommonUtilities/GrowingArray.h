@@ -29,6 +29,7 @@ namespace CU
 
 		inline void Add(const ObjectType& aObject);
 		inline void AddEmptyObject();
+		inline void AddUnique(const ObjectType& aObject);
 		inline void Insert(SizeType aIndex, const ObjectType& aObject);
 		inline void InsertFirst(const ObjectType& aObject);
 		inline void DeleteCyclic(ObjectType& aObject);
@@ -213,6 +214,13 @@ namespace CU
 		}
 
 		myCurrentSize++;
+	}
+
+	GA_TEMPLATE
+	inline void GA_TYPE::AddUnique(const ObjectType& aObject)
+	{
+		if (Find(aObject) == -1)
+			Add(aObject);
 	}
 
 	GA_TEMPLATE

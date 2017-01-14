@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "GatherWoodAction.h"
 #include "PollingStation.h"
-
+#include "GatheringComponent.h"
 #include "Entity.h"
+
 GatherWoodAction::GatherWoodAction(Entity& aEntity)
 	: IGOAPAction(aEntity, "GatherWoodAction")
-	, myTimer(2.f)
 {
-	myTreeToGatherFrom = PollingStation::GetInstance()->GetResources(TREE).GetLast();
-
 	myPreConditions.SetState(CAN_GATHER_WOOD, true);
 	myEffects.SetState(HAS_WOOD, true);
 }
@@ -18,11 +16,23 @@ GatherWoodAction::~GatherWoodAction()
 {
 }
 
+void GatherWoodAction::Init()
+{
+	myTreeToGatherFrom = PollingStation::GetInstance()->GetResources(TREE).GetLast();
+	myTimer = 2.f;
+}
+
 bool GatherWoodAction::Update(float aDelta)
 {
 	myTimer -= aDelta;
 	if (myTimer <= 0.f)
+	{
+		GatheringComponent* gatherComp = myEntity.GetComponent<GatheringComponent>();
+		if (gatherComp)
+			gatherComp->SetResourceType(TREE);
+
 		return true;
+	}
 
 	return false;
 }

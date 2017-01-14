@@ -9,6 +9,7 @@ public:
 	FindGlassAction(Entity& aEntity);
 	~FindGlassAction();
 
+	virtual void Init() override;
 	virtual bool Update(float aDelta) override;
 	virtual bool IsInRange() override;
 	virtual CU::Vector2<float> GetTargetPosition() override;

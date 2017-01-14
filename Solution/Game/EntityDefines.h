@@ -2,10 +2,10 @@
 
 enum eResourceType
 {
-	INVALID,
+	INVALID = -1,
 	TREE,
 	WATER,
-	_COUNT,
+	_RESOURCE_COUNT,
 };
 
 enum eEntityState
@@ -18,5 +18,7 @@ enum eEntityState
 	HAS_WOOD,
 	HAS_DRINK,
 	HAS_GLASS,
+	HAS_WOOD_ON_STOCKPILE,
+	HAS_WATER_ON_STOCKPILE,
 	_STATE_COUNT,
 };

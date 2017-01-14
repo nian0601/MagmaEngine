@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "GatherWaterAction.h"
 #include "PollingStation.h"
-
+#include "GatheringComponent.h"
 #include "Entity.h"
+
 GatherWaterAction::GatherWaterAction(Entity& aEntity)
 	: IGOAPAction(aEntity, "GatherWaterAction")
-	, myTimer(2.f)
 {
-	myWaterToGatherFrom = PollingStation::GetInstance()->GetResources(WATER).GetLast();
-
 	myPreConditions.SetState(CAN_GATHER_WATER, true);
 	myEffects.SetState(HAS_WATER, true);
 }
@@ -18,11 +16,23 @@ GatherWaterAction::~GatherWaterAction()
 {
 }
 
+void GatherWaterAction::Init()
+{
+	myWaterToGatherFrom = PollingStation::GetInstance()->GetResources(WATER).GetLast();
+	myTimer = 2.f;
+}
+
 bool GatherWaterAction::Update(float aDelta)
 {
 	myTimer -= aDelta;
 	if (myTimer <= 0.f)
+	{
+		GatheringComponent* gatherComp = myEntity.GetComponent<GatheringComponent>();
+		if (gatherComp)
+			gatherComp->SetResourceType(WATER);
+
 		return true;
+	}
 
 	return false;
 }
