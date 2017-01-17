@@ -70,6 +70,7 @@ namespace Magma
 	{
 		myCurrentEffect = aEffect;
 		myCurrentEffectVariables = &myEffectVariables[myCurrentEffect];
+		myCurrentEffectVariablesIds = &myEffectVariablesIds[myCurrentEffect];
 	}
 
 	void Renderer::SetTexture(const CU::String& aName, Texture* aTexture)
@@ -99,6 +100,36 @@ namespace Magma
 	void Renderer::SetRawData(const CU::String& aName, int aDataSize, const void* someData)
 	{
 		ID3DX11EffectVariable* var = GetEffectVariable(aName);
+		var->SetRawValue(someData, 0, aDataSize);
+	}
+
+	void Renderer::SetTexture(EffectVariableID aVariableID, Texture* aTexture)
+	{
+		ID3DX11EffectVariable* var = GetEffectVariable(aVariableID);
+		var->AsShaderResource()->SetResource(aTexture->GetShaderView());
+	}
+
+	void Renderer::SetMatrix(EffectVariableID aVariableID, const CU::Matrix44<float>& aMatrix)
+	{
+		ID3DX11EffectVariable* var = GetEffectVariable(aVariableID);
+		var->AsMatrix()->SetMatrix(&aMatrix.myMatrix[0]);
+	}
+
+	void Renderer::SetVector(EffectVariableID aVariableID, const CU::Vector3<float>& aVector)
+	{
+		ID3DX11EffectVariable* var = GetEffectVariable(aVariableID);
+		var->AsVector()->SetFloatVector(&aVector.x);
+	}
+
+	void Renderer::SetVector(EffectVariableID aVariableID, const CU::Vector4<float>& aVector)
+	{
+		ID3DX11EffectVariable* var = GetEffectVariable(aVariableID);
+		var->AsVector()->SetFloatVector(&aVector.x);
+	}
+
+	void Renderer::SetRawData(EffectVariableID aVariableID, int aDataSize, const void* someData)
+	{
+		ID3DX11EffectVariable* var = GetEffectVariable(aVariableID);
 		var->SetRawValue(someData, 0, aDataSize);
 	}
 
@@ -189,6 +220,26 @@ namespace Magma
 		}
 
 		return variableMap[aName];
+	}
+
+	ID3DX11EffectVariable* Renderer::GetEffectVariable(EffectVariableID aEffectVariable)
+	{
+		DL_ASSERT_EXP(myCurrentEffectVariables != nullptr, "Need an effect to be able to GetEffectVariable");
+		CU::Map<EffectVariableID, ID3DX11EffectVariable*>& variableMap = *myCurrentEffectVariablesIds;
+
+		if (variableMap.KeyExists(aEffectVariable) == false)
+		{
+			Effect* effect = myAssetContainer.GetEffect(myCurrentEffect);
+			const CU::String& variableName = myAssetContainer.GetEffectVariableName(myCurrentEffect, aEffectVariable);
+
+			DL_ASSERT_EXP(effect != nullptr, "Cant GetEffectVariable without an Effect");
+			ID3DX11EffectVariable* var = effect->GetEffect()->GetVariableByName(variableName.c_str());
+			DL_ASSERT_EXP(var->IsValid() == TRUE, CU::Concatenate("ShaderVar: %s not found", variableName.c_str()));
+
+			variableMap[aEffectVariable] = var;
+		}
+
+		return variableMap[aEffectVariable];
 	}
 
 	void Renderer::RenderModelData(const ModelData& someData)

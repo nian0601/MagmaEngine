@@ -60,6 +60,13 @@ namespace Magma
 		void SetVector(const CU::String& aName, const CU::Vector4<float>& aVector);
 		void SetRawData(const CU::String& aName, int aDataSize, const void* someData);
 
+
+		void SetTexture(EffectVariableID aVariableID, Texture* aTexture);
+		void SetMatrix(EffectVariableID aVariableID, const CU::Matrix44<float>& aMatrix);
+		void SetVector(EffectVariableID aVariableID, const CU::Vector3<float>& aVector);
+		void SetVector(EffectVariableID aVariableID, const CU::Vector4<float>& aVector);
+		void SetRawData(EffectVariableID aVariableID, int aDataSize, const void* someData);
+
 		void SetClearColor(const CU::Vector4<float>& aColor);
 
 		void SetRasterizerState(eRasterizer aState);
@@ -80,6 +87,7 @@ namespace Magma
 		void operator=(Renderer&) = delete;
 
 		ID3DX11EffectVariable* GetEffectVariable(const CU::String& aName);
+		ID3DX11EffectVariable* GetEffectVariable(EffectVariableID aEffectVariable);
 		void RenderModelData(const ModelData& someData);
 		void RenderGPUData(const GPUData& someData);
 
@@ -96,7 +104,9 @@ namespace Magma
 		GPUContext& myGPUContext;
 
 		CU::Map<EffectID, CU::Map<CU::String, ID3DX11EffectVariable*>> myEffectVariables;
+		CU::Map<EffectID, CU::Map<EffectVariableID, ID3DX11EffectVariable*>> myEffectVariablesIds;
 		CU::Map<CU::String, ID3DX11EffectVariable*>* myCurrentEffectVariables;
+		CU::Map<EffectVariableID, ID3DX11EffectVariable*>* myCurrentEffectVariablesIds;
 
 		ID3D11RasterizerState* myRasterizerStates[static_cast<int>(eRasterizer::_RAZTER_COUNT)];
 		ID3D11DepthStencilState* myDepthStencilStates[static_cast<int>(eDepthState::_DEPTH_COUNT)];

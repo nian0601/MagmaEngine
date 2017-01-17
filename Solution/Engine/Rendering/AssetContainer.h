@@ -30,6 +30,9 @@ namespace Magma
 		EffectID LoadEffect(const CU::String& aFilePath);
 		Effect* GetEffect(EffectID aID);
 
+		EffectVariableID CreateEffectVariableID(EffectID aEffect, const CU::String& aVariableName);
+		const CU::String& GetEffectVariableName(EffectID aEffect, EffectVariableID aVariableID);
+
 		Texture* LoadTexture(const CU::String& aFilePath);
 
 	private:
@@ -42,6 +45,9 @@ namespace Magma
 		CU::Map<EffectID, Effect*> myEffects;
 		CU::Map<CU::String, EffectID> myEffectsID;
 		EffectID myNextEffectID;
+
+		CU::Map<EffectID, CU::Map<EffectVariableID, CU::String>> myEffectVariables;
+		EffectVariableID myNextEffectVariableID;
 
 		CU::Map<ModelID, ModelData*> myModels;
 		CU::Map<CU::String, ModelID> myModelID;

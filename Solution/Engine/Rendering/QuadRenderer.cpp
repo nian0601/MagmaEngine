@@ -43,6 +43,12 @@ namespace Magma
 			, sizeof(VertexPosUV), reinterpret_cast<char*>(&vertices[0]), myGPUContext, myAssetContainer);
 
 		mySpriteEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_sprite.fx");
+
+		myProjectionVariable = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "Projection");
+		myOrientationVariable = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "SpriteOrientation");
+		mySizeAndHotSpotVariable = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "SpriteSizeAndHotSpot");
+		myPosAndScaleVarible = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "SpritePositionAndScale");
+		myAlbedoTextureVariable = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "AlbedoTexture");
 	}
 
 
@@ -73,14 +79,14 @@ namespace Magma
 	{
 		Activate();
 		aRenderer.SetEffect(mySpriteEffect);
-		aRenderer.SetMatrix("Projection", aCamera.GetOrthagonalProjection());
+		aRenderer.SetMatrix(myProjectionVariable, aCamera.GetOrthagonalProjection());
 
 		for each (SpriteCommand command in mySpriteCommands)
 		{
-			aRenderer.SetMatrix("SpriteOrientation", command.myOrientation);
-			aRenderer.SetVector("SpriteSizeAndHotSpot", command.mySizeAndHotSpot);
-			aRenderer.SetVector("SpritePositionAndScale", command.myPositionAndScale);
-			aRenderer.SetTexture("AlbedoTexture", command.myTexture);
+			aRenderer.SetMatrix(myOrientationVariable, command.myOrientation);
+			aRenderer.SetVector(mySizeAndHotSpotVariable, command.mySizeAndHotSpot);
+			aRenderer.SetVector(myPosAndScaleVarible, command.myPositionAndScale);
+			aRenderer.SetTexture(myAlbedoTextureVariable, command.myTexture);
 
 			Render(mySpriteEffect, "Render");
 		}

@@ -55,5 +55,10 @@ namespace Magma
 		};
 		CU::GrowingArray<SpriteCommand> mySpriteCommands;
 		EffectID mySpriteEffect;
+		EffectVariableID myProjectionVariable;
+		EffectVariableID myOrientationVariable;
+		EffectVariableID mySizeAndHotSpotVariable;
+		EffectVariableID myPosAndScaleVarible;
+		EffectVariableID myAlbedoTextureVariable;
 	};
 }

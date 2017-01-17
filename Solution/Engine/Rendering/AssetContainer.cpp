@@ -59,6 +59,32 @@ namespace Magma
 		return nullptr;
 	}
 
+	Magma::EffectVariableID AssetContainer::CreateEffectVariableID(EffectID aEffect, const CU::String& aVariableName)
+	{
+		EffectVariableID currentID = myNextEffectVariableID;
+		++myNextEffectVariableID;
+
+		myEffectVariables[aEffect][currentID] = aVariableName;
+		return currentID;
+	}
+
+	const CU::String& AssetContainer::GetEffectVariableName(EffectID aEffect, EffectVariableID aVariableID)
+	{
+		if (!myEffectVariables.KeyExists(aEffect))
+		{
+			DL_ASSERT("Tried to GetEffectVariableName from invalid Effect");
+			return "";
+		}
+
+		if (!myEffectVariables[aEffect].KeyExists(aVariableID))
+		{
+			DL_ASSERT("Tried to GetEffectVariableName from invalid VariableID, did you forget to CreateEffectVariableID?");
+			return "";
+		}
+
+		return myEffectVariables[aEffect][aVariableID];
+	}
+
 	Texture* AssetContainer::LoadTexture(const CU::String& aFilePath)
 	{
 		if (myTextures.KeyExists(aFilePath) == false)
