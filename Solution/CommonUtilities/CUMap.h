@@ -32,6 +32,8 @@ namespace CU
 			Value myValue;
 		};
 
+		int FindKeyInBucket(int aBucketIndex, const Key& aKey);
+
 		int OwnHash(const Key &aKey);
 		GrowingArray<GrowingArray<KeyValuePair, int>, int> myBuckets;
 	};
@@ -86,17 +88,11 @@ namespace CU
 	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
 	Value& Map<Key, Value, StartSize, BucketSize>::Get(const Key &aKey)//Assert om key inte finns
 	{
-		assert(KeyExists(aKey) == true && "[CUMap]: Tried to get an nonexisting Key.");
-
 		int index = OwnHash(aKey);
-		for (int i = 0; i < myBuckets[index].Size(); ++i)
-		{
-			if (myBuckets[index][i].myKey == aKey)
-				return myBuckets[index][i].myValue;
-		}
+		int keyIndex = FindKeyInBucket(index, aKey);
+		assert(keyIndex != -1 && "[CUMap]: Tried to get an nonexisting Key.");
 
-		assert(!"[CUMap]: Get() failed to find a Key, should NEVER happen...");
-		return myBuckets[0][0].myValue;
+		return myBuckets[index][keyIndex].myValue;
 	}
 
 
@@ -127,14 +123,7 @@ namespace CU
 	bool Map<Key, Value, StartSize, BucketSize>::KeyExists(const Key &aKey)
 	{
 		int index = OwnHash(aKey);
-
-		for (int i = 0; i < myBuckets[index].Size(); ++i)
-		{
-			if (myBuckets[index][i].myKey == aKey)
-				return true;
-		}
-
-		return false;
+		return FindKeyInBucket(index, aKey) != -1;
 	}
 
 
@@ -143,10 +132,16 @@ namespace CU
 	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
 	Value& Map<Key, Value, StartSize, BucketSize>::operator[](const Key &aKey)
 	{
-		if (KeyExists(aKey) == false)
+		int index = OwnHash(aKey);
+		if (FindKeyInBucket(index, aKey) == -1)
 		{
-			Value newVal;
-			Insert(aKey, newVal);
+			KeyValuePair pair;
+			pair.myKey = aKey;
+			pair.myValue = Value();
+
+			CU::GrowingArray<KeyValuePair, int>& bucket = myBuckets[index];
+			bucket.Add(pair);
+			return bucket.GetLast().myValue;
 		}
 
 		return Get(aKey);
@@ -224,6 +219,21 @@ namespace CU
 			myBuckets[i].RemoveAll();
 		}
 		myBuckets.RemoveAll();
+	}
+
+
+	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
+	int Map<Key, Value, StartSize, BucketSize>::FindKeyInBucket(int aBucketIndex, const Key& aKey)
+	{
+		CU::GrowingArray<KeyValuePair, int>& bucket = myBuckets[aBucketIndex];
+
+		for (int i = 0; i < bucket.Size(); ++i)
+		{
+			if (bucket[i].myKey == aKey)
+				return i;
+		}
+
+		return -1;
 	}
 
 	//----- HASH -----

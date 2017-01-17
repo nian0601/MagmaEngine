@@ -101,30 +101,71 @@ void DL_Debug::Debug::AssertMessage(bool aAssertExpression, const char *aFileNam
 
 void DL_Debug::Debug::AssertMessage(const char *aFileName, int aLine, const char *aFunctionName, const CU::String& aString)
 {
-	CU::String output("\nError Message: ");
-	output += aString;
-	output += "\n\n";
-	output += "File: ";
-	output += aFileName;
-	output += "\n\n";
-	output += "Line: ";
-	output += aLine;
-	output += "\n";
-	output += "Function: ";
-	output += aFunctionName;
-	output += "\n\n";
+	myTempString.Clear();
+	myTempString += "\nError Message: ";
+	myTempString += aString;
+	myTempString += "\n\n";
+	myTempString += "File: ";
+	myTempString += aFileName;
+	myTempString += "\n\n";
+	myTempString += "Line: ";
+	myTempString += aLine;
+	myTempString += "\n";
+	myTempString += "Function: ";
+	myTempString += aFunctionName;
+	myTempString += "\n\n";
 
-	ourInstance->myDebugFile << output.c_str();
+	ourInstance->myDebugFile << myTempString.c_str();
 	ourInstance->myDebugFile << "\n" << "\n" << "Callstack" << "\n";
 
 	DL_Debug::StackWalker sw;
 	sw.ShowCallstack();
 	ourInstance->myDebugFile.flush();
 
-	const size_t cSize = strlen(output.c_str()) + 1;
+	const size_t cSize = strlen(myTempString.c_str()) + 1;
 	wchar_t* wc = new wchar_t[cSize];
 	size_t tempSize;
-	mbstowcs_s(&tempSize, wc, cSize, output.c_str(), cSize);
+	mbstowcs_s(&tempSize, wc, cSize, myTempString.c_str(), cSize);
+
+	//_wassert(wc, 0, aLine);
+
+	_wassert(wc, _CRT_WIDE(__FILE__), __LINE__);
+	delete[] wc;
+}
+
+void DL_Debug::Debug::AssertMessage(bool aAssertExpression, const char *aFileName, int aLine, const char *aFunctionName, const char* aString)
+{
+	if (aAssertExpression == false)
+	{
+		AssertMessage(aFileName, aLine, aFunctionName, aString);
+	}
+}
+
+void DL_Debug::Debug::AssertMessage(const char *aFileName, int aLine, const char *aFunctionName, const char* aString)
+{
+	ourInstance->myDebugFile << "\nError Message: ";
+	ourInstance->myDebugFile << aString;
+	ourInstance->myDebugFile << "\n\n";
+	ourInstance->myDebugFile << "File: ";
+	ourInstance->myDebugFile << aFileName;
+	ourInstance->myDebugFile << "\n\n";
+	ourInstance->myDebugFile << "Line: ";
+	ourInstance->myDebugFile << aLine;
+	ourInstance->myDebugFile << "\n";
+	ourInstance->myDebugFile << "Function: ";
+	ourInstance->myDebugFile << aFunctionName;
+	ourInstance->myDebugFile << "\n\n";
+
+	ourInstance->myDebugFile << "\n" << "\n" << "Callstack" << "\n";
+
+	DL_Debug::StackWalker sw;
+	sw.ShowCallstack();
+	ourInstance->myDebugFile.flush();
+
+	const size_t cSize = strlen(aString) + 1;
+	wchar_t* wc = new wchar_t[cSize];
+	size_t tempSize;
+	mbstowcs_s(&tempSize, wc, cSize, aString, cSize);
 
 	//_wassert(wc, 0, aLine);
 

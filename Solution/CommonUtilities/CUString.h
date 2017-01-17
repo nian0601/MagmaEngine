@@ -51,6 +51,8 @@ namespace CU
 		void Resize(int aNewSize);
 		unsigned int GetHash() const;
 
+		void Clear();
+
 	private:
 		void UpdateHash();
 
@@ -443,6 +445,14 @@ namespace CU
 	inline unsigned int String::GetHash() const
 	{
 		return myHash;
+	}
+
+	inline void String::Clear()
+	{
+		for (int i = 0; i < myCurrentSize; ++i)
+			myData[i] = NullTermination;
+
+		myCurrentSize = 0;
 	}
 
 	inline void String::UpdateHash()
