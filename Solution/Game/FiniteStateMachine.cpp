@@ -12,8 +12,7 @@ FiniteStateMachine::FiniteStateMachine(Entity& anEntity)
 
 FiniteStateMachine::~FiniteStateMachine()
 {
-	for (int i = myStates.Size() - 1; i >= 0; --i)
-		myStates.DeleteCyclicAtIndex(i);
+	PopAll();
 }
 
 bool FiniteStateMachine::Update(float aDelta)
@@ -27,4 +26,10 @@ bool FiniteStateMachine::Update(float aDelta)
 		myStates.DeleteCyclicAtIndex(myStates.Size() - 1);
 
 	return false;
+}
+
+void FiniteStateMachine::PopAll()
+{
+	for (int i = myStates.Size() - 1; i >= 0; --i)
+		myStates.DeleteCyclicAtIndex(i);
 }

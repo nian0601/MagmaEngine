@@ -32,6 +32,7 @@ void Game::Init(Magma::Engine& aEngine)
 	myCamera->Move({ 0.f, 0.f, -30.f });
 
 	myRendererProxy = &aEngine.GetRendererProxy();
+	myAssetContainer = &aEngine.GetAssetContainer();
 
 	myEntities.Init(128);
 
@@ -42,7 +43,7 @@ void Game::Init(Magma::Engine& aEngine)
 			Entity* entity = new Entity();
 
 			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
-			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_ground.dds", { 32.f, 32.f });
+			sprite->Init(*myAssetContainer, "Data/Resource/Texture/T_ground.dds", { 32.f, 32.f });
 
 			CU::Vector2<float> pos;
 			pos.x = 128.f + x * (32.f + 1.f);
@@ -61,10 +62,10 @@ void Game::Init(Magma::Engine& aEngine)
 			Entity* entity = new Entity();
 
 			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
-			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_tree.dds", { 32.f, 32.f });
+			sprite->Init(*myAssetContainer, "Data/Resource/Texture/T_tree.dds", { 32.f, 32.f });
 
 			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
-			resource->Init(TREE, aEngine.GetAssetContainer());
+			resource->Init(TREE);
 
 			CU::Vector2<float> pos;
 			pos.x = 128.f + x * (32.f + 1.f);
@@ -86,7 +87,7 @@ void Game::Init(Magma::Engine& aEngine)
 			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_water.dds", { 32.f, 32.f });
 
 			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
-			resource->Init(WATER, aEngine.GetAssetContainer());
+			resource->Init(WATER);
 
 			CU::Vector2<float> pos;
 			pos.x = 128.f + x * (32.f + 1.f);
@@ -105,10 +106,10 @@ void Game::Init(Magma::Engine& aEngine)
 			Entity* entity = new Entity();
 
 			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
-			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_stock_pile.dds", { 32.f, 32.f });
+			sprite->Init(*myAssetContainer, "Data/Resource/Texture/T_stock_pile.dds", { 32.f, 32.f });
 
 			StockpileComponent* stockpile = entity->AddComponent<StockpileComponent>();
-			stockpile->Init(aEngine.GetAssetContainer());
+			stockpile->Init(*myAssetContainer);
 
 			CU::Vector2<float> pos;
 			pos.x = 128.f + x * (32.f + 1.f);
@@ -120,15 +121,8 @@ void Game::Init(Magma::Engine& aEngine)
 		}
 	}
 
-	Entity* entity = new Entity();
-
-	SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
-	sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_unit.dds", { 32.f, 32.f });
-
-	GOAPComponent* goap = entity->AddComponent<GOAPComponent>();
-	goap->Init();
-
-	myEntities.Add(entity);
+	CreateWorker();
+	mySpawnTimer = 10.f;
 }
 
 bool Game::Update(float aDelta)
@@ -146,10 +140,30 @@ bool Game::Update(float aDelta)
 		entity->Render(*myRendererProxy);
 	}
 
+	mySpawnTimer -= aDelta;
+	if (mySpawnTimer <= 0.f)
+	{
+		mySpawnTimer = 10.f;
+		CreateWorker();
+	}
+
 	return true;
 }
 
 void Game::OnResize(float aWidth, float aHeight)
 {
 	//throw std::logic_error("The method or operation is not implemented.");
+}
+
+void Game::CreateWorker()
+{
+	Entity* entity = new Entity();
+
+	SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
+	sprite->Init(*myAssetContainer, "Data/Resource/Texture/T_unit.dds", { 32.f, 32.f });
+
+	GOAPComponent* goap = entity->AddComponent<GOAPComponent>();
+	goap->Init();
+
+	myEntities.Add(entity);
 }

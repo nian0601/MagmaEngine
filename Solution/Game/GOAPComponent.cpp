@@ -86,7 +86,15 @@ void GOAPComponent::Update(float aDeltaTime)
 				myGoalState.ResetState(HAS_WATER_ON_STOCKPILE);
 			}
 
+			delete myPlan;
 			myPlan = myPlanner->CreatePlan(myActions, myWorldState, myGoalState);
 		}
+	}
+
+	if (myPlan && !myPlan->CheckDynamicCondition())
+	{
+		myStateMachine->PopAll();
+		delete myPlan;
+		myPlan = myPlanner->CreatePlan(myActions, myWorldState, myGoalState);
 	}
 }

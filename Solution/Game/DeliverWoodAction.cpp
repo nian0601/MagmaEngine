@@ -32,6 +32,18 @@ bool DeliverWoodAction::Update(float aDelta)
 	return true;
 }
 
+bool DeliverWoodAction::CheckDynamicCondition()
+{
+	StockpileComponent* stockpile = myStockpileToDeliverTo->GetComponent<StockpileComponent>();
+	if (!stockpile)
+		return false;
+
+	if (stockpile->IsFull())
+		return false;
+
+	return true;
+}
+
 bool DeliverWoodAction::IsInRange()
 {
 	DL_ASSERT_EXP(myStockpileToDeliverTo!= nullptr, "Invalid TargetEntity");

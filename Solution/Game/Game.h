@@ -24,9 +24,14 @@ public:
 	void OnResize(float aWidth, float aHeight) override;
 
 private:
+	void CreateWorker();
+
 	Magma::Camera* myCamera;
 	Magma::RendererProxy* myRendererProxy;
+	Magma::AssetContainer* myAssetContainer;
 
 	CU::GrowingArray<Entity*> myEntities;
+
+	float mySpawnTimer;
 };
 

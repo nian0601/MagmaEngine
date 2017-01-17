@@ -11,6 +11,7 @@ public:
 	virtual void Init() = 0;
 
 	virtual bool Update(float) = 0;
+	virtual bool CheckDynamicCondition() { return true; }
 
 	virtual bool IsInRange() = 0;
 	virtual CU::Vector2<float> GetTargetPosition() = 0;

@@ -1,15 +1,24 @@
 #include "stdafx.h"
 #include "GOAPPlan.h"
-
+#include "IGOAPAction.h"
 
 GOAPPlan::GOAPPlan(const CU::GrowingArray<IGOAPAction*>& someActions)
 	: myActions(someActions)
+	, myCurrentAction(nullptr)
 {
 }
 
 
 GOAPPlan::~GOAPPlan()
 {
+}
+
+bool GOAPPlan::CheckDynamicCondition()
+{
+	if (myCurrentAction)
+		return myCurrentAction->CheckDynamicCondition();
+
+	return false;
 }
 
 bool GOAPPlan::IsFinished() const
@@ -19,8 +28,8 @@ bool GOAPPlan::IsFinished() const
 
 IGOAPAction* GOAPPlan::GetNextAction()
 {
-	IGOAPAction* action = myActions.GetLast();
+	myCurrentAction = myActions.GetLast();
 	myActions.RemoveCyclicAtIndex(myActions.Size() - 1);
 
-	return action;
+	return myCurrentAction;
 }

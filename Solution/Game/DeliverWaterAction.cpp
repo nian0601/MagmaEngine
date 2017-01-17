@@ -32,6 +32,18 @@ bool DeliverWaterAction::Update(float aDelta)
 	return true;
 }
 
+bool DeliverWaterAction::CheckDynamicCondition()
+{
+	StockpileComponent* stockpile = myStockpileToDeliverTo->GetComponent<StockpileComponent>();
+	if (!stockpile)
+		return false;
+
+	if (stockpile->IsFull())
+		return false;
+
+	return true;
+}
+
 bool DeliverWaterAction::IsInRange()
 {
 	DL_ASSERT_EXP(myStockpileToDeliverTo != nullptr, "Invalid TargetEntity");

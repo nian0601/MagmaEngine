@@ -15,6 +15,8 @@ public:
 	template <typename T>
 	T* PushState();
 
+	void PopAll();
+
 private:
 	void operator=(FiniteStateMachine&) = delete;
 
