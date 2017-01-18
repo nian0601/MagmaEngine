@@ -165,5 +165,10 @@ void Game::CreateWorker()
 	GOAPComponent* goap = entity->AddComponent<GOAPComponent>();
 	goap->Init();
 
+	GOAPGameState entityStartState;
+	entityStartState.SetEntityState(eEntityState::CAN_GATHER_WATER, true);
+	entityStartState.SetEntityState(eEntityState::CAN_GATHER_WOOD, true);
+	entity->ModifyGOAPState(entityStartState);
+
 	myEntities.Add(entity);
 }

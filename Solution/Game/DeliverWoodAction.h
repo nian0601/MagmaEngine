@@ -1,9 +1,9 @@
 #pragma once
 
-#include "IGOAPAction.h"
+#include "GOAPAction.h"
 
 class Entity;
-class DeliverWoodAction : public IGOAPAction
+class DeliverWoodAction : public GOAPAction
 {
 public:
 	DeliverWoodAction(Entity& aEntity);

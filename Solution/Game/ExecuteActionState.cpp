@@ -2,7 +2,7 @@
 
 #include "ExecuteActionState.h"
 #include "FiniteStateMachine.h"
-#include "IGOAPAction.h"
+#include "GOAPAction.h"
 #include "MoveToState.h"
 
 ExecuteActionState::ExecuteActionState(FiniteStateMachine& aStateMachine, Entity& anEntity)
@@ -16,7 +16,7 @@ ExecuteActionState::~ExecuteActionState()
 {
 }
 
-void ExecuteActionState::Init(IGOAPAction* anAction)
+void ExecuteActionState::Init(GOAPAction* anAction)
 {
 	myAction = anAction;
 	myAction->Init();
@@ -32,7 +32,10 @@ eStateStatus ExecuteActionState::Update(float aDelta)
 	DL_ASSERT_EXP(myAction != nullptr, "Invalid Action in ExecuteActionState");
 
 	if (myAction->Update(aDelta))
+	{
+		myAction->EndAction();
 		return POP_STATE;
+	}
 
 	return KEEP_STATE;
 }

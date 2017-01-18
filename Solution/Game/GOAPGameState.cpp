@@ -4,8 +4,11 @@
 
 GOAPGameState::GOAPGameState()
 {
-	for (int i = 0; i < eEntityState::_STATE_COUNT; ++i)
-		myState[i] = 0;
+	for (int i = 0; i < static_cast<int>(eEntityState::_COUNT); ++i)
+		myEntityState[i] = 0;
+
+	for (int i = 0; i < static_cast<int>(eWorldState::_COUNT); ++i)
+		myWorldState[i] = 0;
 }
 
 
@@ -13,10 +16,9 @@ GOAPGameState::~GOAPGameState()
 {
 }
 
-void GOAPGameState::SetState(eEntityState aState, bool aStatus)
+void GOAPGameState::SetEntityState(eEntityState aState, bool aStatus)
 {
-	DL_ASSERT_EXP(aState >= 0 && aState < eEntityState::_STATE_COUNT, "Invalid EntityState");
-	char& stateStatus = myState[aState];
+	char& stateStatus = InternalGetState(aState);
 
 	if (aStatus)
 		stateStatus = 1;
@@ -24,16 +26,21 @@ void GOAPGameState::SetState(eEntityState aState, bool aStatus)
 		stateStatus = -1;
 }
 
-void GOAPGameState::ResetState(eEntityState aState)
+void GOAPGameState::SetEntityState(const GOAPGameState& aGOAPState)
 {
-	DL_ASSERT_EXP(aState >= 0 && aState < eEntityState::_STATE_COUNT, "Invalid EntityState");
-	myState[aState] = 0.f;
+	for (int i = 0; i < static_cast<int>(eEntityState::_COUNT); ++i)
+		myEntityState[i] = aGOAPState.myEntityState[i];
 }
 
-bool GOAPGameState::GetState(eEntityState aState) const
+void GOAPGameState::ResetEntityState(eEntityState aState)
 {
-	DL_ASSERT_EXP(aState >= 0 && aState < eEntityState::_STATE_COUNT, "Invalid EntityState");
-	char stateStatus = myState[aState];
+	char& stateStatus = InternalGetState(aState);
+	stateStatus = 0.f;
+}
+
+bool GOAPGameState::GetEntityState(eEntityState aState) const
+{
+	char stateStatus = InternalGetState(aState);
 
 	if (stateStatus == 1)
 		return true;
@@ -41,10 +48,9 @@ bool GOAPGameState::GetState(eEntityState aState) const
 	return false;
 }
 
-bool GOAPGameState::IsSet(eEntityState aState) const
+bool GOAPGameState::IsEntityStateSet(eEntityState aState) const
 {
-	DL_ASSERT_EXP(aState >= 0 && aState < eEntityState::_STATE_COUNT, "Invalid EntityState");
-	char stateStatus = myState[aState];
+	char stateStatus = InternalGetState(aState);
 
 	if (stateStatus == 0)
 		return false;
@@ -52,14 +58,66 @@ bool GOAPGameState::IsSet(eEntityState aState) const
 	return true;
 }
 
+void GOAPGameState::SetWorldState(eWorldState aState, bool aStatus)
+{
+	char& stateStatus = InternalGetState(aState);
+
+	if (aStatus)
+		stateStatus = 1;
+	else
+		stateStatus = -1;
+}
+
+void GOAPGameState::SetWorldState(const GOAPGameState& aGOAPState)
+{
+	for (int i = 0; i < static_cast<int>(eEntityState::_COUNT); ++i)
+		myWorldState[i] = aGOAPState.myWorldState[i];
+}
+
+void GOAPGameState::ResetWorldState(eWorldState aState)
+{
+	char& stateStatus = InternalGetState(aState);
+	stateStatus = 0.f;
+}
+
+bool GOAPGameState::GetWorldState(eWorldState aState) const
+{
+	char stateStatus = InternalGetState(aState);
+
+	if (stateStatus == 1)
+		return true;
+
+	return false;
+}
+
+bool GOAPGameState::IsWorldStateSet(eWorldState aState) const
+{
+	char stateStatus = InternalGetState(aState);
+
+	if (stateStatus == 0)
+		return false;
+
+	return true;
+}
+
 bool GOAPGameState::Contains(const GOAPGameState& aState) const
 {
-	for (int i = 0; i < eEntityState::_STATE_COUNT; ++i)
+	for (int i = 0; i < static_cast<int>(eEntityState::_COUNT); ++i)
 	{
 		eEntityState entityState = static_cast<eEntityState>(i);
-		if (aState.IsSet(entityState))
+		if (aState.IsEntityStateSet(entityState))
 		{
-			if (aState.myState[i] != myState[i])
+			if (aState.myEntityState[i] != myEntityState[i])
+				return false;
+		}
+	}
+
+	for (int i = 0; i < static_cast<int>(eWorldState::_COUNT); ++i)
+	{
+		eWorldState worldState = static_cast<eWorldState>(i);
+		if (aState.IsWorldStateSet(worldState))
+		{
+			if (aState.myWorldState[i] != myWorldState[i])
 				return false;
 		}
 	}
@@ -70,16 +128,63 @@ bool GOAPGameState::Contains(const GOAPGameState& aState) const
 void GOAPGameState::GetNewState(const GOAPGameState& someEffects, GOAPGameState& anOutState) const
 {
 	anOutState = *this;
-	for (int i = 0; i < eEntityState::_STATE_COUNT; ++i)
+	for (int i = 0; i < static_cast<int>(eEntityState::_COUNT); ++i)
 	{
 		eEntityState state = static_cast<eEntityState>(i);
-		if (someEffects.IsSet(state))
-			anOutState.SetState(state, someEffects.GetState(state));
+		if (someEffects.IsEntityStateSet(state))
+			anOutState.SetEntityState(state, someEffects.GetEntityState(state));
+	}
+
+	for (int i = 0; i < static_cast<int>(eWorldState::_COUNT); ++i)
+	{
+		eWorldState state = static_cast<eWorldState>(i);
+		if (someEffects.IsWorldStateSet(state))
+			anOutState.SetWorldState(state, someEffects.GetWorldState(state));
 	}
 }
 
-void GOAPGameState::SetState(eEntityState aState, char aStatus)
+void GOAPGameState::GetNewEntityState(const GOAPGameState& someEffects, GOAPGameState& anOutState) const
 {
-	DL_ASSERT_EXP(aState >= 0 && aState < eEntityState::_STATE_COUNT, "Invalid EntityState");
-	myState[aState] = aStatus;
+	anOutState = *this;
+	for (int i = 0; i < static_cast<int>(eEntityState::_COUNT); ++i)
+	{
+		eEntityState state = static_cast<eEntityState>(i);
+		if (someEffects.IsEntityStateSet(state))
+			anOutState.SetEntityState(state, someEffects.GetEntityState(state));
+	}
+}
+
+void GOAPGameState::GetNewWorldState(const GOAPGameState& someEffects, GOAPGameState& anOutState) const
+{
+	anOutState = *this;
+	for (int i = 0; i < static_cast<int>(eWorldState::_COUNT); ++i)
+	{
+		eWorldState state = static_cast<eWorldState>(i);
+		if (someEffects.IsWorldStateSet(state))
+			anOutState.SetWorldState(state, someEffects.GetWorldState(state));
+	}
+}
+
+char& GOAPGameState::InternalGetState(eEntityState aState)
+{
+	DL_ASSERT_EXP(static_cast<int>(aState) >= 0 && aState < eEntityState::_COUNT, "Invalid EntityState");
+	return myEntityState[static_cast<int>(aState)];
+}
+
+const char& GOAPGameState::InternalGetState(eEntityState aState) const
+{
+	DL_ASSERT_EXP(static_cast<int>(aState) >= 0 && aState < eEntityState::_COUNT, "Invalid EntityState");
+	return myEntityState[static_cast<int>(aState)];
+}
+
+const char& GOAPGameState::InternalGetState(eWorldState aState) const
+{
+	DL_ASSERT_EXP(static_cast<int>(aState) >= 0 && aState < eWorldState::_COUNT, "Invalid WorldState");
+	return myWorldState[static_cast<int>(aState)];
+}
+
+char& GOAPGameState::InternalGetState(eWorldState aState)
+{
+	DL_ASSERT_EXP(static_cast<int>(aState) >= 0 && aState < eWorldState::_COUNT, "Invalid WorldState");
+	return myWorldState[static_cast<int>(aState)];
 }

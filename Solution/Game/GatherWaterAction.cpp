@@ -5,10 +5,10 @@
 #include "Entity.h"
 
 GatherWaterAction::GatherWaterAction(Entity& aEntity)
-	: IGOAPAction(aEntity, "GatherWaterAction")
+	: GOAPAction(aEntity, "GatherWaterAction")
 {
-	myPreConditions.SetState(CAN_GATHER_WATER, true);
-	myEffects.SetState(HAS_WATER, true);
+	myPreConditions.SetEntityState(eEntityState::CAN_GATHER_WATER, true);
+	myEffects.SetEntityState(eEntityState::HAS_WATER, true);
 }
 
 

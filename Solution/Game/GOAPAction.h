@@ -3,25 +3,26 @@
 #include "GOAPGameState.h"
 
 class Entity;
-class IGOAPAction
+class GOAPAction
 {
 public:
-	virtual ~IGOAPAction() {}
+	virtual ~GOAPAction() {}
 
 	virtual void Init() = 0;
+	void EndAction();
 
 	virtual bool Update(float) = 0;
 	virtual bool CheckDynamicCondition() { return true; }
 
 	virtual bool IsInRange() = 0;
 	virtual CU::Vector2<float> GetTargetPosition() = 0;
-	virtual const GOAPGameState& GetPreConditions() const {	return myPreConditions; }
-	virtual const GOAPGameState& GetEffects() const { return myEffects; }
+	const GOAPGameState& GetPreConditions() const {	return myPreConditions; }
+	const GOAPGameState& GetEffects() const { return myEffects; }
 
 protected:
-	void operator=(IGOAPAction&) = delete;
+	void operator=(GOAPAction&) = delete;
 
-	IGOAPAction(Entity& aEntity, const CU::String& aDebugName) 
+	GOAPAction(Entity& aEntity, const CU::String& aDebugName) 
 	: myEntity(aEntity)
 	, myDebugName(aDebugName)
 	{}

@@ -4,6 +4,8 @@
 #include <Entity/Include/TypeID.h>
 #include <Matrix.h>
 
+#include "GOAPGameState.h"
+
 namespace Magma
 {
 	class RendererProxy;
@@ -31,11 +33,16 @@ public:
 	CU::Vector2<float> GetPosition() const;
 	void SetPosition(const CU::Vector2<float>& aPosition);
 
+	void ModifyGOAPState(const GOAPGameState& aStateChange);
+	const GOAPGameState& GetGOAPState() const { return myGOAPState; }
+
 private:
 	CU::Matrix33<float> myOrientation;
 
 	static const int myMaxNumComponents = 8;
 	CU::StaticArray<IComponent*, myMaxNumComponents> myComponents;
+
+	GOAPGameState myGOAPState;
 };
 
 template <typename T>

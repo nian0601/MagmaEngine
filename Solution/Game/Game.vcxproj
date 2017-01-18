@@ -102,7 +102,7 @@
     <ClInclude Include="GOAPPlanner.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="IdleState.h" />
-    <ClInclude Include="IGOAPAction.h" />
+    <ClInclude Include="GOAPAction.h" />
     <ClInclude Include="IState.h" />
     <ClInclude Include="MoveToState.h" />
     <ClInclude Include="PollingStation.h" />
@@ -124,6 +124,7 @@
     <ClCompile Include="GatheringComponent.cpp" />
     <ClCompile Include="GatherWaterAction.cpp" />
     <ClCompile Include="GatherWoodAction.cpp" />
+    <ClCompile Include="GOAPAction.cpp" />
     <ClCompile Include="GOAPComponent.cpp" />
     <ClCompile Include="GOAPGameState.cpp" />
     <ClCompile Include="GOAPPlan.cpp" />

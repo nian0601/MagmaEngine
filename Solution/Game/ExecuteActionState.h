@@ -2,19 +2,19 @@
 
 #include "IState.h"
 
-class IGOAPAction;
+class GOAPAction;
 class ExecuteActionState : public IState
 {
 public:
 	ExecuteActionState(FiniteStateMachine& aStateMachine, Entity& anEntity);
 	~ExecuteActionState();
 
-	void Init(IGOAPAction* anAction);
+	void Init(GOAPAction* anAction);
 	virtual eStateStatus Update(float aDelta) override;
 
 private:
 	void operator=(ExecuteActionState&) = delete;
 
-	IGOAPAction* myAction;
+	GOAPAction* myAction;
 };
 

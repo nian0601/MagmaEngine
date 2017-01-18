@@ -55,12 +55,7 @@ void GOAPComponent::Init()
 
 	myPlanner = new GOAPPlanner();
 
-	myWorldState.SetState(CAN_GATHER_WATER, true);
-	myWorldState.SetState(CAN_GATHER_WOOD, true);
-
-	myGoalState.SetState(HAS_WATER_ON_STOCKPILE, true);
-
-	myPlan = myPlanner->CreatePlan(myActions, myWorldState, myGoalState);
+	myGoalState.SetWorldState(eWorldState::HAS_WATER_ON_STOCKPILE, true);
 }
 
 void GOAPComponent::Update(float aDeltaTime)
@@ -75,19 +70,21 @@ void GOAPComponent::Update(float aDeltaTime)
 		else
 		{
 			//Create new plan
-			if (myGoalState.IsSet(HAS_WOOD_ON_STOCKPILE))
+			if (myGoalState.IsWorldStateSet(eWorldState::HAS_WOOD_ON_STOCKPILE))
 			{
-				myGoalState.ResetState(HAS_WOOD_ON_STOCKPILE);
-				myGoalState.SetState(HAS_WATER_ON_STOCKPILE, true);
+				myGoalState.ResetWorldState(eWorldState::HAS_WOOD_ON_STOCKPILE);
+				myGoalState.SetWorldState(eWorldState::HAS_WATER_ON_STOCKPILE, true);
 			}
 			else
 			{
-				myGoalState.SetState(HAS_WOOD_ON_STOCKPILE, true);
-				myGoalState.ResetState(HAS_WATER_ON_STOCKPILE);
+				myGoalState.SetWorldState(eWorldState::HAS_WOOD_ON_STOCKPILE, true);
+				myGoalState.ResetWorldState(eWorldState::HAS_WATER_ON_STOCKPILE);
 			}
 
+			myStartState.SetEntityState(myEntity.GetGOAPState());
+
 			delete myPlan;
-			myPlan = myPlanner->CreatePlan(myActions, myWorldState, myGoalState);
+			myPlan = myPlanner->CreatePlan(myActions, myStartState, myGoalState);
 		}
 	}
 
@@ -95,6 +92,6 @@ void GOAPComponent::Update(float aDeltaTime)
 	{
 		myStateMachine->PopAll();
 		delete myPlan;
-		myPlan = myPlanner->CreatePlan(myActions, myWorldState, myGoalState);
+		myPlan = myPlanner->CreatePlan(myActions, myStartState, myGoalState);
 	}
 }

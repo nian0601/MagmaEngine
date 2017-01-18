@@ -2,7 +2,7 @@
 
 #include "GOAPPlan.h"
 #include "GOAPPlanner.h"
-#include "IGOAPAction.h"
+#include "GOAPAction.h"
 
 #include "GatherWaterAction.h"
 #include "GatherWoodAction.h"
@@ -16,7 +16,7 @@ GOAPPlanner::~GOAPPlanner()
 {
 }
 
-GOAPPlan* GOAPPlanner::CreatePlan(const CU::GrowingArray<IGOAPAction*>& someAvailableActions, const GOAPGameState& aWorldState, const GOAPGameState& aGoalState)
+GOAPPlan* GOAPPlanner::CreatePlan(const CU::GrowingArray<GOAPAction*>& someAvailableActions, const GOAPGameState& aWorldState, const GOAPGameState& aGoalState)
 {
 	Node* firstNode = new Node(nullptr, aWorldState, nullptr);
 	CU::GrowingArray<Node*> leaveNodes(4);
@@ -28,7 +28,7 @@ GOAPPlan* GOAPPlanner::CreatePlan(const CU::GrowingArray<IGOAPAction*>& someAvai
 
 	Node* bestNode = GetBestLeaf(leaveNodes);
 
-	CU::GrowingArray<IGOAPAction*> planActions = GetActionsFromNode(bestNode);
+	CU::GrowingArray<GOAPAction*> planActions = GetActionsFromNode(bestNode);
 
 	//This will delete all the nodes, since this is the top-most node in the heirachy
 	//and every node will delete its children
@@ -38,13 +38,13 @@ GOAPPlan* GOAPPlanner::CreatePlan(const CU::GrowingArray<IGOAPAction*>& someAvai
 	return new GOAPPlan(planActions);
 }
 
-bool GOAPPlanner::BuildGraph(Node* aParent, const CU::GrowingArray<IGOAPAction*>& someAvailableActions, const GOAPGameState& aGoalState, CU::GrowingArray<Node*>& someLeaves) const
+bool GOAPPlanner::BuildGraph(Node* aParent, const CU::GrowingArray<GOAPAction*>& someAvailableActions, const GOAPGameState& aGoalState, CU::GrowingArray<Node*>& someLeaves) const
 {
 	bool foundPlan = false;
 
 	for (int i = 0; i < someAvailableActions.Size(); ++i)
 	{
-		IGOAPAction* action = someAvailableActions[i];
+		GOAPAction* action = someAvailableActions[i];
 
 		//If our current WorldState fullfills the PreConditions, then we can use that action
 		if (aParent->myState.Contains(action->GetPreConditions()))
@@ -68,7 +68,7 @@ bool GOAPPlanner::BuildGraph(Node* aParent, const CU::GrowingArray<IGOAPAction*>
 
 				//Remove the current action, so that we dont get multiple actions of the same
 				//kind, unless it was inteneded (by adding it multiple times in the actions-list)
-				CU::GrowingArray<IGOAPAction*> actionSubSet(someAvailableActions);
+				CU::GrowingArray<GOAPAction*> actionSubSet(someAvailableActions);
 				actionSubSet.RemoveCyclic(action);
 
 				if (BuildGraph(child, actionSubSet, aGoalState, someLeaves))
@@ -116,9 +116,9 @@ GOAPPlanner::Node* GOAPPlanner::GetBestLeaf(const CU::GrowingArray<Node*>& someL
 	return bestNode;
 }
 
-CU::GrowingArray<IGOAPAction*> GOAPPlanner::GetActionsFromNode(const Node* aNode) const
+CU::GrowingArray<GOAPAction*> GOAPPlanner::GetActionsFromNode(const Node* aNode) const
 {
-	CU::GrowingArray<IGOAPAction*> actions(8);
+	CU::GrowingArray<GOAPAction*> actions(8);
 
 	const Node* current = aNode;
 	while (current && current->myAction)

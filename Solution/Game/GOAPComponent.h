@@ -4,7 +4,7 @@
 #include "EntityDefines.h"
 #include "GOAPGameState.h"
 class FiniteStateMachine;
-class IGOAPAction;
+class GOAPAction;
 class GOAPPlanner;
 class GOAPPlan;
 
@@ -25,9 +25,9 @@ private:
 	GOAPPlanner* myPlanner;
 	GOAPPlan* myPlan;
 
-	CU::GrowingArray<IGOAPAction*> myActions;
+	CU::GrowingArray<GOAPAction*> myActions;
 
-	GOAPGameState myWorldState;
+	GOAPGameState myStartState;
 	GOAPGameState myGoalState;
 };
 

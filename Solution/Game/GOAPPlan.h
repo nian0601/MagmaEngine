@@ -1,19 +1,19 @@
 #pragma once
 
-class IGOAPAction;
+class GOAPAction;
 
 class GOAPPlan
 {
 public:
-	GOAPPlan(const CU::GrowingArray<IGOAPAction*>& someActions);
+	GOAPPlan(const CU::GrowingArray<GOAPAction*>& someActions);
 	~GOAPPlan();
 
 	bool CheckDynamicCondition();
 	bool IsFinished() const;
-	IGOAPAction* GetNextAction();
+	GOAPAction* GetNextAction();
 
 private:
-	CU::GrowingArray<IGOAPAction*> myActions;
-	IGOAPAction* myCurrentAction;
+	CU::GrowingArray<GOAPAction*> myActions;
+	GOAPAction* myCurrentAction;
 };
 

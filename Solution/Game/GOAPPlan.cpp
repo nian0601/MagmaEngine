@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "GOAPPlan.h"
-#include "IGOAPAction.h"
+#include "GOAPAction.h"
 
-GOAPPlan::GOAPPlan(const CU::GrowingArray<IGOAPAction*>& someActions)
+GOAPPlan::GOAPPlan(const CU::GrowingArray<GOAPAction*>& someActions)
 	: myActions(someActions)
 	, myCurrentAction(nullptr)
 {
@@ -26,7 +26,7 @@ bool GOAPPlan::IsFinished() const
 	return myActions.Size() == 0;
 }
 
-IGOAPAction* GOAPPlan::GetNextAction()
+GOAPAction* GOAPPlan::GetNextAction()
 {
 	myCurrentAction = myActions.GetLast();
 	myActions.RemoveCyclicAtIndex(myActions.Size() - 1);

@@ -5,10 +5,10 @@
 #include "Entity.h"
 
 GatherWoodAction::GatherWoodAction(Entity& aEntity)
-	: IGOAPAction(aEntity, "GatherWoodAction")
+	: GOAPAction(aEntity, "GatherWoodAction")
 {
-	myPreConditions.SetState(CAN_GATHER_WOOD, true);
-	myEffects.SetState(HAS_WOOD, true);
+	myPreConditions.SetEntityState(eEntityState::CAN_GATHER_WOOD, true);
+	myEffects.SetEntityState(eEntityState::HAS_WOOD, true);
 }
 
 

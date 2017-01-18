@@ -6,10 +6,11 @@
 #include "StockpileComponent.h"
 
 DeliverWoodAction::DeliverWoodAction(Entity& aEntity)
-	: IGOAPAction(aEntity, "Deliver Wood")
+	: GOAPAction(aEntity, "Deliver Wood")
 {
-	myPreConditions.SetState(HAS_WOOD, true);
-	myEffects.SetState(HAS_WOOD_ON_STOCKPILE, true);
+	myPreConditions.SetEntityState(eEntityState::HAS_WOOD, true);
+	myEffects.SetWorldState(eWorldState::HAS_WOOD_ON_STOCKPILE, true);
+	myEffects.SetEntityState(eEntityState::HAS_WOOD, false);
 }
 
 

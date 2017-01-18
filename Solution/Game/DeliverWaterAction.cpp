@@ -6,10 +6,11 @@
 #include "StockpileComponent.h"
 
 DeliverWaterAction::DeliverWaterAction(Entity& aEntity)
-	: IGOAPAction(aEntity, "Deliver Water")
+	: GOAPAction(aEntity, "Deliver Water")
 {
-	myPreConditions.SetState(HAS_WATER, true);
-	myEffects.SetState(HAS_WATER_ON_STOCKPILE, true);
+	myPreConditions.SetEntityState(eEntityState::HAS_WATER, true);
+	myEffects.SetWorldState(eWorldState::HAS_WATER_ON_STOCKPILE, true);
+	myEffects.SetEntityState(eEntityState::HAS_WATER, false);
 }
 
 

@@ -5,10 +5,10 @@
 #include "Entity.h"
 
 CreateDrinkAction::CreateDrinkAction(Entity& aEntity)
-	: IGOAPAction(aEntity, "CreateDrinkAction")
+	: GOAPAction(aEntity, "CreateDrinkAction")
 {
-	myPreConditions.SetState(HAS_WATER, true);
-	myEffects.SetState(HAS_DRINK, true);
+	myPreConditions.SetEntityState(eEntityState::HAS_WATER, true);
+	myEffects.SetEntityState(eEntityState::HAS_DRINK, true);
 }
 
 

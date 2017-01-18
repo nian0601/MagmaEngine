@@ -46,3 +46,8 @@ void Entity::SetPosition(const CU::Vector2<float>& aPosition)
 {
 	myOrientation.SetPos(aPosition);
 }
+
+void Entity::ModifyGOAPState(const GOAPGameState& aStateChange)
+{
+	myGOAPState.GetNewEntityState(aStateChange, myGOAPState);
+}

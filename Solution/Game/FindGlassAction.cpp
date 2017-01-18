@@ -5,9 +5,9 @@
 #include "Entity.h"
 
 FindGlassAction::FindGlassAction(Entity& aEntity)
-	: IGOAPAction(aEntity, "FindGlassAction")
+	: GOAPAction(aEntity, "FindGlassAction")
 {
-	myEffects.SetState(HAS_GLASS, true);
+	myEffects.SetEntityState(eEntityState::HAS_GLASS, true);
 }
 
 

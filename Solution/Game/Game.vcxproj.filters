@@ -39,9 +39,6 @@
     <ClInclude Include="ExecuteActionState.h">
       <Filter>AI\State Machine\States</Filter>
     </ClInclude>
-    <ClInclude Include="IGOAPAction.h">
-      <Filter>AI\GOAP\Actions</Filter>
-    </ClInclude>
     <ClInclude Include="GatherWoodAction.h">
       <Filter>AI\GOAP\Actions</Filter>
     </ClInclude>
@@ -76,6 +73,9 @@
       <Filter>AI\GOAP\Actions</Filter>
     </ClInclude>
     <ClInclude Include="DeliverWoodAction.h">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="GOAPAction.h">
       <Filter>AI\GOAP\Actions</Filter>
     </ClInclude>
   </ItemGroup>
@@ -143,6 +143,9 @@
       <Filter>AI\GOAP\Actions</Filter>
     </ClCompile>
     <ClCompile Include="DeliverWoodAction.cpp">
+      <Filter>AI\GOAP\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="GOAPAction.cpp">
       <Filter>AI\GOAP\Actions</Filter>
     </ClCompile>
   </ItemGroup>

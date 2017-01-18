@@ -8,7 +8,7 @@ enum eResourceType
 	_RESOURCE_COUNT,
 };
 
-enum eEntityState
+enum class eEntityState
 {
 	CAN_GATHER_WOOD,
 	CAN_GATHER_WATER,
@@ -18,7 +18,12 @@ enum eEntityState
 	HAS_WOOD,
 	HAS_DRINK,
 	HAS_GLASS,
+	_COUNT,
+};
+
+enum class eWorldState
+{
 	HAS_WOOD_ON_STOCKPILE,
 	HAS_WATER_ON_STOCKPILE,
-	_STATE_COUNT,
+	_COUNT,
 };
