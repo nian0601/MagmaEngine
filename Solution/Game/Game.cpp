@@ -15,6 +15,8 @@
 
 #include "PollingStation.h"
 
+#include "EntityFactory.h"
+
 Game::Game()
 {
 }
@@ -28,6 +30,8 @@ Game::~Game()
 
 void Game::Init(Magma::Engine& aEngine)
 {
+	EntityFactory::Create(aEngine);
+
 	myCamera = &aEngine.GetCamera();
 	myCamera->Move({ 0.f, 0.f, -30.f });
 
@@ -35,6 +39,8 @@ void Game::Init(Magma::Engine& aEngine)
 	myAssetContainer = &aEngine.GetAssetContainer();
 
 	myEntities.Init(128);
+
+	CU::Vector2<float> worldOffset = { 128.f, 128.f };
 
 	for (int x = 0; x < 10; ++x)
 	{
@@ -46,8 +52,10 @@ void Game::Init(Magma::Engine& aEngine)
 			sprite->Init(*myAssetContainer, "Data/Resource/Texture/T_ground.dds", { 32.f, 32.f });
 
 			CU::Vector2<float> pos;
-			pos.x = 128.f + x * (32.f + 1.f);
-			pos.y = 128.f + y * (32.f + 1.f);
+			pos.x = x * (32.f);
+			pos.y = y * (32.f);
+
+			pos += worldOffset;
 
 			entity->SetPosition(pos);
 
@@ -59,21 +67,7 @@ void Game::Init(Magma::Engine& aEngine)
 	{
 		for (int y = 6; y < 9; ++y)
 		{
-			Entity* entity = new Entity();
-
-			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
-			sprite->Init(*myAssetContainer, "Data/Resource/Texture/T_tree.dds", { 32.f, 32.f });
-
-			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
-			resource->Init(TREE);
-
-			CU::Vector2<float> pos;
-			pos.x = 128.f + x * (32.f + 1.f);
-			pos.y = 128.f + y * (32.f + 1.f);
-
-			entity->SetPosition(pos);
-
-			myEntities.Add(entity);
+			myEntities.Add(EntityFactory::CreateTreeEntity(x, y));
 		}
 	}
 
@@ -81,21 +75,7 @@ void Game::Init(Magma::Engine& aEngine)
 	{
 		for (int y = 1; y < 3; ++y)
 		{
-			Entity* entity = new Entity();
-
-			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
-			sprite->Init(aEngine.GetAssetContainer(), "Data/Resource/Texture/T_water.dds", { 32.f, 32.f });
-
-			ResourceComponent* resource = entity->AddComponent<ResourceComponent>();
-			resource->Init(WATER);
-
-			CU::Vector2<float> pos;
-			pos.x = 128.f + x * (32.f + 1.f);
-			pos.y = 128.f + y * (32.f + 1.f);
-
-			entity->SetPosition(pos);
-
-			myEntities.Add(entity);
+			myEntities.Add(EntityFactory::CreateWaterEntity(x, y));
 		}
 	}
 
@@ -103,21 +83,7 @@ void Game::Init(Magma::Engine& aEngine)
 	{
 		for (int y = 7; y < 9; ++y)
 		{
-			Entity* entity = new Entity();
-
-			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
-			sprite->Init(*myAssetContainer, "Data/Resource/Texture/T_stock_pile.dds", { 32.f, 32.f });
-
-			StockpileComponent* stockpile = entity->AddComponent<StockpileComponent>();
-			stockpile->Init(*myAssetContainer);
-
-			CU::Vector2<float> pos;
-			pos.x = 128.f + x * (32.f + 1.f);
-			pos.y = 128.f + y * (32.f + 1.f);
-
-			entity->SetPosition(pos);
-
-			myEntities.Add(entity);
+			myEntities.Add(EntityFactory::CreateStockpileEntity(x, y));
 		}
 	}
 

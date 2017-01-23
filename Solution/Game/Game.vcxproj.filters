@@ -78,6 +78,7 @@
     <ClInclude Include="GOAPAction.h">
       <Filter>AI\GOAP\Actions</Filter>
     </ClInclude>
+    <ClInclude Include="EntityFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="GOAPAction.cpp">
       <Filter>AI\GOAP\Actions</Filter>
     </ClCompile>
+    <ClCompile Include="EntityFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompile">
