@@ -14,9 +14,10 @@ namespace CU
 		~Map();
 
 		void Insert(const Key &aKey, const Value &aValue);
-		Value& Get(const Key &aKey); //Assert om key inte finns
-		void Remove(const Key &aKey); //Assert om key inte finns
-		bool KeyExists(const Key &aKey);
+		Value& Get(const Key &aKey);
+		const Value& Get(const Key &aKey) const;
+		void Remove(const Key &aKey);
+		bool KeyExists(const Key &aKey) const;
 		Value& operator[](const Key &aKey);
 
 		MapIterator<Key, Value> Begin();
@@ -32,9 +33,9 @@ namespace CU
 			Value myValue;
 		};
 
-		int FindKeyInBucket(int aBucketIndex, const Key& aKey);
+		int FindKeyInBucket(int aBucketIndex, const Key& aKey) const;
 
-		int OwnHash(const Key &aKey);
+		int OwnHash(const Key &aKey) const;
 		GrowingArray<GrowingArray<KeyValuePair, int>, int> myBuckets;
 	};
 
@@ -86,7 +87,17 @@ namespace CU
 	//----- GET -----
 	//---------------
 	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
-	Value& Map<Key, Value, StartSize, BucketSize>::Get(const Key &aKey)//Assert om key inte finns
+	Value& Map<Key, Value, StartSize, BucketSize>::Get(const Key &aKey)
+	{
+		int index = OwnHash(aKey);
+		int keyIndex = FindKeyInBucket(index, aKey);
+		assert(keyIndex != -1 && "[CUMap]: Tried to get an nonexisting Key.");
+
+		return myBuckets[index][keyIndex].myValue;
+	}
+
+	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
+	const Value& Map<Key, Value, StartSize, BucketSize>::Get(const Key &aKey) const
 	{
 		int index = OwnHash(aKey);
 		int keyIndex = FindKeyInBucket(index, aKey);
@@ -100,7 +111,7 @@ namespace CU
 	//------------------
 
 	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
-	void Map<Key, Value, StartSize, BucketSize>::Remove(const Key &aKey) //Assert om key inte finns
+	void Map<Key, Value, StartSize, BucketSize>::Remove(const Key &aKey)
 	{
 		assert(KeyExists(aKey) == true && "[CUMap]: Tried to delete an nonexisting Key.");
 
@@ -120,7 +131,7 @@ namespace CU
 	//----- KEY_EXISTS -----
 	//---------------------
 	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
-	bool Map<Key, Value, StartSize, BucketSize>::KeyExists(const Key &aKey)
+	bool Map<Key, Value, StartSize, BucketSize>::KeyExists(const Key &aKey) const
 	{
 		int index = OwnHash(aKey);
 		return FindKeyInBucket(index, aKey) != -1;
@@ -223,9 +234,9 @@ namespace CU
 
 
 	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
-	int Map<Key, Value, StartSize, BucketSize>::FindKeyInBucket(int aBucketIndex, const Key& aKey)
+	int Map<Key, Value, StartSize, BucketSize>::FindKeyInBucket(int aBucketIndex, const Key& aKey) const
 	{
-		CU::GrowingArray<KeyValuePair, int>& bucket = myBuckets[aBucketIndex];
+		const CU::GrowingArray<KeyValuePair, int>& bucket = myBuckets[aBucketIndex];
 
 		for (int i = 0; i < bucket.Size(); ++i)
 		{
@@ -239,7 +250,7 @@ namespace CU
 	//----- HASH -----
 	//----------------
 	template<typename Key, typename Value, int StartSize = 67, int BucketSize = 3>
-	int Map<Key, Value, StartSize, BucketSize>::OwnHash(const Key &aKey)
+	int Map<Key, Value, StartSize, BucketSize>::OwnHash(const Key &aKey) const
 	{
 		return Murmur(aKey) % StartSize;
 	}

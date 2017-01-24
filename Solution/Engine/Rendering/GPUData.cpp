@@ -80,8 +80,30 @@ namespace Magma
 		InitVertexBuffer(aVertexStride, D3D11_USAGE_IMMUTABLE, 0);
 		InitIndexBuffer();
 
-		SetupVertexBuffer(aVertexCount, aVertexData, aGPUContext);
 		SetupIndexBuffer(aIndexCount, aIndexData, aGPUContext);
+		SetupVertexBuffer(aVertexCount, aVertexData, aGPUContext);
+
+		myTechniqueName = "Render";
+	}
+
+	void GPUData::InitWithoutBufferSetup(EffectID aEffect, int aVertexStride, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
+	{
+		const int size = myVertexFormat.Size();
+		D3D11_INPUT_ELEMENT_DESC* vertexDesc = new D3D11_INPUT_ELEMENT_DESC[size];
+		for (int i = 0; i < myVertexFormat.Size(); ++i)
+		{
+			vertexDesc[i] = *myVertexFormat[i];
+		}
+
+		InitInputLayout(vertexDesc, size, aEffect, aGPUContext, aAssetContainer);
+		delete[] vertexDesc;
+
+		InitVertexBuffer(aVertexStride, D3D11_USAGE_IMMUTABLE, 0);
+		InitIndexBuffer();
+
+		myIndexData = new IndexData();
+		myVertexData = new VertexData();
+		SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		myTechniqueName = "Render";
 	}
@@ -94,6 +116,16 @@ namespace Magma
 	void GPUData::AddInputElement(D3D11_INPUT_ELEMENT_DESC* aElement)
 	{
 		myVertexFormat.Add(aElement);
+	}
+
+	void GPUData::UpdateBuffers(int aIndexCount, char* aIndexData, int aVertexCount, int aVertexStride, char* aVertexData, GPUContext& aGPUContext)
+	{
+		SetupIndexBuffer(aIndexCount, aIndexData, aGPUContext);
+		SetupVertexBuffer(aVertexCount, aVertexData, aGPUContext);
+
+		myIndexData->myNumberOfIndices = aIndexCount;
+		myVertexData->myNumberOfVertices = aVertexCount;
+		myVertexData->myStride = aVertexStride;
 	}
 
 	void GPUData::InitInputLayout(D3D11_INPUT_ELEMENT_DESC* aVertexDescArray, int aArraySize, EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer)

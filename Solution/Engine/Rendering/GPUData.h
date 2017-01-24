@@ -30,6 +30,7 @@ namespace Magma
 		void Init(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void Init(EffectID aEffect, int aIndexCount, char* aIndexData
 			, int aVertexCount, int aVertexStride, char* aVertexData, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
+		void InitWithoutBufferSetup(EffectID aEffect, int aVertexStride, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void SetTopology(int aTopology);
 		void AddInputElement(D3D11_INPUT_ELEMENT_DESC* aElement);
 
@@ -39,6 +40,8 @@ namespace Magma
 		int GetTopology() const;
 
 		const CU::String& GetTechniqueName() const;
+
+		void UpdateBuffers(int aIndexCount, char* aIndexData, int aVertexCount, int aVertexStride, char* aVertexData, GPUContext& aGPUContext);
 	private:
 		void InitInputLayout(D3D11_INPUT_ELEMENT_DESC* aVertexDescArray, int aArraySize, EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void InitVertexBuffer(int aVertexSize, int aBufferUsage, int aCPUUsage);

@@ -26,6 +26,8 @@ namespace Magma
 	void Texture::InitForShader(float aWidth, float aHeight, unsigned int aBindFlag, unsigned int aFormat, GPUContext& aGpuContext)
 	{
 		myFormat = aFormat;
+		mySize.x = aWidth;
+		mySize.y = aHeight;
 
 		if ((aBindFlag & D3D11_BIND_SHADER_RESOURCE) > 0 || (aBindFlag & D3D11_BIND_RENDER_TARGET) > 0)
 		{
@@ -61,6 +63,18 @@ namespace Magma
 				DL_ASSERT("[Texture]: Failed to load MissingTexture-texture: Data/Resource//T_missing_texture.dds");
 			}
 		}
+
+		ID3D11Resource* resource = nullptr;
+		myShaderView->GetResource(&resource);
+
+		ID3D11Texture2D* tex2D = nullptr;
+		hr = resource->QueryInterface(&tex2D);
+		DL_ASSERT_EXP(SUCCEEDED(hr), "Failed to get size of texture %s", myFilePath.c_str());
+
+		D3D11_TEXTURE2D_DESC desc;
+		tex2D->GetDesc(&desc);
+		mySize.x = static_cast<float>(desc.Width);
+		mySize.y = static_cast<float>(desc.Height);
 	}
 
 	void Texture::Resize(float aWidth, float aHeight, GPUContext& aGpuContext)

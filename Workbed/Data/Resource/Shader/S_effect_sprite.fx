@@ -4,7 +4,7 @@ Matrix SpriteOrientation;
 float4 SpriteSizeAndHotSpot;
 float4 SpritePositionAndScale;
 
-Pixel_FullscreenQuad VertexShader_Sprite(Vertex_FullscreenQuad aInput)
+Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 {
 	float2 size = SpriteSizeAndHotSpot.xy / 2;
 	float2 hotspot = SpriteSizeAndHotSpot.zw;
@@ -24,14 +24,14 @@ Pixel_FullscreenQuad VertexShader_Sprite(Vertex_FullscreenQuad aInput)
 
 	finalPosition.xy -= 1;
 
-	Pixel_FullscreenQuad output = (Pixel_FullscreenQuad)0;
+	Pixel_Quad output = (Pixel_Quad)0;
 	output.Pos = finalPosition;
 	output.Tex = aInput.Tex;
 		
 	return output;
 }
 
-float4 PixelShader_Sprite(Pixel_FullscreenQuad aInput) : SV_Target
+float4 PixelShader_Sprite(Pixel_Quad aInput) : SV_Target
 {
 	return AlbedoTexture.Sample(pointSampling, aInput.Tex);
 }

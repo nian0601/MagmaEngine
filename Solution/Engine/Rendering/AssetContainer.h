@@ -17,6 +17,7 @@ namespace Magma
 	class IModelFactory;
 	class ModelData;
 	class Texture;
+	class Font;
 
 	class AssetContainer
 	{
@@ -30,10 +31,12 @@ namespace Magma
 		EffectID LoadEffect(const CU::String& aFilePath);
 		Effect* GetEffect(EffectID aID);
 
-		EffectVariableID CreateEffectVariableID(EffectID aEffect, const CU::String& aVariableName);
-		const CU::String& GetEffectVariableName(EffectID aEffect, EffectVariableID aVariableID);
+		EffectVariableID CreateEffectVariableID(const CU::String& aVariableName);
+		const CU::String& GetEffectVariableName(EffectVariableID aVariableID);
 
 		Texture* LoadTexture(const CU::String& aFilePath);
+
+		Font* LoadFont(const CU::String& aFontTexturePath);
 
 	private:
 		void operator=(AssetContainer&) = delete;
@@ -46,7 +49,7 @@ namespace Magma
 		CU::Map<CU::String, EffectID> myEffectsID;
 		EffectID myNextEffectID;
 
-		CU::Map<EffectID, CU::Map<EffectVariableID, CU::String>> myEffectVariables;
+		CU::Map<EffectVariableID, CU::String> myEffectVariables;
 		EffectVariableID myNextEffectVariableID;
 
 		CU::Map<ModelID, ModelData*> myModels;
@@ -54,6 +57,8 @@ namespace Magma
 		ModelID myNextModelID;
 
 		CU::Map<CU::String, Texture*> myTextures;
+
+		CU::String myDummyStringForReturning;
 
 		GPUContext& myGpuContext;
 		static AssetContainer* myInstance;

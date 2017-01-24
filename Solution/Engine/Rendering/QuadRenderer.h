@@ -11,6 +11,7 @@ namespace Magma
 	class Camera;
 	class Effect;
 	class GPUContext;
+	class TextData;
 	class Texture;
 	class Renderer;
 
@@ -27,6 +28,8 @@ namespace Magma
 
 		void RenderSprites(const Camera& aCamera, Renderer& aRenderer);
 		void Render(EffectID aEffect, const CU::String& aTechnique);
+
+		void RenderText(TextData* someTextData, const Camera& aCamera, Renderer& aRenderer);
 
 	private:
 		void operator=(QuadRenderer&) = delete;

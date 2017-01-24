@@ -10,6 +10,8 @@
 #include "Renderer.h"
 #include "Camera.h"
 
+#include "TextData.h"
+#include "Font.h"
 
 namespace Magma
 {
@@ -44,11 +46,11 @@ namespace Magma
 
 		mySpriteEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_sprite.fx");
 
-		myProjectionVariable = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "Projection");
-		myOrientationVariable = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "SpriteOrientation");
-		mySizeAndHotSpotVariable = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "SpriteSizeAndHotSpot");
-		myPosAndScaleVarible = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "SpritePositionAndScale");
-		myAlbedoTextureVariable = myAssetContainer.CreateEffectVariableID(mySpriteEffect, "AlbedoTexture");
+		myProjectionVariable = myAssetContainer.CreateEffectVariableID("Projection");
+		myOrientationVariable = myAssetContainer.CreateEffectVariableID("SpriteOrientation");
+		mySizeAndHotSpotVariable = myAssetContainer.CreateEffectVariableID("SpriteSizeAndHotSpot");
+		myPosAndScaleVarible = myAssetContainer.CreateEffectVariableID("SpritePositionAndScale");
+		myAlbedoTextureVariable = myAssetContainer.CreateEffectVariableID("AlbedoTexture");
 	}
 
 
@@ -106,6 +108,18 @@ namespace Magma
 			effect->GetTechnique(aTechnique)->GetPassByIndex(i)->Apply(0, context);
 			context->DrawIndexed(6, 0, 0);
 		}
+	}
+
+	void QuadRenderer::RenderText(TextData* someTextData, const Camera& aCamera, Renderer& aRenderer)
+	{
+		Activate();
+		aRenderer.SetEffect(someTextData->GetEffectID());
+		aRenderer.SetMatrix(myProjectionVariable, aCamera.GetOrthagonalProjection());
+		aRenderer.SetTexture(myAlbedoTextureVariable, someTextData->GetFont()->GetTexture());
+
+		aRenderer.SetBlendState(ALPHA_BLEND);
+		aRenderer.RenderGPUData(*someTextData->GetGPUData());
+		aRenderer.SetBlendState(NO_BLEND);
 	}
 
 }

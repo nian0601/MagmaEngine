@@ -8,12 +8,14 @@
 #include "ModelData.h"
 #include <Vector.h>
 #include <GrowingArray.h>
+#include "TextData.h"
 
 struct ID3DX11EffectVariable;
 struct ID3D11RenderTargetView;
 struct ID3D11DepthStencilView;
 struct ID3D11RasterizerState;
 struct ID3D11DepthStencilState;
+struct ID3D11BlendState;
 
 namespace Magma
 {
@@ -22,6 +24,8 @@ namespace Magma
 	class Effect;
 	class GPUContext;
 	class Texture;
+
+	class Font;
 
 	enum eDepthState
 	{
@@ -40,6 +44,13 @@ namespace Magma
 		_RAZTER_COUNT
 	};
 
+	enum eBlendState
+	{
+		NO_BLEND,
+		ALPHA_BLEND,
+		_BLEND_COUNT
+	};
+
 	class Renderer
 	{
 	public:
@@ -52,6 +63,7 @@ namespace Magma
 			, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale);
 		void RenderModels(const Camera& aCamera);
 		void RenderSprites(const Camera& aCamera);
+		void RenderText(const Camera& aCamera);
 
 		void SetEffect(EffectID aEffect);
 		void SetTexture(const CU::String& aName, Texture* aTexture);
@@ -71,6 +83,7 @@ namespace Magma
 
 		void SetRasterizerState(eRasterizer aState);
 		void SetDepthStencilState(eDepthState aState);
+		void SetBlendState(eBlendState aState);
 
 		void AddRenderTarget(Texture* aTexture);
 		void ClearRenderTarget(Texture* aTexture);
@@ -83,16 +96,17 @@ namespace Magma
 		void RenderFullScreen(const CU::String& aTechnique);
 		void RenderModel(ModelID aModelID);
 
+		void RenderGPUData(const GPUData& someData);
 	private:
 		void operator=(Renderer&) = delete;
 
 		ID3DX11EffectVariable* GetEffectVariable(const CU::String& aName);
 		ID3DX11EffectVariable* GetEffectVariable(EffectVariableID aEffectVariable);
 		void RenderModelData(const ModelData& someData);
-		void RenderGPUData(const GPUData& someData);
 
 		void CreateRasterizerStates();
 		void CreateDepthStencilStates();
+		void CreateBlendStates();
 
 		EffectID myCurrentEffect;
 		float myClearColor[4];
@@ -110,6 +124,7 @@ namespace Magma
 
 		ID3D11RasterizerState* myRasterizerStates[static_cast<int>(eRasterizer::_RAZTER_COUNT)];
 		ID3D11DepthStencilState* myDepthStencilStates[static_cast<int>(eDepthState::_DEPTH_COUNT)];
+		ID3D11BlendState* myBlendStates[static_cast<int>(eBlendState::_BLEND_COUNT)];
 
 		AssetContainer& myAssetContainer;
 		QuadRenderer myQuadRenderer;
@@ -131,5 +146,9 @@ namespace Magma
 			Magma::EffectID myEffectID;
 		};
 		CU::GrowingArray<ModelCommand> myModelCommands;
+
+		Font* myFont;
+		EffectID myFontEffect;
+		TextData myTextData;
 	};
 }

@@ -111,6 +111,7 @@
     <ClInclude Include="Rendering\Effect.h" />
     <ClInclude Include="Rendering\FBXFactory.h" />
     <ClInclude Include="Rendering\FBX\FbxLoader.h" />
+    <ClInclude Include="Rendering\Font.h" />
     <ClInclude Include="Rendering\QuadRenderer.h" />
     <ClInclude Include="Rendering\GBuffer.h" />
     <ClInclude Include="Rendering\GfxStructs.h" />
@@ -121,6 +122,8 @@
     <ClInclude Include="Rendering\PointLight.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\RendererProxy.h" />
+    <ClInclude Include="Rendering\Text.h" />
+    <ClInclude Include="Rendering\TextData.h" />
     <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Rendering\Types.h" />
     <ClInclude Include="Scripting\LuaFiles\lauxlib.h" />
@@ -147,6 +150,7 @@
     <ClCompile Include="Rendering\Effect.cpp" />
     <ClCompile Include="Rendering\FBXFactory.cpp" />
     <ClCompile Include="Rendering\FBX\FbxLoader.cpp" />
+    <ClCompile Include="Rendering\Font.cpp" />
     <ClCompile Include="Rendering\QuadRenderer.cpp" />
     <ClCompile Include="Rendering\GBuffer.cpp" />
     <ClCompile Include="Rendering\GPUContext.cpp" />
@@ -155,6 +159,8 @@
     <ClCompile Include="Rendering\PointLight.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\RendererProxy.cpp" />
+    <ClCompile Include="Rendering\Text.cpp" />
+    <ClCompile Include="Rendering\TextData.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
     <ClCompile Include="Scripting\Node.cpp" />
     <ClCompile Include="Scripting\NodeGraph.cpp" />

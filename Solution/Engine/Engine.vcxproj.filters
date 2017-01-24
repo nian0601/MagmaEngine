@@ -118,6 +118,15 @@
     <ClInclude Include="Scripting\NodePinData.h">
       <Filter>Scripting</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Font.h">
+      <Filter>Rendering\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Text.h">
+      <Filter>Rendering\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\TextData.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -191,6 +200,15 @@
     <ClCompile Include="Scripting\NodeGraph.cpp">
       <Filter>Scripting</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Font.cpp">
+      <Filter>Rendering\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Text.cpp">
+      <Filter>Rendering\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\TextData.cpp">
+      <Filter>Rendering\Structs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompile">
@@ -228,6 +246,9 @@
     </Filter>
     <Filter Include="Scripting\LuaFiles">
       <UniqueIdentifier>{09153024-ef31-4790-a0d1-64c8e1bf8749}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Text">
+      <UniqueIdentifier>{74fbad79-1ac5-4310-a97b-d2702c291710}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

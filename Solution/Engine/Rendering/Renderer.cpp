@@ -25,6 +25,14 @@ namespace Magma
 
 		CreateDepthStencilStates();
 		CreateRasterizerStates();
+		CreateBlendStates();
+
+		SetBlendState(NO_BLEND);
+
+		myFont = myAssetContainer.LoadFont("Data/Resource/Font/VeraMoBI.png");
+		myFontEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_font.fx");
+		myTextData.Init(myFontEffect, myGPUContext, myAssetContainer);
+		myTextData.SetupBuffers("Some test string", myFont);
 	}
 
 
@@ -64,6 +72,11 @@ namespace Magma
 	void Renderer::RenderSprites(const Camera& aCamera)
 	{
 		myQuadRenderer.RenderSprites(aCamera, *this);
+	}
+
+	void Renderer::RenderText(const Camera& aCamera)
+	{
+		myQuadRenderer.RenderText(&myTextData, aCamera, *this);
 	}
 
 	void Renderer::SetEffect(EffectID aEffect)
@@ -151,6 +164,17 @@ namespace Magma
 		myGPUContext.GetContext()->OMSetDepthStencilState(myDepthStencilStates[aState], 1);
 	}
 
+	void Renderer::SetBlendState(eBlendState aState)
+	{
+		float blendFactor[4];
+		blendFactor[0] = 0.f;
+		blendFactor[1] = 0.f;
+		blendFactor[2] = 0.f;
+		blendFactor[3] = 0.f;
+
+		myGPUContext.GetContext()->OMSetBlendState(myBlendStates[aState], blendFactor, 0xFFFFFFFF);
+	}
+
 	void Renderer::AddRenderTarget(Texture* aTexture)
 	{
 		DL_ASSERT_EXP(myRenderTargetCount < 4, CU::Concatenate("Added to many RenderTargets, only %i supported", 4));
@@ -230,7 +254,7 @@ namespace Magma
 		if (variableMap.KeyExists(aEffectVariable) == false)
 		{
 			Effect* effect = myAssetContainer.GetEffect(myCurrentEffect);
-			const CU::String& variableName = myAssetContainer.GetEffectVariableName(myCurrentEffect, aEffectVariable);
+			const CU::String& variableName = myAssetContainer.GetEffectVariableName(aEffectVariable);
 
 			DL_ASSERT_EXP(effect != nullptr, "Cant GetEffectVariable without an Effect");
 			ID3DX11EffectVariable* var = effect->GetEffect()->GetVariableByName(variableName.c_str());
@@ -364,6 +388,41 @@ namespace Magma
 
 		hr = myGPUContext.GetDevice()->CreateDepthStencilState(&stencilDesc, &myDepthStencilStates[static_cast<int>(eDepthState::READ_NO_WRITE)]);
 		DL_ASSERT_EXP(FAILED(hr) == false, "Failed to create READ_NO_WRITE depthstate");
+	}
+
+	void Renderer::CreateBlendStates()
+	{
+		D3D11_BLEND_DESC blendDesc;
+		ZeroMemory(&blendDesc, sizeof(blendDesc));
+		blendDesc.AlphaToCoverageEnable = true;
+		blendDesc.IndependentBlendEnable = false;
+		blendDesc.RenderTarget[0].BlendEnable = TRUE;
+		blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
+		blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_DEST_ALPHA;
+		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].RenderTargetWriteMask = 0x0f;
+		
+
+		HRESULT hr = myGPUContext.GetDevice()->CreateBlendState(&blendDesc, &myBlendStates[static_cast<int>(eBlendState::ALPHA_BLEND)]);
+		if (FAILED(hr) != S_OK)
+		{
+			DL_ASSERT("BaseModel::InitBlendState: Failed to CreateAlphaBlendState");
+		}
+
+		blendDesc.AlphaToCoverageEnable = false;
+		blendDesc.IndependentBlendEnable = false;
+		blendDesc.RenderTarget[0].BlendEnable = FALSE;
+		blendDesc.RenderTarget[0].RenderTargetWriteMask = 0x0f;
+
+		hr = myGPUContext.GetDevice()->CreateBlendState(&blendDesc, &myBlendStates[static_cast<int>(eBlendState::NO_BLEND)]);
+		if (FAILED(hr) != S_OK)
+		{
+			DL_ASSERT("BaseModel::InitBlendState: Failed to CreateNoAlphaBlendState");
+		}
+
 	}
 
 }

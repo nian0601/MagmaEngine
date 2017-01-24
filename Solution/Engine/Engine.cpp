@@ -12,6 +12,7 @@
 #include <TimerManager.h>
 #include "WindowHandler.h"
 
+
 namespace Magma
 {
 	Engine::Engine(const CU::Vector2<float>& aSize, IGame& aGame)
@@ -37,7 +38,7 @@ namespace Magma
 		CU::InputWrapper::Create(myWindowHandler->GetHwnd(), GetModuleHandle(NULL), DISCL_NONEXCLUSIVE
 			| DISCL_FOREGROUND, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
 
-		myGame.Init(*this);
+		myGame.Init(*this);		
 	}
 
 
@@ -89,6 +90,7 @@ namespace Magma
 
 				myDeferredRenderer->Render(*myCamera);
 				myRenderer->RenderSprites(*myCamera);
+				myRenderer->RenderText(*myCamera);
 				myGPUContext->FinishFrame();
 
 				//myTimerManager->CapFrameRate(60.f);

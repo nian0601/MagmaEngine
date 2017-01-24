@@ -244,4 +244,15 @@ namespace CU
 		CU::String result = aFilePath.SubStr(index, aFilePath.Size());
 		return result;
 	}
+
+	inline CU::String ReplaceExtension(const CU::String& aFilePath, const CU::String& aNewExtension)
+	{
+		CU::String newString = aFilePath;
+		int extensionIndex = newString.RFind(".");
+		newString = newString.SubStr(0, extensionIndex);
+
+		newString += aNewExtension;
+
+		return newString;
+	}
 }
