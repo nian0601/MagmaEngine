@@ -24,6 +24,7 @@ namespace Magma
 		~Effect();
 
 		void Init(const CU::String& aFilePath, GPUContext& aGPUContext);
+		void ReloadShader(const CU::String& aFilePath, GPUContext& aGPUContext);
 
 		ID3DX11Effect* GetEffect() const;
 		ID3DX11EffectTechnique* GetTechnique(const CU::String& aTechniqueName) const;

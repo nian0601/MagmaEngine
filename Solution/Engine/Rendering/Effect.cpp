@@ -30,6 +30,7 @@ namespace Magma
 
 	void Effect::Init(const CU::String& aFilePath, GPUContext& aGPUContext)
 	{
+		Sleep(100);
 		myFileName = CU::GetFileNameFromFilePath(aFilePath);
 		myFilePath = aFilePath;
 
@@ -67,6 +68,8 @@ namespace Magma
 			SAFE_RELEASE(compilerMsg);
 		}
 
+		
+
 		result = D3DX11CreateEffectFromMemory(compiledShader->GetBufferPointer(), compiledShader->GetBufferSize(), NULL, aGPUContext.GetDevice(), &myEffect);
 		DL_ASSERT_EXP(SUCCEEDED(result) == TRUE, "Failed to Create shader");
 
@@ -89,6 +92,13 @@ namespace Magma
 
 		LoadScalar(myMetalness, "GlobalMetalness");
 		LoadScalar(myRoughness, "GlobalRoughness");
+	}
+
+	void Effect::ReloadShader(const CU::String& aFilePath, GPUContext& aGPUContext)
+	{
+		if (myEffect) SAFE_RELEASE(myEffect);
+
+		Init(aFilePath, aGPUContext);
 	}
 
 	ID3DX11Effect* Effect::GetEffect() const

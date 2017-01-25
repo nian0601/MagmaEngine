@@ -45,6 +45,8 @@ namespace Magma
 			myEffects[myNextEffectID] = effect;
 			myEffectsID[aFilePath] = myNextEffectID;
 			++myNextEffectID;
+
+			myFileWatcher.WatchFileChange(aFilePath, std::bind(&AssetContainer::OnReloadShader, this, std::placeholders::_1));
 		}
 
 		return myEffectsID[aFilePath];
@@ -100,6 +102,17 @@ namespace Magma
 		return font;
 	}
 
+	void AssetContainer::OnReloadShader(const CU::String& aFilePath)
+	{
+		if (myEffectsID.KeyExists(aFilePath) && ourReloadShadersCallback)
+		{
+			EffectID id = myEffectsID[aFilePath];
+			myEffects[id]->ReloadShader(aFilePath, myGpuContext);
+
+			ourReloadShadersCallback(id);
+		}
+	}
+
 	AssetContainer::AssetContainer(GPUContext& aGPUContext)
 		: myGpuContext(aGPUContext)
 	{
@@ -123,4 +136,10 @@ namespace Magma
 		}
 		myTextures.Clear();
 	}
+
+	void AssetContainer::FlushFileWatcher()
+	{
+		myFileWatcher.FlushChanges();
+	}
+
 }

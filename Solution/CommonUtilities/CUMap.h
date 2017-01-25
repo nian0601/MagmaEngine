@@ -229,7 +229,6 @@ namespace CU
 		{
 			myBuckets[i].RemoveAll();
 		}
-		myBuckets.RemoveAll();
 	}
 
 

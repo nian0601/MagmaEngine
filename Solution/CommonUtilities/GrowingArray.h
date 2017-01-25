@@ -210,7 +210,11 @@ namespace CU
 	GA_TEMPLATE
 	inline void GA_TYPE::Add(const ObjectType& aObject)
 	{
-		DL_ASSERT_EXP(myIsInit == true, locGrowingArray_ErrorStrings[NOT_INITIALIZED]);
+		if (myIsInit == false)
+		{
+			Init(2);
+		}
+		
 
 		if (myCurrentSize >= myMaxSize)
 		{

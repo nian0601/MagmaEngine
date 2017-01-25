@@ -33,6 +33,8 @@ namespace Magma
 		myFontEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_font.fx");
 		myTextData.Init(myFontEffect, myGPUContext, myAssetContainer);
 		myTextData.SetupBuffers("Some test string", myFont);
+
+		myAssetContainer.ourReloadShadersCallback = std::bind(&Renderer::ClearShaderVariables, this, std::placeholders::_1);
 	}
 
 
@@ -250,7 +252,7 @@ namespace Magma
 	{
 		DL_ASSERT_EXP(myCurrentEffectVariables != nullptr, "Need an effect to be able to GetEffectVariable");
 		CU::Map<EffectVariableID, ID3DX11EffectVariable*>& variableMap = *myCurrentEffectVariablesIds;
-
+		
 		if (variableMap.KeyExists(aEffectVariable) == false)
 		{
 			Effect* effect = myAssetContainer.GetEffect(myCurrentEffect);
@@ -423,6 +425,14 @@ namespace Magma
 			DL_ASSERT("BaseModel::InitBlendState: Failed to CreateNoAlphaBlendState");
 		}
 
+	}
+
+	void Renderer::ClearShaderVariables(EffectID aEffectID)
+	{
+		if (myEffectVariablesIds.KeyExists(aEffectID))
+		{
+			myEffectVariablesIds[aEffectID].Clear();
+		}
 	}
 
 }

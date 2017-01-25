@@ -39,10 +39,10 @@ namespace CU
 		for (CU::String& theString : myFileChanged)
 		{
 			CU::String directoryOfFile(theString);
-			directoryOfFile = directoryOfFile.SubStr(0, directoryOfFile.RFind("\\/"));
+			directoryOfFile = directoryOfFile.SubStr(0, directoryOfFile.RFind("/"));
 
 			CU::String theFile(theString);
-			theFile = theFile.SubStr(theFile.RFind("\\/") + 1, theFile.Size());
+			theFile = theFile.SubStr(theFile.RFind("/") + 1, theFile.Size());
 
 			CU::GrowingArray<callback_function_file> callbacks = myCallbacks[theFile];
 			for (int i = 0; i < callbacks.Size(); i++)
@@ -104,7 +104,7 @@ namespace CU
 
 					if (currentFileTime64 != savedFileTime64)
 					{
-						CU::String fileThatChangedPath = aDir + "/" + CU::String(currentFile.cFileName);
+						CU::String fileThatChangedPath = aDir + CU::String(currentFile.cFileName);
 						bool isDependency = myDependencies.KeyExists(fileThatChangedPath);
 						if (isDependency)
 						{
@@ -152,7 +152,7 @@ namespace CU
 		}
 
 		CU::String directoryOfFile(aFile);
-		directoryOfFile = directoryOfFile.SubStr(0, directoryOfFile.RFind("\\/"));
+		directoryOfFile = directoryOfFile.SubStr(0, directoryOfFile.RFind("/"));
 
 		char fileLine[128];
 		const CU::String includeString = "include";
@@ -163,8 +163,8 @@ namespace CU
 			if (found != line.NotFound)
 			{
 				CU::String foundFile(line);
-				foundFile = foundFile.SubStr(foundFile.Find("\"") + 1, foundFile.Size());
-				foundFile = foundFile.SubStr(0, foundFile.RFind("\""));
+				foundFile = foundFile.SubStr(foundFile.Find("/") + 1, foundFile.Size());
+				foundFile = foundFile.SubStr(0, foundFile.RFind("/"));
 
 				if (!foundFile.Empty())
 				{
@@ -190,10 +190,10 @@ namespace CU
 		stream.close();
 
 		CU::String directoryOfFile(aFile);
-		directoryOfFile = directoryOfFile.SubStr(0, directoryOfFile.RFind("\\/"));
+		directoryOfFile = directoryOfFile.SubStr(0, directoryOfFile.RFind("/"));
 
 		CU::String theFile(aFile);
-		theFile = theFile.SubStr(theFile.RFind("\\/") + 1, theFile.Size());
+		theFile = theFile.SubStr(theFile.RFind("/") + 1, theFile.Size());
 
 		myCallbacks[theFile].Add(aFunctionToCallOnChange);
 		return WatchDirectory(directoryOfFile);

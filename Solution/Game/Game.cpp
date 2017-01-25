@@ -102,7 +102,7 @@ bool Game::Update(float aDelta)
 
 	for each (Entity* entity in myEntities)
 	{
-		entity->Update(aDelta);
+		//entity->Update(aDelta);
 		entity->Render(*myRendererProxy);
 	}
 

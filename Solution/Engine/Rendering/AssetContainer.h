@@ -5,6 +5,9 @@
 #include <GrowingArray.h>
 #include <Vector.h>
 
+#include <functional>
+#include <FileWatcher.h>
+
 namespace std
 {
 	class thread;
@@ -25,6 +28,8 @@ namespace Magma
 		AssetContainer(GPUContext& aGPUContext);
 		~AssetContainer();
 
+		void FlushFileWatcher();
+
 		ModelID LoadModel(const CU::String& aModelPath, const CU::String& aEffectPath);
 		ModelData* GetModel(ModelID aID);
 
@@ -38,10 +43,13 @@ namespace Magma
 
 		Font* LoadFont(const CU::String& aFontTexturePath);
 
+		std::function<void(EffectID)> ourReloadShadersCallback;
+
 	private:
 		void operator=(AssetContainer&) = delete;
 
 		void Run();
+		void OnReloadShader(const CU::String& aFilePath);
 
 		IModelFactory* myModelFactory;
 
@@ -59,6 +67,7 @@ namespace Magma
 		CU::Map<CU::String, Texture*> myTextures;
 
 		CU::String myDummyStringForReturning;
+		CU::FileWatcher myFileWatcher;
 
 		GPUContext& myGpuContext;
 		static AssetContainer* myInstance;

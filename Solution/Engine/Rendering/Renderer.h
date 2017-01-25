@@ -108,6 +108,8 @@ namespace Magma
 		void CreateDepthStencilStates();
 		void CreateBlendStates();
 
+		void ClearShaderVariables(EffectID aEffectID);
+
 		EffectID myCurrentEffect;
 		float myClearColor[4];
 
