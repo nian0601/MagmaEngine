@@ -1,15 +1,15 @@
 #include "S_u_variables.fx"
 
-Matrix SpriteOrientation;
-float4 SpriteSizeAndHotSpot;
-float4 SpritePositionAndScale;
+Matrix Orientation;
+float4 SizeAndHotSpot;
+float4 PositionAndScale;
 
 Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 {
-	float2 size = SpriteSizeAndHotSpot.xy / 2;
-	float2 hotspot = SpriteSizeAndHotSpot.zw;
-	float2 position = SpritePositionAndScale.xy;
-	float2 scale = SpritePositionAndScale.zw;
+	float2 size = SizeAndHotSpot.xy / 2;
+	float2 hotspot = SizeAndHotSpot.zw;
+	float2 position = PositionAndScale.xy;
+	float2 scale = PositionAndScale.zw;
 
 	float4 finalPosition = aInput.Pos;
 

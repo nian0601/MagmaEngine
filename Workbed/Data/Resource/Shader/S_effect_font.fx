@@ -1,23 +1,17 @@
 #include "S_u_variables.fx"
 
-Matrix SpriteOrientation;
-float4 SpriteSizeAndHotSpot;
-float4 SpritePositionAndScale;
+Matrix Orientation;
+float4 SizeAndHotSpot;
+float4 PositionAndScale;
 
 static const float OUTLINE_MIN_VALUE0 = 0.3;
 static const float OUTLINE_MIN_VALUE1 = 0.4;
-static const float OUTLINE_MAX_VALUE0 = 0.5;
-static const float OUTLINE_MAX_VALUE1 = 0.6;
+static const float OUTLINE_MAX_VALUE0 = 0.6;
+static const float OUTLINE_MAX_VALUE1 = 0.7;
 static const float4 OUTLINE_COLOR = {0.f, 0.f, 0.f, 1.f};
-static const bool USE_OUTLINE = true;
+static const bool USE_OUTLINE = false;
 
-static const float OUTER_GLOW_MIN_VALUE = 0.0;
-static const float OUTER_GLOW_MAX_VALUE = 0.5;
-static const float4 GLOW_COLOR = {0.f, 1.f, 0.f, 1.f};
-static const bool USE_GLOW = false;
-static const float2 GLOW_UV_OFFSET = {0.005f, 0.005f};
-
-static const float SMOOTHING = 1.0/16.0;
+static const float SMOOTHING = 1.0/32.0;
 
 Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 {
@@ -28,15 +22,18 @@ Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 	finalPosition.xy += size;
 	finalPosition.xy -= hotspot;
 
-	finalPosition.xy *= scale;
-	finalPosition.xy += position;
+	
 	*/
+
+	finalPosition.xy *= PositionAndScale.zw;
+	finalPosition.xy += PositionAndScale.xy;
 	//finalPosition.x -= 50;
 	//finalPosition.y -= 40;
-	finalPosition.xy *= 0.5;
+	finalPosition.xy *= 0.3;
 	finalPosition = mul(finalPosition, Projection);
 
-	//finalPosition.xy -= 1;
+	finalPosition.x -= 1;
+	finalPosition.y += 1;
 
 	Pixel_Quad output = (Pixel_Quad)0;
 	output.Pos = finalPosition;
@@ -65,15 +62,6 @@ float4 PixelShader_Sprite(Pixel_Quad aInput) : SV_Target
 
 		texColor = lerp(texColor, OUTLINE_COLOR, oFactor);
 	}
-
-	if(USE_GLOW)
-	{
-		float4 glowColor = AlbedoTexture.Sample(pointSampling, aInput.Tex + GLOW_UV_OFFSET);
-
-		glowColor = GLOW_COLOR + smoothstep(OUTER_GLOW_MIN_VALUE, OUTER_GLOW_MAX_VALUE, glowColor.a);
-		texColor = lerp(glowColor, texColor, distAlphaMask);
-	}
-
 
 	float alpha = smoothstep(0.55 - SMOOTHING, 0.55 + SMOOTHING, distAlphaMask);
 	

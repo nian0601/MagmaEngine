@@ -167,8 +167,8 @@ namespace CU
 			Resize(myCurrentSize * 2);
 
 		char buffer[CU_STRING_MAX_NUMBER_CHARACTERS];
-		_itoa_s(aInt, buffer, CU_STRING_MAX_NUMBER_CHARACTERS);
-
+		_snprintf_s(buffer, CU_STRING_MAX_NUMBER_CHARACTERS, "%i", aInt);
+		
 		String newString(buffer);
 		*this += newString;
 

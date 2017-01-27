@@ -127,6 +127,9 @@
     <ClInclude Include="Rendering\TextData.h">
       <Filter>Rendering\Structs</Filter>
     </ClInclude>
+    <ClInclude Include="Debugging\DebugDrawer.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -209,6 +212,9 @@
     <ClCompile Include="Rendering\TextData.cpp">
       <Filter>Rendering\Structs</Filter>
     </ClCompile>
+    <ClCompile Include="Debugging\DebugDrawer.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompile">
@@ -249,6 +255,9 @@
     </Filter>
     <Filter Include="Rendering\Text">
       <UniqueIdentifier>{74fbad79-1ac5-4310-a97b-d2702c291710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debugging">
+      <UniqueIdentifier>{02601def-12a3-4f43-ba1b-89abf94097be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

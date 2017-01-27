@@ -52,7 +52,7 @@ namespace Magma
 
 			float left = drawX + charData.myXOffset;
 			float right = left + charData.myWidth;
-			float top = drawY + charData.myYOffset;
+			float top = -100 + drawY + charData.myYOffset;
 			float bottom = top - charData.myHeight;
 
 

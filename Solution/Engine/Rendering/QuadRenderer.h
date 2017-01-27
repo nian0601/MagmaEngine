@@ -29,7 +29,7 @@ namespace Magma
 		void RenderSprites(const Camera& aCamera, Renderer& aRenderer);
 		void Render(EffectID aEffect, const CU::String& aTechnique);
 
-		void RenderText(TextData* someTextData, const Camera& aCamera, Renderer& aRenderer);
+		void RenderText(TextData* someTextData, const Camera& aCamera, Renderer& aRenderer, const CU::Vector4<float>& aPositionAndScale);
 
 	private:
 		void operator=(QuadRenderer&) = delete;

@@ -47,9 +47,9 @@ namespace Magma
 		mySpriteEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_sprite.fx");
 
 		myProjectionVariable = myAssetContainer.CreateEffectVariableID("Projection");
-		myOrientationVariable = myAssetContainer.CreateEffectVariableID("SpriteOrientation");
-		mySizeAndHotSpotVariable = myAssetContainer.CreateEffectVariableID("SpriteSizeAndHotSpot");
-		myPosAndScaleVarible = myAssetContainer.CreateEffectVariableID("SpritePositionAndScale");
+		myOrientationVariable = myAssetContainer.CreateEffectVariableID("Orientation");
+		mySizeAndHotSpotVariable = myAssetContainer.CreateEffectVariableID("SizeAndHotSpot");
+		myPosAndScaleVarible = myAssetContainer.CreateEffectVariableID("PositionAndScale");
 		myAlbedoTextureVariable = myAssetContainer.CreateEffectVariableID("AlbedoTexture");
 	}
 
@@ -110,11 +110,13 @@ namespace Magma
 		}
 	}
 
-	void QuadRenderer::RenderText(TextData* someTextData, const Camera& aCamera, Renderer& aRenderer)
+	void QuadRenderer::RenderText(TextData* someTextData, const Camera& aCamera, Renderer& aRenderer, const CU::Vector4<float>& aPositionAndScale)
 	{
 		Activate();
 		aRenderer.SetEffect(someTextData->GetEffectID());
 		aRenderer.SetMatrix(myProjectionVariable, aCamera.GetOrthagonalProjection());
+		aRenderer.SetVector(myPosAndScaleVarible, aPositionAndScale);
+
 		aRenderer.SetTexture(myAlbedoTextureVariable, someTextData->GetFont()->GetTexture());
 
 		aRenderer.SetBlendState(ALPHA_BLEND);

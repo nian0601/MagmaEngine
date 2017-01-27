@@ -12,6 +12,8 @@
 #include "GPUContext.h"
 #include "GPUData.h"
 
+#include "../Debugging/DebugDrawer.h"
+
 namespace Magma
 {
 	Renderer::Renderer(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
@@ -32,7 +34,6 @@ namespace Magma
 		myFont = myAssetContainer.LoadFont("Data/Resource/Font/Font.png");
 		myFontEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_font.fx");
 		myTextData.Init(myFontEffect, myGPUContext, myAssetContainer);
-		myTextData.SetupBuffers("Some test string", myFont);
 
 		myAssetContainer.ourReloadShadersCallback = std::bind(&Renderer::ClearShaderVariables, this, std::placeholders::_1);
 	}
@@ -78,7 +79,18 @@ namespace Magma
 
 	void Renderer::RenderText(const Camera& aCamera)
 	{
-		myQuadRenderer.RenderText(&myTextData, aCamera, *this);
+		const CU::GrowingArray<DebugText>& debugText = DebugDrawer::GetInstance()->GetDebugTexts();
+
+		CU::Vector4<float> posAndScale(1.f, 1.f, 1.f, 1.f);
+		posAndScale.x = DEBUG_TEXT_X;
+
+		for (const DebugText& text : debugText)
+		{
+			posAndScale.y = text.myY;
+			myTextData.SetupBuffers(text.myString, myFont);
+			myQuadRenderer.RenderText(&myTextData, aCamera, *this, posAndScale);
+		}
+
 	}
 
 	void Renderer::SetEffect(EffectID aEffect)

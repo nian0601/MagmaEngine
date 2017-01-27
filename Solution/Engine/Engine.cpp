@@ -12,6 +12,7 @@
 #include <TimerManager.h>
 #include "WindowHandler.h"
 
+#include "Debugging/DebugDrawer.h"
 
 namespace Magma
 {
@@ -38,6 +39,8 @@ namespace Magma
 		CU::InputWrapper::Create(myWindowHandler->GetHwnd(), GetModuleHandle(NULL), DISCL_NONEXCLUSIVE
 			| DISCL_FOREGROUND, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
 
+		DebugDrawer::GetInstance();
+
 		myGame.Init(*this);		
 	}
 
@@ -52,6 +55,7 @@ namespace Magma
 		SAFE_DELETE(myAssetContainer);
 		SAFE_DELETE(myGPUContext);
 		SAFE_DELETE(myWindowHandler);
+		DebugDrawer::GetInstance()->Destroy();
 		DL_Debug::Debug::Destroy();
 		CU::InputWrapper::Destroy();
 	}
@@ -83,16 +87,22 @@ namespace Magma
 
 				float deltaTime = myTimerManager->GetMasterTimer().GetTime().GetFrameTime();
 				windowTitle = "FPS: ";
-				windowTitle += 1.f / deltaTime;
-				windowTitle += ", DT: ";
+				windowTitle += static_cast<int>(1.f / deltaTime);
+				DebugDrawer::GetInstance()->AddDebugText(windowTitle);
+
+				windowTitle = "DT: ";
 				windowTitle += deltaTime * 1000.f;
-				myWindowHandler->SetTitle(windowTitle);
+				DebugDrawer::GetInstance()->AddDebugText(windowTitle);
+
+				
 				myIsRunning = myGame.Update(deltaTime);
 
 				myDeferredRenderer->Render(*myCamera);
 				myRenderer->RenderSprites(*myCamera);
 				myRenderer->RenderText(*myCamera);
 				myGPUContext->FinishFrame();
+
+				DebugDrawer::GetInstance()->ClearDebugTexts();
 
 				//myTimerManager->CapFrameRate(60.f);
 			}
