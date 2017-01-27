@@ -4,20 +4,20 @@ Matrix SpriteOrientation;
 float4 SpriteSizeAndHotSpot;
 float4 SpritePositionAndScale;
 
-static const float OUTLINE_MIN_VALUE0 = 0.0;
-static const float OUTLINE_MIN_VALUE1 = 0.5;
+static const float OUTLINE_MIN_VALUE0 = 0.3;
+static const float OUTLINE_MIN_VALUE1 = 0.4;
 static const float OUTLINE_MAX_VALUE0 = 0.5;
-static const float OUTLINE_MAX_VALUE1 = 1;
-static const float4 OUTLINE_COLOR = {1.f, 0.f, 0.f, 1.f};
-static const bool USE_OUTLINE = false;
+static const float OUTLINE_MAX_VALUE1 = 0.6;
+static const float4 OUTLINE_COLOR = {0.f, 0.f, 0.f, 1.f};
+static const bool USE_OUTLINE = true;
 
 static const float OUTER_GLOW_MIN_VALUE = 0.0;
 static const float OUTER_GLOW_MAX_VALUE = 0.5;
 static const float4 GLOW_COLOR = {0.f, 1.f, 0.f, 1.f};
-static const bool USE_GLOW = true;
+static const bool USE_GLOW = false;
 static const float2 GLOW_UV_OFFSET = {0.005f, 0.005f};
 
-
+static const float SMOOTHING = 1.0/16.0;
 
 Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 {
@@ -31,9 +31,9 @@ Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 	finalPosition.xy *= scale;
 	finalPosition.xy += position;
 	*/
-	finalPosition.x -= 300;
-	finalPosition.y -= 40;
-	finalPosition.xy *= 1;
+	//finalPosition.x -= 50;
+	//finalPosition.y -= 40;
+	finalPosition.xy *= 0.5;
 	finalPosition = mul(finalPosition, Projection);
 
 	//finalPosition.xy -= 1;
@@ -47,8 +47,8 @@ Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 
 float4 PixelShader_Sprite(Pixel_Quad aInput) : SV_Target
 {
-	float4 texColor = AlbedoTexture.Sample(pointSampling, aInput.Tex);
-	float distAlphaMask = texColor.a;
+	float4 texColor = {1.f, 1.f, 1.f, 1.f};
+	float distAlphaMask = AlbedoTexture.SampleLevel(linearSampling, aInput.Tex, 0).a;
 
 	if(USE_OUTLINE &&
 		(distAlphaMask >= OUTLINE_MIN_VALUE0 && distAlphaMask <= OUTLINE_MAX_VALUE1))
@@ -74,7 +74,11 @@ float4 PixelShader_Sprite(Pixel_Quad aInput) : SV_Target
 		texColor = lerp(glowColor, texColor, distAlphaMask);
 	}
 
-	texColor.a *= smoothstep(0.0, 0.5, distAlphaMask);
+
+	float alpha = smoothstep(0.55 - SMOOTHING, 0.55 + SMOOTHING, distAlphaMask);
+	
+	texColor.a = alpha;
+	//return float4(1.f, 1.f, 1.f, alpha);
 
 	return texColor;
 }

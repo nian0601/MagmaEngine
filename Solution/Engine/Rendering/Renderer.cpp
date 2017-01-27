@@ -29,7 +29,7 @@ namespace Magma
 
 		SetBlendState(NO_BLEND);
 
-		myFont = myAssetContainer.LoadFont("Data/Resource/Font/VeraMoBI.png");
+		myFont = myAssetContainer.LoadFont("Data/Resource/Font/Font.png");
 		myFontEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_font.fx");
 		myTextData.Init(myFontEffect, myGPUContext, myAssetContainer);
 		myTextData.SetupBuffers("Some test string", myFont);
