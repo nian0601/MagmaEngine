@@ -60,7 +60,7 @@ namespace Magma
 			
 			if (FAILED(hr) != S_OK)
 			{
-				DL_ASSERT("[Texture]: Failed to load MissingTexture-texture: Data/Resource//T_missing_texture.dds");
+				DL_ASSERT("[Texture]: Failed to load MissingTexture-texture: Data/Resource/Texture/T_missing_texture.dds");
 			}
 		}
 

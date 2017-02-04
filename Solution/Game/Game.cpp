@@ -1,10 +1,10 @@
 #include "stdafx.h"
 
-#include <Rendering/AssetContainer.h>
-#include <Rendering/Camera.h>
+#include <AssetContainer.h>
+#include <Camera.h>
 #include <Engine.h>
 #include "Game.h"
-#include <Rendering/RendererProxy.h>
+#include <RendererProxy.h>
 
 
 #include "Entity.h"
