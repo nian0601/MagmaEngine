@@ -2,8 +2,8 @@
 
 #include "Entity.h"
 #include "SpriteComponent.h"
-#include <Rendering/AssetContainer.h>
-#include <Rendering/RendererProxy.h>
+#include <AssetContainer.h>
+#include <RendererProxy.h>
 
 SpriteComponent::SpriteComponent(Entity& anEntity)
 	: IComponent(anEntity)

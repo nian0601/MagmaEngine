@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "StockpileComponent.h"
-#include <Rendering/RendererProxy.h>
-#include <Rendering/AssetContainer.h>
+#include <RendererProxy.h>
+#include <AssetContainer.h>
 #include "Entity.h"
 
 #include "PollingStation.h"

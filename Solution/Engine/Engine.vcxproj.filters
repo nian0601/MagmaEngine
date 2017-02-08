@@ -28,106 +28,118 @@
     <ClInclude Include="Entity\Include\World.h">
       <Filter>Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Camera.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Renderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\RendererProxy.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\PointLight.h">
-      <Filter>Rendering\Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Backbuffer.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\GfxStructs.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\GPUData.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\ModelData.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\DirectX.h">
-      <Filter>Rendering\GPUContext</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\GPUContext.h">
-      <Filter>Rendering\GPUContext</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\DeferredRenderer.h">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\GBuffer.h">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\AssetContainer.h">
-      <Filter>Rendering\AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Effect.h">
-      <Filter>Rendering\AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Texture.h">
-      <Filter>Rendering\AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\FBXFactory.h">
-      <Filter>Rendering\AssetManagement\ModelLoaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\IModelFactory.h">
-      <Filter>Rendering\AssetManagement\ModelLoaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\FBX\FbxLoader.h">
-      <Filter>Rendering\AssetManagement\ModelLoaders\FBX</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\QuadRenderer.h">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Types.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Entity\Include\Event.h">
       <Filter>Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Scripting\LuaFiles\lauxlib.h">
-      <Filter>Scripting\LuaFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripting\LuaFiles\lua.h">
-      <Filter>Scripting\LuaFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripting\LuaFiles\lua.hpp">
-      <Filter>Scripting\LuaFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripting\LuaFiles\luaconf.h">
-      <Filter>Scripting\LuaFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripting\LuaFiles\lualib.h">
-      <Filter>Scripting\LuaFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripting\ScriptSystem.h">
+    <ClInclude Include="Node.h">
       <Filter>Scripting</Filter>
     </ClInclude>
-    <ClInclude Include="Scripting\Node.h">
+    <ClInclude Include="NodeGraph.h">
       <Filter>Scripting</Filter>
     </ClInclude>
-    <ClInclude Include="Scripting\NodeGraph.h">
+    <ClInclude Include="NodePinData.h">
       <Filter>Scripting</Filter>
     </ClInclude>
-    <ClInclude Include="Scripting\NodePinData.h">
+    <ClInclude Include="ScriptSystem.h">
       <Filter>Scripting</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Font.h">
+    <ClInclude Include="LuaFiles\lauxlib.h">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaFiles\lua.h">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaFiles\lua.hpp">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaFiles\luaconf.h">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaFiles\lualib.h">
+      <Filter>Scripting\LuaFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
       <Filter>Rendering\Text</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Text.h">
+    <ClInclude Include="Text.h">
       <Filter>Rendering\Text</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\TextData.h">
+    <ClInclude Include="Backbuffer.h">
       <Filter>Rendering\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="Debugging\DebugDrawer.h">
+    <ClInclude Include="GfxStructs.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUData.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelData.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="TextData.h">
+      <Filter>Rendering\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Rendering\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX.h">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClInclude>
+    <ClInclude Include="GPUContext.h">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredRenderer.h">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GBuffer.h">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadRenderer.h">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetContainer.h">
+      <Filter>Rendering\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Rendering\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Rendering\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="FBXFactory.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders</Filter>
+    </ClInclude>
+    <ClInclude Include="IModelFactory.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\AnimationUtility.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\Common.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\FbxLoader.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\GeometryUtility.h">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="LodStructs.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RendererProxy.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+	<ClInclude Include="Debugging\DebugDrawer.h">
       <Filter>Debugging</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,71 +158,80 @@
     <ClCompile Include="Entity\Source\World.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Camera.cpp">
-      <Filter>Rendering</Filter>
+    <ClCompile Include="Node.cpp">
+      <Filter>Scripting</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Renderer.cpp">
-      <Filter>Rendering</Filter>
+    <ClCompile Include="NodeGraph.cpp">
+      <Filter>Scripting</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\RendererProxy.cpp">
-      <Filter>Rendering</Filter>
+    <ClCompile Include="ScriptSystem.cpp">
+      <Filter>Scripting</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\PointLight.cpp">
+    <ClCompile Include="Font.cpp">
+      <Filter>Rendering\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Rendering\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUData.cpp">
+      <Filter>Rendering\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelData.cpp">
+      <Filter>Rendering\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="TextData.cpp">
+      <Filter>Rendering\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
       <Filter>Rendering\Lights</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\GPUData.cpp">
-      <Filter>Rendering\Structs</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\ModelData.cpp">
-      <Filter>Rendering\Structs</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\DirectX.cpp">
+    <ClCompile Include="DirectX.cpp">
       <Filter>Rendering\GPUContext</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\GPUContext.cpp">
+    <ClCompile Include="GPUContext.cpp">
       <Filter>Rendering\GPUContext</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\DeferredRenderer.cpp">
+    <ClCompile Include="DeferredRenderer.cpp">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\GBuffer.cpp">
+    <ClCompile Include="GBuffer.cpp">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\AssetContainer.cpp">
+    <ClCompile Include="QuadRenderer.cpp">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetContainer.cpp">
       <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Effect.cpp">
+    <ClCompile Include="Effect.cpp">
       <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Texture.cpp">
+    <ClCompile Include="Texture.cpp">
       <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\FBXFactory.cpp">
+    <ClCompile Include="FBXFactory.cpp">
       <Filter>Rendering\AssetManagement\ModelLoaders</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\FBX\FbxLoader.cpp">
-      <Filter>Rendering\AssetManagement\ModelLoaders\FBX</Filter>
+    <ClCompile Include="FBX\AnimationUtility.cxx">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\QuadRenderer.cpp">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
+    <ClCompile Include="FBX\Common.cxx">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Scripting\ScriptSystem.cpp">
-      <Filter>Scripting</Filter>
+    <ClCompile Include="FBX\FbxLoader.cpp">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Scripting\Node.cpp">
-      <Filter>Scripting</Filter>
+    <ClCompile Include="FBX\GeometryUtility.cxx">
+      <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Scripting\NodeGraph.cpp">
-      <Filter>Scripting</Filter>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Font.cpp">
-      <Filter>Rendering\Text</Filter>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Text.cpp">
-      <Filter>Rendering\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\TextData.cpp">
-      <Filter>Rendering\Structs</Filter>
+    <ClCompile Include="RendererProxy.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Debugging\DebugDrawer.cpp">
       <Filter>Debugging</Filter>
@@ -244,17 +265,17 @@
     <Filter Include="Rendering\AssetManagement\ModelLoaders">
       <UniqueIdentifier>{c1af0d62-40bc-46c2-aa71-6d3f4a1f84b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering\AssetManagement\ModelLoaders\FBX">
-      <UniqueIdentifier>{a06aad34-e3f4-4132-a2f3-458687353b4c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripting">
       <UniqueIdentifier>{80c1916a-1788-4286-a113-083a15a6a38b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripting\LuaFiles">
-      <UniqueIdentifier>{09153024-ef31-4790-a0d1-64c8e1bf8749}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Rendering\Text">
       <UniqueIdentifier>{74fbad79-1ac5-4310-a97b-d2702c291710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripting\LuaFiles">
+      <UniqueIdentifier>{9e349fdc-5684-46f0-9c04-5e4a3ef98b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\AssetManagement\ModelLoaders\FBXFiles">
+      <UniqueIdentifier>{3e793644-0413-433c-81a1-c2335b802a9f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Debugging">
       <UniqueIdentifier>{02601def-12a3-4f43-ba1b-89abf94097be}</UniqueIdentifier>

@@ -1,14 +1,14 @@
 #include "stdafx.h"
 
-#include "Rendering/AssetContainer.h"
-#include "Rendering/Camera.h"
-#include "Rendering/DeferredRenderer.h"
+#include "AssetContainer.h"
+#include "Camera.h"
+#include "DeferredRenderer.h"
 #include "Engine.h"
-#include "Rendering/GPUContext.h"
+#include "GPUContext.h"
 #include "IGame.h"
 #include <InputWrapper.h>
-#include "Rendering/Renderer.h"
-#include "Rendering/RendererProxy.h"
+#include "Renderer.h"
+#include "RendererProxy.h"
 #include <TimerManager.h>
 #include "WindowHandler.h"
 

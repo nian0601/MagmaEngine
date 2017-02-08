@@ -4,7 +4,7 @@
 #include <DL_Debug.h>
 #include <Macros.h>
 #include "Engine.h"
-#include "Rendering/GfxStructs.h"
+#include "GfxStructs.h"
 #include <Vector.h>
 #include <Matrix.h>
 

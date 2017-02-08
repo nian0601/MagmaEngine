@@ -8,7 +8,7 @@
 #include "StockpileComponent.h"
 
 #include <Engine.h>
-#include <Rendering/AssetContainer.h>
+#include <AssetContainer.h>
 
 Magma::AssetContainer* EntityFactory::myAssetContainer = nullptr;
 CU::Vector2<float> EntityFactory::myWorldOffset;
