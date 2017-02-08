@@ -61,7 +61,10 @@ namespace Magma
 	void QuadRenderer::AddSpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
 		, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale)
 	{
-		mySpriteCommands.Add(SpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, aPositionAndScale));
+		CU::Vector4<float> flippedPosAndScale(aPositionAndScale);
+		flippedPosAndScale.y *= -1.f;
+
+		mySpriteCommands.Add(SpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, flippedPosAndScale));
 	}
 
 	void QuadRenderer::Activate()

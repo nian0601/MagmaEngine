@@ -13,6 +13,9 @@
 #include "GPUData.h"
 
 #include "../Debugging/DebugDrawer.h"
+#include "Font.h"
+
+#include "MathHelper.h"
 
 namespace Magma
 {
@@ -83,11 +86,18 @@ namespace Magma
 
 		CU::Vector4<float> posAndScale(1.f, 1.f, 1.f, 1.f);
 		posAndScale.x = DEBUG_TEXT_X;
+		posAndScale.y = -DEBUG_TEXT_Y;
+		posAndScale.z = myFont->GetScale();
+		posAndScale.w = myFont->GetScale();
 
 		for (const DebugText& text : debugText)
 		{
-			posAndScale.y = text.myY;
-			myTextData.SetupBuffers(text.myString, myFont);
+			CU::Vector2<int> size = myTextData.SetupBuffers(text.myString, myFont);
+			posAndScale.y -= size.y + 2.f;
+
+			CU::Math::Round(posAndScale.x);
+			CU::Math::Round(posAndScale.y);
+
 			myQuadRenderer.RenderText(&myTextData, aCamera, *this, posAndScale);
 		}
 

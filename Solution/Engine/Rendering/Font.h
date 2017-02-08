@@ -28,15 +28,20 @@ namespace Magma
 	class Font
 	{
 	public:
+		Font();
 		void LoadFromFile(const CU::String& aFilePath, AssetContainer& aAssetContainer);
 
 		const CharData& GetCharData(char aCharacter) const;
 		Texture* GetTexture() { return myTexture; }
+
+		float GetScale() const { return myScale; }
+		void SetScale(float aScale) { myScale = aScale; }
 
 	private:
 
 		CU::Map<char, CharData> myCharacters;
 		CharData myEmptyCharData;
 		Texture* myTexture;
+		float myScale;
 	};
 }

@@ -22,7 +22,9 @@ Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 
 	finalPosition = mul(finalPosition, Projection);
 
-	finalPosition.xy -= 1;
+	finalPosition.x -= 1;
+	finalPosition.y += 1;
+	//finalPosition.xy -= 1;
 
 	Pixel_Quad output = (Pixel_Quad)0;
 	output.Pos = finalPosition;

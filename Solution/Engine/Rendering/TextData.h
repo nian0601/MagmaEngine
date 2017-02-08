@@ -18,7 +18,7 @@ namespace Magma
 		~TextData();
 
 		void Init(EffectID aEffectID, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
-		void SetupBuffers(const CU::String& aString, Font* aFont);
+		CU::Vector2<int> SetupBuffers(const CU::String& aString, Font* aFont);
 
 		GPUData* GetGPUData() { return myGPUData; }
 		EffectID GetEffectID() { return myEffectID; }

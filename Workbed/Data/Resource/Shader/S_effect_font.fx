@@ -9,7 +9,7 @@ static const float OUTLINE_MIN_VALUE1 = 0.4;
 static const float OUTLINE_MAX_VALUE0 = 0.6;
 static const float OUTLINE_MAX_VALUE1 = 0.7;
 static const float4 OUTLINE_COLOR = {0.f, 0.f, 0.f, 1.f};
-static const bool USE_OUTLINE = false;
+static const bool USE_OUTLINE = true;
 
 static const float SMOOTHING = 1.0/32.0;
 
@@ -18,18 +18,16 @@ Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 	float4 finalPosition = aInput.Pos;
 
 	/*
+
 	finalPosition.xy *= size;
 	finalPosition.xy += size;
 	finalPosition.xy -= hotspot;
-
 	
 	*/
 
 	finalPosition.xy *= PositionAndScale.zw;
 	finalPosition.xy += PositionAndScale.xy;
-	//finalPosition.x -= 50;
-	//finalPosition.y -= 40;
-	finalPosition.xy *= 0.3;
+
 	finalPosition = mul(finalPosition, Projection);
 
 	finalPosition.x -= 1;

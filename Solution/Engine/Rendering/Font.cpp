@@ -51,6 +51,13 @@ namespace Magma
 	}
 
 
+	Font::Font()
+		: myTexture(nullptr)
+		, myScale(0.33f)
+	{
+
+	}
+
 	void Font::LoadFromFile(const CU::String& aFilePath, AssetContainer& aAssetContainer)
 	{
 		CU::String texturePath = aFilePath;

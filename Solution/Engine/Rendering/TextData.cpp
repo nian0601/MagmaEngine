@@ -33,7 +33,7 @@ namespace Magma
 
 	}
 
-	void TextData::SetupBuffers(const CU::String& aString, Font* aFont)
+	CU::Vector2<int> TextData::SetupBuffers(const CU::String& aString, Font* aFont)
 	{
 		myFont = aFont;
 
@@ -41,6 +41,7 @@ namespace Magma
 		float drawX = 0;
 		float drawY = 0;
 		float z = 1.f;
+		float height = 0.f;
 
 		CU::GrowingArray<VertexPosUV> vertices(16);
 		CU::GrowingArray<int> indices(16);
@@ -49,12 +50,19 @@ namespace Magma
 		for (int i = 0; i < numOfLetters; ++i)
 		{
 			CharData charData = aFont->GetCharData(aString[i]);
+			if (charData.myHeight > height)
+				height = charData.myHeight;
+
 
 			float left = drawX + charData.myXOffset;
 			float right = left + charData.myWidth;
-			float top = -100 + drawY + charData.myYOffset;
+			float top = drawY + charData.myYOffset;
 			float bottom = top - charData.myHeight;
 
+			left = static_cast<float>(static_cast<int>(left + 0.5f));
+			right = static_cast<float>(static_cast<int>(right + 0.5f));
+			top = static_cast<float>(static_cast<int>(top + 0.5f));
+			bottom = static_cast<float>(static_cast<int>(bottom + 0.5f));
 
 			vert.myPos = CU::Vector3<float>(left, top, z);
 			vert.myUV = charData.myTopLeftUV;
@@ -90,5 +98,7 @@ namespace Magma
 		myGPUData->UpdateBuffers(indices.Size(), reinterpret_cast<char*>(&indices[0])
 			, vertices.Size(), sizeof(VertexPosUV), reinterpret_cast<char*>(&vertices[0])
 			, *myGPUContext);
+
+		return CU::Vector2<int>(static_cast<int>((drawX + 0.5f) * aFont->GetScale()), static_cast<int>((drawY + 0.5f + height) * aFont->GetScale()));
 	}
 }
