@@ -85,7 +85,7 @@ namespace Magma
 				CU::InputWrapper::GetInstance()->Update();
 				myAssetContainer->FlushFileWatcher();
 
-				float deltaTime = myTimerManager->GetMasterTimer().GetTime().GetFrameTime();
+				float deltaTime = myTimerManager->GetFrameTime();
 				windowTitle = "FPS: ";
 				windowTitle += static_cast<int>(1.f / deltaTime);
 				DebugDrawer::GetInstance()->AddDebugText(windowTitle);
