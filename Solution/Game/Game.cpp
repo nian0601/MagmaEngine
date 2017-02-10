@@ -17,6 +17,8 @@
 
 #include "EntityFactory.h"
 
+#include <DebugDrawer.h>
+
 Game::Game()
 {
 }

@@ -12,7 +12,7 @@
 #include "GPUContext.h"
 #include "GPUData.h"
 
-#include "../Debugging/DebugDrawer.h"
+#include "DebugDrawer.h"
 #include "Font.h"
 
 #include "MathHelper.h"

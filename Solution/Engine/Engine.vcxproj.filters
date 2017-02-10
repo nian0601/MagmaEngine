@@ -64,9 +64,6 @@
     <ClInclude Include="Text.h">
       <Filter>Rendering\Text</Filter>
     </ClInclude>
-    <ClInclude Include="Backbuffer.h">
-      <Filter>Rendering\Structs</Filter>
-    </ClInclude>
     <ClInclude Include="GfxStructs.h">
       <Filter>Rendering\Structs</Filter>
     </ClInclude>
@@ -82,26 +79,14 @@
     <ClInclude Include="PointLight.h">
       <Filter>Rendering\Lights</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX.h">
-      <Filter>Rendering\GPUContext</Filter>
-    </ClInclude>
     <ClInclude Include="GPUContext.h">
       <Filter>Rendering\GPUContext</Filter>
-    </ClInclude>
-    <ClInclude Include="DeferredRenderer.h">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClInclude>
     <ClInclude Include="GBuffer.h">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClInclude>
     <ClInclude Include="QuadRenderer.h">
       <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetContainer.h">
-      <Filter>Rendering\AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>Rendering\AssetManagement</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Rendering\AssetManagement</Filter>
@@ -124,9 +109,6 @@
     <ClInclude Include="FBX\GeometryUtility.h">
       <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="LodStructs.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -139,8 +121,23 @@
     <ClInclude Include="Types.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-	<ClInclude Include="Debugging\DebugDrawer.h">
+    <ClInclude Include="DebugDrawer.h">
       <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetContainer.h">
+      <Filter>Rendering\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredRenderer.h">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX.h">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Rendering\AssetManagement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -185,26 +182,14 @@
     <ClCompile Include="PointLight.cpp">
       <Filter>Rendering\Lights</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX.cpp">
-      <Filter>Rendering\GPUContext</Filter>
-    </ClCompile>
     <ClCompile Include="GPUContext.cpp">
       <Filter>Rendering\GPUContext</Filter>
-    </ClCompile>
-    <ClCompile Include="DeferredRenderer.cpp">
-      <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GBuffer.cpp">
       <Filter>Rendering\Fullscreen Rendering</Filter>
     </ClCompile>
     <ClCompile Include="QuadRenderer.cpp">
       <Filter>Rendering\Fullscreen Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetContainer.cpp">
-      <Filter>Rendering\AssetManagement</Filter>
-    </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Rendering\AssetManagement</Filter>
@@ -224,17 +209,29 @@
     <ClCompile Include="FBX\GeometryUtility.cxx">
       <Filter>Rendering\AssetManagement\ModelLoaders\FBXFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="RendererProxy.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Debugging\DebugDrawer.cpp">
+    <ClCompile Include="DebugDrawer.cpp">
       <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetContainer.cpp">
+      <Filter>Rendering\AssetManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="DeferredRenderer.cpp">
+      <Filter>Rendering\Fullscreen Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX.cpp">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

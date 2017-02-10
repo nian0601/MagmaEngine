@@ -12,7 +12,7 @@
 #include <TimerManager.h>
 #include "WindowHandler.h"
 
-#include "Debugging/DebugDrawer.h"
+#include "DebugDrawer.h"
 
 namespace Magma
 {
@@ -86,13 +86,11 @@ namespace Magma
 				myAssetContainer->FlushFileWatcher();
 
 				float deltaTime = myTimerManager->GetFrameTime();
-				windowTitle = "FPS: ";
-				windowTitle += static_cast<int>(1.f / deltaTime);
-				DebugDrawer::GetInstance()->AddDebugText(windowTitle);
 
-				windowTitle = "DT: ";
-				windowTitle += deltaTime * 1000.f;
-				DebugDrawer::GetInstance()->AddDebugText(windowTitle);
+				FPS = static_cast<int>(1.f / deltaTime);
+				DT = deltaTime * 1000.f;
+				DEBUG_PRINT(FPS);
+				DEBUG_PRINT(DT);
 
 				
 				myIsRunning = myGame.Update(deltaTime);
