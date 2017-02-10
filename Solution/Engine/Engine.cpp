@@ -13,6 +13,7 @@
 #include "WindowHandler.h"
 
 #include "DebugDrawer.h"
+#include "Profiler.h"
 
 namespace Magma
 {
@@ -55,6 +56,7 @@ namespace Magma
 		SAFE_DELETE(myAssetContainer);
 		SAFE_DELETE(myGPUContext);
 		SAFE_DELETE(myWindowHandler);
+		Profiler::Destroy();
 		DebugDrawer::GetInstance()->Destroy();
 		DL_Debug::Debug::Destroy();
 		CU::InputWrapper::Destroy();
@@ -94,6 +96,7 @@ namespace Magma
 
 				
 				myIsRunning = myGame.Update(deltaTime);
+				Profiler::GetInstance()->Render(*myRendererProxy);
 
 				myDeferredRenderer->Render(*myCamera);
 				myRenderer->RenderSprites(*myCamera);

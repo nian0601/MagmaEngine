@@ -26,4 +26,13 @@ namespace Magma
 		myRenderer.AddSpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, aPositionAndScale);
 	}
 
+	void RendererProxy::RenderText(const CU::String& aString, const CU::Vector2<float>& aPosition)
+	{
+		myRenderer.AddTextCommand(aString, aPosition);
+	}
+
+	void RendererProxy::RenderText(Font* aFont, const CU::String& aString, const CU::Vector2<float>& aPosition)
+	{
+		myRenderer.AddTextCommand(aFont, aString, aPosition);
+	}
 }

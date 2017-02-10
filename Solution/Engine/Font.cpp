@@ -54,6 +54,7 @@ namespace Magma
 	Font::Font()
 		: myTexture(nullptr)
 		, myScale(0.33f)
+		, myMaxHeight(0.f)
 	{
 
 	}
@@ -81,6 +82,9 @@ namespace Magma
 			CharData data;
 			data.LoadFromLine(line, textureSize);
 			myCharacters[data.myID] = data;
+
+			if (data.myHeight > myMaxHeight)
+				myMaxHeight = data.myHeight;
 		}
 
 		

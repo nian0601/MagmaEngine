@@ -12,6 +12,7 @@
 
 #include "TextData.h"
 #include "Font.h"
+#include "..\CommonUtilities\MathHelper.h"
 
 namespace Magma
 {
@@ -51,6 +52,10 @@ namespace Magma
 		mySizeAndHotSpotVariable = myAssetContainer.CreateEffectVariableID("SizeAndHotSpot");
 		myPosAndScaleVarible = myAssetContainer.CreateEffectVariableID("PositionAndScale");
 		myAlbedoTextureVariable = myAssetContainer.CreateEffectVariableID("AlbedoTexture");
+
+		myFont = myAssetContainer.LoadFont("Data/Resource/Font/Font.png");
+		myFontEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_font.fx");
+		myTextData.Init(myFontEffect, myGPUContext, myAssetContainer);
 	}
 
 
@@ -65,6 +70,16 @@ namespace Magma
 		flippedPosAndScale.y *= -1.f;
 
 		mySpriteCommands.Add(SpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, flippedPosAndScale));
+	}
+
+	void QuadRenderer::AddTextCommand(const CU::String& aString, const CU::Vector2<float>& aPosition)
+	{
+		myTextCommands.Add(TextCommand(myFont, aString, aPosition));
+	}
+
+	void QuadRenderer::AddTextCommand(Font* aFont, const CU::String& aString, const CU::Vector2<float>& aPosition)
+	{
+		myTextCommands.Add(TextCommand(aFont, aString, aPosition));
 	}
 
 	void QuadRenderer::Activate()
@@ -99,6 +114,27 @@ namespace Magma
 		mySpriteCommands.RemoveAll();
 	}
 
+	void QuadRenderer::RenderTexts(const Camera& aCamera, Renderer& aRenderer)
+	{
+		CU::Vector4<float> posAndScale(1.f, 1.f, 1.f, 1.f);
+		
+		for (const TextCommand& text : myTextCommands)
+		{
+			posAndScale.x = text.myPosition.x;
+			posAndScale.y = -text.myPosition.y;
+			posAndScale.z = text.myFont->GetScale();
+			posAndScale.w = text.myFont->GetScale();
+
+			CU::Math::Round(posAndScale.x);
+			CU::Math::Round(posAndScale.y);
+
+			myTextData.SetupBuffers(text.myString, text.myFont);
+			RenderText(&myTextData, aCamera, aRenderer, posAndScale);
+		}
+
+		myTextCommands.RemoveAll();
+	}
+
 	void QuadRenderer::Render(EffectID aEffect, const CU::String& aTechnique)
 	{
 		ID3D11DeviceContext* context = myGPUContext.GetContext();
@@ -125,6 +161,11 @@ namespace Magma
 		aRenderer.SetBlendState(ALPHA_BLEND);
 		aRenderer.RenderGPUData(*someTextData->GetGPUData());
 		aRenderer.SetBlendState(NO_BLEND);
+	}
+
+	float QuadRenderer::GetTextHeight() const
+	{
+		return myFont->GetMaxHeight();
 	}
 
 }

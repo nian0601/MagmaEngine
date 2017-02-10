@@ -95,6 +95,8 @@ void Game::Init(Magma::Engine& aEngine)
 
 bool Game::Update(float aDelta)
 {
+	PROFILE_FUNCTION;
+
 	CU::InputWrapper* input = CU::InputWrapper::GetInstance();
 
 	if (input->KeyIsPressed(DIK_ESCAPE))

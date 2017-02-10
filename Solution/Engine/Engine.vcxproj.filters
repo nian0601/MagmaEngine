@@ -139,6 +139,10 @@
     <ClInclude Include="Effect.h">
       <Filter>Rendering\AssetManagement</Filter>
     </ClInclude>
+    <ClInclude Include="Profiler.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfilerInclude.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -233,6 +237,10 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Rendering\AssetManagement</Filter>
     </ClCompile>
+    <ClCompile Include="Profiler.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfilerInclude.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompile">

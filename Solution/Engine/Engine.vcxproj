@@ -131,6 +131,8 @@
     <ClInclude Include="NodeGraph.h" />
     <ClInclude Include="NodePinData.h" />
     <ClInclude Include="PointLight.h" />
+    <ClInclude Include="Profiler.h" />
+    <ClInclude Include="ProfilerInclude.h" />
     <ClInclude Include="QuadRenderer.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererProxy.h" />
@@ -166,6 +168,8 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeGraph.cpp" />
     <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="Profiler.cpp" />
+    <ClCompile Include="ProfilerInclude.cpp" />
     <ClCompile Include="QuadRenderer.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RendererProxy.cpp" />

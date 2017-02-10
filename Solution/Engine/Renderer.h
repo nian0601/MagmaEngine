@@ -61,6 +61,8 @@ namespace Magma
 			, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale);
 		void AddSpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
 			, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale);
+		void AddTextCommand(const CU::String& aString, const CU::Vector2<float>& aPosition);
+		void AddTextCommand(Font* aFont, const CU::String& aString, const CU::Vector2<float>& aPosition);
 		void RenderModels(const Camera& aCamera);
 		void RenderSprites(const Camera& aCamera);
 		void RenderText(const Camera& aCamera);
@@ -148,9 +150,5 @@ namespace Magma
 			Magma::EffectID myEffectID;
 		};
 		CU::GrowingArray<ModelCommand> myModelCommands;
-
-		Font* myFont;
-		EffectID myFontEffect;
-		TextData myTextData;
 	};
 }

@@ -37,11 +37,14 @@ namespace Magma
 		float GetScale() const { return myScale; }
 		void SetScale(float aScale) { myScale = aScale; }
 
+		float GetMaxHeight() const { return myMaxHeight * GetScale(); }
+
 	private:
 
 		CU::Map<char, CharData> myCharacters;
 		CharData myEmptyCharData;
 		Texture* myTexture;
 		float myScale;
+		float myMaxHeight;
 	};
 }

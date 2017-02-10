@@ -34,10 +34,6 @@ namespace Magma
 
 		SetBlendState(NO_BLEND);
 
-		myFont = myAssetContainer.LoadFont("Data/Resource/Font/Font.png");
-		myFontEffect = myAssetContainer.LoadEffect("Data/Resource/Shader/S_effect_font.fx");
-		myTextData.Init(myFontEffect, myGPUContext, myAssetContainer);
-
 		myAssetContainer.ourReloadShadersCallback = std::bind(&Renderer::ClearShaderVariables, this, std::placeholders::_1);
 	}
 
@@ -57,6 +53,16 @@ namespace Magma
 		, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale)
 	{
 		myQuadRenderer.AddSpriteCommand(aTexture, aOrientation, aSizeAndHotSpot, aPositionAndScale);
+	}
+
+	void Renderer::AddTextCommand(const CU::String& aString, const CU::Vector2<float>& aPosition)
+	{
+		myQuadRenderer.AddTextCommand(aString, aPosition);
+	}
+
+	void Renderer::AddTextCommand(Font* aFont, const CU::String& aString, const CU::Vector2<float>& aPosition)
+	{
+		myQuadRenderer.AddTextCommand(aFont, aString, aPosition);
 	}
 
 	void Renderer::RenderModels(const Camera& aCamera)
@@ -84,23 +90,18 @@ namespace Magma
 	{
 		const CU::GrowingArray<DebugText>& debugText = DebugDrawer::GetInstance()->GetDebugTexts();
 
-		CU::Vector4<float> posAndScale(1.f, 1.f, 1.f, 1.f);
-		posAndScale.x = DEBUG_TEXT_X;
-		posAndScale.y = -DEBUG_TEXT_Y;
-		posAndScale.z = myFont->GetScale();
-		posAndScale.w = myFont->GetScale();
+		CU::Vector2<float> pos(1.f, 1.f);
+		pos.x = DEBUG_TEXT_X;
+		pos.y = DEBUG_TEXT_Y;
 
 		for (const DebugText& text : debugText)
 		{
-			CU::Vector2<int> size = myTextData.SetupBuffers(text.myString, myFont);
-			posAndScale.y -= size.y + 2.f;
+			pos.y += myQuadRenderer.GetTextHeight() + 2.f;
 
-			CU::Math::Round(posAndScale.x);
-			CU::Math::Round(posAndScale.y);
-
-			myQuadRenderer.RenderText(&myTextData, aCamera, *this, posAndScale);
+			myQuadRenderer.AddTextCommand(text.myString, pos);
 		}
 
+		myQuadRenderer.RenderTexts(aCamera, *this);
 	}
 
 	void Renderer::SetEffect(EffectID aEffect)
