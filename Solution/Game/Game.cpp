@@ -42,26 +42,11 @@ void Game::Init(Magma::Engine& aEngine)
 
 	myEntities.Init(128);
 
-	CU::Vector2<float> worldOffset = { 128.f, 128.f };
-
 	for (int x = 0; x < 10; ++x)
 	{
 		for (int y = 0; y < 10; ++y)
 		{
-			Entity* entity = new Entity();
-
-			SpriteComponent* sprite = entity->AddComponent<SpriteComponent>();
-			sprite->Init(*myAssetContainer, "Data/Resource/Texture/T_ground.dds", { 32.f, 32.f });
-
-			CU::Vector2<float> pos;
-			pos.x = x * (32.f);
-			pos.y = y * (32.f);
-
-			pos += worldOffset;
-
-			entity->SetPosition(pos);
-
-			myEntities.Add(entity);
+			myEntities.Add(EntityFactory::CreateGroundEntity(x, y));
 		}
 	}
 

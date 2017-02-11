@@ -16,7 +16,7 @@ SpriteComponent::~SpriteComponent()
 }
 
 void SpriteComponent::Init(Magma::AssetContainer& anAssetContainer, const CU::String& aFilePath, const CU::Vector2<float>& aSize
-	, const CU::Vector2<float>& aScale, const CU::Vector2<float>& aHotSpot)
+	, const CU::Vector2<float>& aScale /*= CU::Vector2<float>(1.f, 1.f)*/, const CU::Vector2<float>& aHotSpot /*= CU::Vector2<float>(0.f, 0.f)*/)
 {
 	mySizeAndHotSpot.x = aSize.x;
 	mySizeAndHotSpot.y = aSize.y;

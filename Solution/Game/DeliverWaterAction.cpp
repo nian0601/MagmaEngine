@@ -35,6 +35,9 @@ bool DeliverWaterAction::Update(float aDelta)
 
 bool DeliverWaterAction::CheckDynamicCondition()
 {
+	if (!myStockpileToDeliverTo)
+		return false;
+
 	StockpileComponent* stockpile = myStockpileToDeliverTo->GetComponent<StockpileComponent>();
 	if (!stockpile)
 		return false;

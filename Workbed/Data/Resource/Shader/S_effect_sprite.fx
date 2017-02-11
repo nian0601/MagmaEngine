@@ -13,18 +13,29 @@ Pixel_Quad VertexShader_Sprite(Vertex_Quad aInput)
 
 	float4 finalPosition = aInput.Pos;
 
+	
+	//Sprite is 1x1 PX, so scale it up to match the size
 	finalPosition.xy *= size;
-	finalPosition.xy += size;
+
+	//Offset it based on size, so that 0,0 is topleft
+	finalPosition.x += size.x;
+	finalPosition.y -= size.y;
+
+	//Do Hotspot-adjustments
 	finalPosition.xy -= hotspot;
 
+	//Do extra scaling
 	finalPosition.xy *= scale;
-	finalPosition.xy += position;
 
+	//Finally move it
+	finalPosition.xy += position;
+	
+	//Into screenspace
 	finalPosition = mul(finalPosition, Projection);
 
+	//Fixing coordinates, so that 0,0 is topleft
 	finalPosition.x -= 1;
 	finalPosition.y += 1;
-	//finalPosition.xy -= 1;
 
 	Pixel_Quad output = (Pixel_Quad)0;
 	output.Pos = finalPosition;

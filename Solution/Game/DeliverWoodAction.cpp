@@ -35,6 +35,9 @@ bool DeliverWoodAction::Update(float aDelta)
 
 bool DeliverWoodAction::CheckDynamicCondition()
 {
+	if (!myStockpileToDeliverTo)
+		return false;
+
 	StockpileComponent* stockpile = myStockpileToDeliverTo->GetComponent<StockpileComponent>();
 	if (!stockpile)
 		return false;

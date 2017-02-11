@@ -35,6 +35,9 @@ GOAPPlan* GOAPPlanner::CreatePlan(const CU::GrowingArray<GOAPAction*>& someAvail
 	delete firstNode;
 	firstNode = nullptr;
 
+	if (planActions.Size() == 0)
+		return nullptr;
+
 	return new GOAPPlan(planActions);
 }
 
