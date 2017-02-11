@@ -1,7 +1,9 @@
 #include "stdafx.h"
+
+#include "AssetContainer.h"
+#include "Font.h"
 #include "Profiler.h"
 #include "RendererProxy.h"
-
 
 namespace Magma
 {
@@ -21,6 +23,11 @@ namespace Magma
 	}
 
 	
+	void Profiler::Init(AssetContainer& aAssetContainer)
+	{
+		myFont = aAssetContainer.LoadFont("Data/Resource/Font/Font.png");
+	}
+
 	void Profiler::AddEntry(const CU::String& aText, float aDuration)
 	{
 		myEntries.Add({ aText, aDuration });
@@ -28,19 +35,23 @@ namespace Magma
 
 	void Profiler::Render(RendererProxy& aRendererProxy)
 	{
-		if (myEntries.Size() > 0)
+		float y = myFont->GetMaxHeight();
+		for (const ProfilerEntry& entry : myEntries)
 		{
-			CU::String output(myEntries[0].myText);
+			CU::String output(entry.myText);
 			output += ": ";
-			output += myEntries[0].myDuration;
+			output += entry.myDuration;
 
-			aRendererProxy.RenderText(output, { 512.f, 512.f });
+			aRendererProxy.RenderText(myFont, output, { 512.f, y });
+
+			y += myFont->GetMaxHeight();
 		}
 
 		myEntries.RemoveAll();
 	}
 
 	Profiler::Profiler()
+		: myFont(nullptr)
 	{
 	}
 

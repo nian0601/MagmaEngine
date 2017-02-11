@@ -9,3 +9,4 @@
 #include <Matrix.h>
 
 #include "Entity/Include/CustomEntityTypes.h"
+#include "ProfilerInclude.h"

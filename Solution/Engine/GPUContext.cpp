@@ -19,6 +19,7 @@ namespace Magma
 
 	void GPUContext::FinishFrame()
 	{
+		PROFILE_FUNCTION;
 		myDirectX->FinishFrame();
 	}
 

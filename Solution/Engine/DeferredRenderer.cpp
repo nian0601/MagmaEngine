@@ -31,6 +31,8 @@ namespace Magma
 
 	void DeferredRenderer::Render(const Camera& aCamera)
 	{
+		PROFILE_FUNCTION;
+
 		RenderToGBuffer(aCamera);
 		RenderAmbientPass(aCamera);
 		//RenderPointLights(aScene);

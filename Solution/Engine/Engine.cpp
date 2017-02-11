@@ -41,7 +41,7 @@ namespace Magma
 			| DISCL_FOREGROUND, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
 
 		DebugDrawer::GetInstance();
-
+		Profiler::GetInstance()->Init(*myAssetContainer);
 		myGame.Init(*this);		
 	}
 

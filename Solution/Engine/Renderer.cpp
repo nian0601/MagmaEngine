@@ -83,11 +83,13 @@ namespace Magma
 
 	void Renderer::RenderSprites(const Camera& aCamera)
 	{
+		PROFILE_FUNCTION;
 		myQuadRenderer.RenderSprites(aCamera, *this);
 	}
 
 	void Renderer::RenderText(const Camera& aCamera)
 	{
+		PROFILE_FUNCTION;
 		const CU::GrowingArray<DebugText>& debugText = DebugDrawer::GetInstance()->GetDebugTexts();
 
 		CU::Vector2<float> pos(1.f, 1.f);

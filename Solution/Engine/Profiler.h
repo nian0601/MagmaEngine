@@ -2,6 +2,8 @@
 
 namespace Magma
 {
+	class AssetContainer;
+	class Font;
 	class RendererProxy;
 	class Profiler
 	{
@@ -9,6 +11,8 @@ namespace Magma
 
 		static Profiler* GetInstance();
 		static void Destroy();
+
+		void Init(AssetContainer& aAssetContainer);
 
 		void AddEntry(const CU::String& aText, float aDuration);
 
@@ -27,7 +31,7 @@ namespace Magma
 		};
 
 		CU::GrowingArray<ProfilerEntry> myEntries;
-
+		Font* myFont;
 
 		Profiler();
 		~Profiler();
