@@ -1,6 +1,10 @@
 #pragma once
 
+#include "Profiler.h"
+
 #define PROFILE_FUNCTION Magma::ProfilerInclude __profilerInclude__(__FUNCTION__)
+#define PROFILE_START(aText) Magma::Profiler::GetInstance()->StartEntry(aText)
+#define PROFILE_END Magma::Profiler::GetInstance()->EndEntry()
 
 namespace Magma
 {
@@ -9,10 +13,5 @@ namespace Magma
 	public:
 		ProfilerInclude(const char* aString);
 		~ProfilerInclude();
-
-	private:
-		unsigned long long myStartTime;
-		unsigned long long myFrequency;
-		const char* myString;
 	};
 }

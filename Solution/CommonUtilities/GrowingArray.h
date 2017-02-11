@@ -417,14 +417,12 @@ namespace CU
 	GA_TEMPLATE
 	inline void GA_TYPE::RemoveAll()
 	{
-		DL_ASSERT_EXP(myIsInit == true, locGrowingArray_ErrorStrings[NOT_INITIALIZED]);
 		myCurrentSize = 0;
 	}
 
 	GA_TEMPLATE
 	inline void GA_TYPE::DeleteAll()
 	{
-		DL_ASSERT_EXP(myIsInit == true, locGrowingArray_ErrorStrings[NOT_INITIALIZED]);
 		for (SizeType i = 0; i < myCurrentSize; ++i)
 		{
 			delete myData[i];

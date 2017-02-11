@@ -104,11 +104,13 @@ bool Game::Update(float aDelta)
 		return false;
 	}
 
+	PROFILE_START("Entity Update");
 	for each (Entity* entity in myEntities)
 	{
-		//entity->Update(aDelta);
+		entity->Update(aDelta);
 		entity->Render(*myRendererProxy);
 	}
+	PROFILE_END;
 
 	mySpawnTimer -= aDelta;
 	if (mySpawnTimer <= 0.f)

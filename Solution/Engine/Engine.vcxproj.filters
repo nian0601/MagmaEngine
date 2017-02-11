@@ -142,7 +142,9 @@
     <ClInclude Include="Profiler.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="ProfilerInclude.h" />
+    <ClInclude Include="ProfilerInclude.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -240,7 +242,9 @@
     <ClCompile Include="Profiler.cpp">
       <Filter>Debugging</Filter>
     </ClCompile>
-    <ClCompile Include="ProfilerInclude.cpp" />
+    <ClCompile Include="ProfilerInclude.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompile">

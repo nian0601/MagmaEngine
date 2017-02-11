@@ -98,10 +98,14 @@ namespace Magma
 				myIsRunning = myGame.Update(deltaTime);
 				Profiler::GetInstance()->Render(*myRendererProxy);
 
-				myDeferredRenderer->Render(*myCamera);
-				myRenderer->RenderSprites(*myCamera);
-				myRenderer->RenderText(*myCamera);
-				myGPUContext->FinishFrame();
+				{
+					PROFILE_FUNCTION;
+					myDeferredRenderer->Render(*myCamera);
+					myRenderer->RenderSprites(*myCamera);
+					myRenderer->RenderText(*myCamera);
+					myGPUContext->FinishFrame();
+				}
+				
 
 				DebugDrawer::GetInstance()->ClearDebugTexts();
 
