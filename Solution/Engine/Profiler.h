@@ -13,6 +13,7 @@ namespace Magma
 		static void Destroy();
 
 		void Init(AssetContainer& aAssetContainer);
+		void EndFrame();
 
 		void Render(RendererProxy& aRendererProxy);
 
@@ -22,13 +23,6 @@ namespace Magma
 	private:
 		struct ProfilerEntry
 		{
-			/*ProfilerEntry(const CU::String& aString, float aDuration)
-				: myText(aString)
-				, myDuration(aDuration)
-				, myParent(nullptr)
-			{
-				myChildren.Init(16);
-			}*/
 			ProfilerEntry()
 				: myParent(nullptr)
 			{

@@ -28,6 +28,12 @@ namespace Magma
 		myFont = aAssetContainer.LoadFont("Data/Resource/Font/Font.png");
 	}
 
+	void Profiler::EndFrame()
+	{
+		myEntries.DeleteAll();
+		myCurrentEntry = nullptr;
+	}
+
 	void Profiler::Render(RendererProxy& aRendererProxy)
 	{
 		CU::Vector2<float> drawPos;
@@ -38,9 +44,6 @@ namespace Magma
 		{
 			RenderEntry(aRendererProxy, entry, drawPos);
 		}
-
-		myEntries.DeleteAll();
-		myCurrentEntry = nullptr;
 	}
 
 	void Profiler::StartEntry(const char* aText)

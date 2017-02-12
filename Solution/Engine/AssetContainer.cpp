@@ -139,6 +139,7 @@ namespace Magma
 
 	void AssetContainer::FlushFileWatcher()
 	{
+		PROFILE_FUNCTION;
 		myFileWatcher.FlushChanges();
 	}
 

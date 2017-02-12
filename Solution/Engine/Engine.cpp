@@ -83,8 +83,13 @@ namespace Magma
 					myGame.OnResize(myWindowSize.x, myWindowSize.y);
 				}
 
+				PROFILE_START("Engine: Update");
 				myTimerManager->Update();
+
+				PROFILE_START("Input");
 				CU::InputWrapper::GetInstance()->Update();
+				PROFILE_END;
+
 				myAssetContainer->FlushFileWatcher();
 
 				float deltaTime = myTimerManager->GetFrameTime();
@@ -96,19 +101,20 @@ namespace Magma
 
 				
 				myIsRunning = myGame.Update(deltaTime);
-				Profiler::GetInstance()->Render(*myRendererProxy);
+				PROFILE_END;
 
-				{
-					PROFILE_FUNCTION;
-					myDeferredRenderer->Render(*myCamera);
-					myRenderer->RenderSprites(*myCamera);
-					myRenderer->RenderText(*myCamera);
-					myGPUContext->FinishFrame();
-				}
-				
+
+
+				PROFILE_START("Engine: Render");
+				myDeferredRenderer->Render(*myCamera);
+				myRenderer->RenderSprites(*myCamera);
+				myRenderer->RenderText(*myCamera);
+				myGPUContext->FinishFrame();
+				PROFILE_END;
+				Profiler::GetInstance()->Render(*myRendererProxy);
+				Profiler::GetInstance()->EndFrame();
 
 				DebugDrawer::GetInstance()->ClearDebugTexts();
-
 				//myTimerManager->CapFrameRate(60.f);
 			}
 		}
