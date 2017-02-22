@@ -86,3 +86,18 @@ Entity* PollingStation::FindFreeStockpile() const
 
 	return nullptr;
 }
+
+int PollingStation::GetResourceCount(eResourceType aResourceType) const
+{
+	DL_ASSERT_EXP(aResourceType > INVALID && aResourceType < _RESOURCE_COUNT, "Invalid resource type");
+
+	int count = 0;
+	for (int i = 0; i < myStockpiles.Size(); ++i)
+	{
+		StockpileComponent* pileComponent = myStockpiles[i]->GetComponent<StockpileComponent>();
+		if (pileComponent)
+			count += pileComponent->GetResourceCount(aResourceType);
+	}
+
+	return count;
+}

@@ -117,3 +117,15 @@ void StockpileComponent::RemoveResource(eResourceType aResourceType)
 
 	DL_ASSERT("Tried to remove a resource from a stockpile, but couldnt find the resource, should not happen");
 }
+
+int StockpileComponent::GetResourceCount(eResourceType aResourceType) const
+{
+	int count = 0;
+	for (const Slot& slot : mySlots)
+	{
+		if (slot.myTexture && slot.myType == aResourceType)
+			++count;
+	}
+
+	return count;
+}

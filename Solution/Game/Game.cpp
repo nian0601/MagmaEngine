@@ -75,7 +75,12 @@ void Game::Init(Magma::Engine& aEngine)
 	}
 
 	CreateWorker();
-	mySpawnTimer = 10.f;
+	CreateWorker();
+	CreateWorker();
+	CreateWorker();
+	myAssignWorkTimer = 5.f;
+	myTargetTreeCount = 3;
+	myTargetWaterCount = 5;
 }
 
 bool Game::Update(float aDelta)
@@ -97,12 +102,27 @@ bool Game::Update(float aDelta)
 	}
 	PROFILE_END;
 
-	mySpawnTimer -= aDelta;
-	if (mySpawnTimer <= 0.f)
+	myAssignWorkTimer -= aDelta;
+	if (myAssignWorkTimer <= 0.f)
 	{
-		mySpawnTimer = 10.f;
-		CreateWorker();
+		myAssignWorkTimer = 5.f;
+
+		int treeCount = PollingStation::GetInstance()->GetResourceCount(eResourceType::TREE);
+		int waterCount = PollingStation::GetInstance()->GetResourceCount(eResourceType::WATER);
+
+		GOAPGameState goalState;
+
+		if (treeCount < myTargetTreeCount)
+			goalState.SetWorldState(eWorldState::HAS_WOOD_ON_STOCKPILE, true);
+		else if (waterCount < myTargetWaterCount)
+			goalState.SetWorldState(eWorldState::HAS_WATER_ON_STOCKPILE, true);
+
+
+		if (myIdleWorkers.Size() > 0)
+			ActivateWorker(myIdleWorkers[0], goalState);
 	}
+
+	UpdateWorkerStatus();
 
 	return true;
 }
@@ -128,4 +148,29 @@ void Game::CreateWorker()
 	entity->ModifyGOAPState(entityStartState);
 
 	myEntities.Add(entity);
+	myIdleWorkers.Add(entity);
+}
+
+void Game::UpdateWorkerStatus()
+{
+	for (int i = myActiveWorkers.Size()-1; i >= 0; --i)
+	{
+		Entity* worker = myActiveWorkers[i];
+		GOAPComponent* goapComp = worker->GetComponent<GOAPComponent>();
+		if (!goapComp->HasActivePlan())
+		{
+			myIdleWorkers.Add(worker);
+			myActiveWorkers.RemoveCyclicAtIndex(i);
+		}
+	}
+}
+
+void Game::ActivateWorker(Entity* aWorker, const GOAPGameState& aGoalState)
+{
+	myIdleWorkers.RemoveCyclic(aWorker);
+	myActiveWorkers.Add(aWorker);
+
+	GOAPComponent* goapComp = aWorker->GetComponent<GOAPComponent>();
+
+	goapComp->StartPlan(aGoalState);
 }

@@ -18,9 +18,10 @@ public:
 
 	virtual void Update(float) override;
 
-private:
-	eResourceType myCurrentResourceType;
+	void StartPlan(GOAPGameState aGoalState);
+	bool HasActivePlan() const { return myPlan != nullptr; }
 
+private:
 	FiniteStateMachine* myStateMachine;
 	GOAPPlanner* myPlanner;
 	GOAPPlan* myPlan;
@@ -28,6 +29,5 @@ private:
 	CU::GrowingArray<GOAPAction*> myActions;
 
 	GOAPGameState myStartState;
-	GOAPGameState myGoalState;
 };
 

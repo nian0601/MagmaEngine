@@ -28,6 +28,8 @@ public:
 	void PlaceResource(eResourceType aResourceType);
 	void RemoveResource(eResourceType aResourceType);
 
+	int GetResourceCount(eResourceType aResourceType) const;
+
 private:
 	enum eSlotIndex
 	{

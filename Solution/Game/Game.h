@@ -12,6 +12,7 @@ namespace Magma
 
 class Entity;
 class PollingStation;
+class GOAPGameState;
 
 class Game : public Magma::IGame
 {
@@ -26,12 +27,19 @@ public:
 private:
 	void CreateWorker();
 
+	void UpdateWorkerStatus();
+	void ActivateWorker(Entity* aWorker, const GOAPGameState& aGoalState);
+
 	Magma::Camera* myCamera;
 	Magma::RendererProxy* myRendererProxy;
 	Magma::AssetContainer* myAssetContainer;
 
 	CU::GrowingArray<Entity*> myEntities;
+	CU::GrowingArray<Entity*> myActiveWorkers;
+	CU::GrowingArray<Entity*> myIdleWorkers;
 
-	float mySpawnTimer;
+	float myAssignWorkTimer;
+	int myTargetTreeCount;
+	int myTargetWaterCount;
 };
 

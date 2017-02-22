@@ -19,7 +19,10 @@ public:
 	void UnregisterStockpile(Entity* anEntity);
 
 	const CU::GrowingArray<Entity*> GetResources(eResourceType aResourceType) const;
+
 	Entity* FindFreeStockpile() const;
+
+	int GetResourceCount(eResourceType aResourceType) const;
 
 private:
 	PollingStation();
