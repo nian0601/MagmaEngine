@@ -24,6 +24,22 @@ namespace Magma
 		return myModelID[aModelPath];
 	}
 
+	Magma::ModelID AssetContainer::LoadCube(const CU::String& aEffectPath)
+	{
+		EffectID effect = LoadEffect(aEffectPath);
+
+		if (myModelID.KeyExists("SimpleCube") == false)
+		{
+			ModelData* modelData = myModelFactory->LoadCube(effect);
+
+			myModels[myNextModelID] = modelData;
+			myModelID["SimpleCube"] = myNextModelID;
+			++myNextModelID;
+		}
+
+		return myModelID["SimpleCube"];
+	}
+
 	Magma::ModelData* AssetContainer::GetModel(ModelID aID)
 	{
 		if (myModels.KeyExists(aID) == true)

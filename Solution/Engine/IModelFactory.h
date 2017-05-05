@@ -15,6 +15,7 @@ namespace Magma
 		virtual ~IModelFactory(){};
 
 		virtual ModelData* LoadModel(const CU::String& aFilePath, EffectID aEffect) = 0;
+		virtual ModelData* LoadCube(EffectID aEffect) = 0;
 
 	protected:
 		IModelFactory(){};

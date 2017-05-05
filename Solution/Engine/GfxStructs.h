@@ -67,7 +67,7 @@ namespace Magma
 
 	struct VertexPosColor
 	{
-		CU::Vector4<float> myPos;
+		CU::Vector3<float> myPos;
 		CU::Vector4<float> myCol;
 	};
 

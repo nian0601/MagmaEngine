@@ -16,6 +16,7 @@ namespace Magma
 	FBXFactory::FBXFactory(AssetContainer& aAssetContainer, GPUContext& aGPUContext)
 		: myAssetContainer(aAssetContainer)
 		, myGPUContext(aGPUContext)
+		, myCubeModelData(nullptr)
 	{
 		myLoader = new FBX::FBXLoader();
 	}
@@ -28,6 +29,7 @@ namespace Magma
 		}
 		myModels.Clear();
 
+		SAFE_DELETE(myCubeModelData);
 		SAFE_DELETE(myLoader);
 	}
 
@@ -46,6 +48,16 @@ namespace Magma
 
 		modelData->Init(aEffect, myGPUContext, myAssetContainer);
 		return modelData;
+	}
+
+	Magma::ModelData* FBXFactory::LoadCube(EffectID aEffect)
+	{
+		if (myCubeModelData)
+			return myCubeModelData;
+
+		myCubeModelData = new ModelData();
+		myCubeModelData->InitCube(aEffect, myGPUContext, myAssetContainer);
+		return myCubeModelData;
 	}
 
 	ModelData* FBXFactory::CreateModel(FBX::FbxModelData* someModelData)

@@ -31,6 +31,7 @@ namespace Magma
 		void FlushFileWatcher();
 
 		ModelID LoadModel(const CU::String& aModelPath, const CU::String& aEffectPath);
+		ModelID LoadCube(const CU::String& aEffectPath);
 		ModelData* GetModel(ModelID aID);
 
 		EffectID LoadEffect(const CU::String& aFilePath);

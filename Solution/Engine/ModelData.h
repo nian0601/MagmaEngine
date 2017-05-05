@@ -18,6 +18,7 @@ namespace Magma
 		~ModelData();
 
 		void Init(EffectID aEffectID, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
+		void InitCube(EffectID aEffectID, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void AddChild(ModelData* aModelData);
 
 	private:

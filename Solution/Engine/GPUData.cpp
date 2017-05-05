@@ -86,6 +86,132 @@ namespace Magma
 		myTechniqueName = "Render";
 	}
 
+	void GPUData::InitCube(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
+	{
+#pragma region Vertices
+		CU::GrowingArray<VertexPosColor> vertices;
+		vertices.Init(24);
+
+		float size = 10.f;
+		float halfWidth = size / 2.f;
+		float halfHeight = size / 2.f;
+		float halfDepth = size / 2.f;
+		CU::Vector4<float> aColour(1.f, 1.f, 1.f, 1.f);
+
+		//0 - 3 (Top)
+		vertices.Add({ { -halfWidth, halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { halfWidth, halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { halfWidth, halfHeight, halfDepth }, aColour });
+		vertices.Add({ { -halfWidth, halfHeight, halfDepth }, aColour });
+
+		//4 - 7 (Bottom)
+		vertices.Add({ { -halfWidth, -halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { halfWidth, -halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { halfWidth, -halfHeight, halfDepth }, aColour });
+		vertices.Add({ { -halfWidth, -halfHeight, halfDepth }, aColour });
+
+		//8 - 11 (Left)
+		vertices.Add({ { -halfWidth, -halfHeight, halfDepth }, aColour });
+		vertices.Add({ { -halfWidth, -halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { -halfWidth, halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { -halfWidth, halfHeight, halfDepth }, aColour });
+
+		//12 - 15 (Right)
+		vertices.Add({ { halfWidth, -halfHeight, halfDepth }, aColour });
+		vertices.Add({ { halfWidth, -halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { halfWidth, halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { halfWidth, halfHeight, halfDepth }, aColour });
+
+		//16 - 19 (Front)
+		vertices.Add({ { -halfWidth, -halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { halfWidth, -halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { halfWidth, halfHeight, -halfDepth }, aColour });
+		vertices.Add({ { -halfWidth, halfHeight, -halfDepth }, aColour });
+
+		//20 - 23 (Back)
+		vertices.Add({ { -halfWidth, -halfHeight, halfDepth }, aColour });
+		vertices.Add({ { halfWidth, -halfHeight, halfDepth }, aColour });
+		vertices.Add({ { halfWidth, halfHeight, halfDepth }, aColour });
+		vertices.Add({ { -halfWidth, halfHeight, halfDepth }, aColour });
+#pragma endregion
+
+#pragma region Indices
+
+		CU::GrowingArray<int> indices(24);
+		//Top
+		indices.Add(3);
+		indices.Add(1);
+		indices.Add(0);
+
+		indices.Add(2);
+		indices.Add(1);
+		indices.Add(3);
+
+		//Bottom
+		indices.Add(6);
+		indices.Add(4);
+		indices.Add(5);
+
+		indices.Add(7);
+		indices.Add(4);
+		indices.Add(6);
+
+		//Left
+		indices.Add(11);
+		indices.Add(9);
+		indices.Add(8);
+
+		indices.Add(10);
+		indices.Add(9);
+		indices.Add(11);
+
+		//Right
+		indices.Add(14);
+		indices.Add(12);
+		indices.Add(13);
+
+		indices.Add(15);
+		indices.Add(12);
+		indices.Add(14);
+
+		//Front
+		indices.Add(19);
+		indices.Add(17);
+		indices.Add(16);
+
+		indices.Add(18);
+		indices.Add(17);
+		indices.Add(19);
+
+		//Back
+		indices.Add(22);
+		indices.Add(20);
+		indices.Add(21);
+
+		indices.Add(23);
+		indices.Add(20);
+		indices.Add(22);
+
+#pragma endregion
+
+		SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		AddInputElement(new D3D11_INPUT_ELEMENT_DESC({ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }));
+		AddInputElement(new D3D11_INPUT_ELEMENT_DESC({ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }));
+
+		int indexCount = indices.Size();
+		int vertexCount = vertices.Size();
+		int vertexStride = sizeof(VertexPosColor);
+		Init(aEffect, indexCount, reinterpret_cast<char*>(&indices[0]), vertexCount
+			, vertexStride, reinterpret_cast<char*>(&vertices[0]), aGPUContext, aAssetContainer);
+
+		myIndexData = new IndexData();
+		myVertexData = new VertexData();
+
+		myIndexData->myNumberOfIndices = indexCount;
+		myVertexData->myNumberOfVertices = vertexCount;
+		myVertexData->myStride = vertexStride;
+	}
+
 	void GPUData::InitWithoutBufferSetup(EffectID aEffect, int aVertexStride, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
 	{
 		const int size = myVertexFormat.Size();

@@ -32,6 +32,13 @@ namespace Magma
 		}
 	}
 
+	void ModelData::InitCube(EffectID aEffectID, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
+	{
+		myGPUData = new GPUData();
+		myGPUData->InitCube(aEffectID, aGPUContext, aAssetContainer);
+		myIsNullObject = false;
+	}
+
 	void ModelData::AddChild(ModelData* aModelData)
 	{
 		myChildren.Add(aModelData);

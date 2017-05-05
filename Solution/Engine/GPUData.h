@@ -30,6 +30,7 @@ namespace Magma
 		void Init(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void Init(EffectID aEffect, int aIndexCount, char* aIndexData
 			, int aVertexCount, int aVertexStride, char* aVertexData, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
+		void InitCube(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void InitWithoutBufferSetup(EffectID aEffect, int aVertexStride, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void SetTopology(int aTopology);
 		void AddInputElement(D3D11_INPUT_ELEMENT_DESC* aElement);

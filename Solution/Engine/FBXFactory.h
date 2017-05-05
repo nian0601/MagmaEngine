@@ -31,6 +31,7 @@ namespace Magma
 		~FBXFactory();
 
 		ModelData* LoadModel(const CU::String& aFilePath, EffectID aEffect) override;
+		ModelData* LoadCube(EffectID aEffect) override;
 		
 	private:
 		void operator=(FBXFactory&) = delete;
@@ -43,5 +44,6 @@ namespace Magma
 
 		FBX::FBXLoader *myLoader;
 		CU::Map<CU::String, ModelData*> myModels;
+		ModelData* myCubeModelData;
 	};
 }

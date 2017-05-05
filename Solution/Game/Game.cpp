@@ -112,14 +112,16 @@ bool Game::Update(float aDelta)
 
 		GOAPGameState goalState;
 
-		if (treeCount < myTargetTreeCount)
-			goalState.SetWorldState(eWorldState::HAS_WOOD_ON_STOCKPILE, true);
-		else if (waterCount < myTargetWaterCount)
-			goalState.SetWorldState(eWorldState::HAS_WATER_ON_STOCKPILE, true);
-
-
+		
 		if (myIdleWorkers.Size() > 0)
+		{
+			if (treeCount < myTargetTreeCount)
+				goalState.SetWorldState(eWorldState::HAS_WOOD_ON_STOCKPILE, true);
+			else if (waterCount < myTargetWaterCount)
+				goalState.SetWorldState(eWorldState::HAS_WATER_ON_STOCKPILE, true);
+
 			ActivateWorker(myIdleWorkers[0], goalState);
+		}
 	}
 
 	UpdateWorkerStatus();
