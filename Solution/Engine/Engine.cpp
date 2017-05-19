@@ -88,7 +88,7 @@ namespace Magma
 
 				PROFILE_START("Input");
 				CU::InputWrapper::GetInstance()->Update();
-				PROFILE_END;
+				PROFILE_END();
 
 				myAssetContainer->FlushFileWatcher();
 
@@ -101,16 +101,23 @@ namespace Magma
 
 				
 				myIsRunning = myGame.Update(deltaTime);
-				PROFILE_END;
 
+				PROFILE_START("Sleeping");
+				Sleep(10);
+				PROFILE_END();
 
+				PROFILE_START("Sleeping");
+				Sleep(10);
+				PROFILE_END();
+
+				PROFILE_END();
 
 				PROFILE_START("Engine: Render");
 				myDeferredRenderer->Render(*myCamera);
 				myRenderer->RenderSprites(*myCamera);
 				myRenderer->RenderText(*myCamera);
 				myGPUContext->FinishFrame();
-				PROFILE_END;
+				PROFILE_END();
 				Profiler::GetInstance()->Render(*myRendererProxy);
 				Profiler::GetInstance()->EndFrame();
 

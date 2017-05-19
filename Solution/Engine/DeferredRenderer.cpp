@@ -35,7 +35,7 @@ namespace Magma
 
 		RenderToGBuffer(aCamera);
 		RenderAmbientPass(aCamera);
-		//RenderPointLights(aScene);
+		//RenderPointLights(aCamera);
 	}
 
 	void DeferredRenderer::Resize(float aWidth, float aHeight)

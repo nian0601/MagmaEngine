@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A3325650-09E3-4A3A-8159-FC1620B5FEC1}</ProjectGuid>
     <RootNamespace>Application</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,14 +43,14 @@
     <OutDir>$(SolutionDir)..\Workbed\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\3DGame;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)..\Workbed\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\3DGame;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -82,9 +83,6 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\3DGame\3DGame.vcxproj">
-      <Project>{82f3aa60-4b84-42d8-9fc6-8258ce21b747}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\CommonUtilities\CommonUtilities.vcxproj">
       <Project>{32412318-0112-4dce-87c5-86ca64df6630}</Project>
     </ProjectReference>

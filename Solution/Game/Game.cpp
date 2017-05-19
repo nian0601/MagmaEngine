@@ -100,7 +100,7 @@ bool Game::Update(float aDelta)
 		entity->Update(aDelta);
 		entity->Render(*myRendererProxy);
 	}
-	PROFILE_END;
+	PROFILE_END();
 
 	myAssignWorkTimer -= aDelta;
 	if (myAssignWorkTimer <= 0.f)

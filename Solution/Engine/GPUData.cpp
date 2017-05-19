@@ -92,7 +92,7 @@ namespace Magma
 		CU::GrowingArray<VertexPosColor> vertices;
 		vertices.Init(24);
 
-		float size = 10.f;
+		float size = 1.f;
 		float halfWidth = size / 2.f;
 		float halfHeight = size / 2.f;
 		float halfDepth = size / 2.f;

@@ -25,6 +25,8 @@ namespace Magma
 		{
 			ProfilerEntry()
 				: myParent(nullptr)
+				, myDuration(0.f)
+				, myCount(0)
 			{
 			}
 			~ProfilerEntry()
@@ -35,6 +37,7 @@ namespace Magma
 			CU::String myText;
 			float myDuration;
 			unsigned long long myStartTime;
+			int myCount;
 
 			ProfilerEntry* myParent;
 			CU::GrowingArray<ProfilerEntry*> myChildren;
@@ -42,7 +45,11 @@ namespace Magma
 
 		void RenderEntry(RendererProxy& aRendererProxy, const ProfilerEntry* aEntry, CU::Vector2<float>& aDrawPos);
 
-		CU::GrowingArray<ProfilerEntry*> myEntries;
+		typedef CU::GrowingArray<ProfilerEntry*> EntryArray;
+		//CU::GrowingArray<ProfilerEntry*> myEntries;
+		EntryArray myEntries[2];
+		//CU::StaticArray<EntryArray, 2> myEntries;
+		int myActiveArrayIndex;
 		ProfilerEntry* myCurrentEntry;
 		Font* myFont;
 

@@ -62,7 +62,7 @@ namespace Magma
 
 	void DirectX::FinishFrame()
 	{
-		mySwapChain->Present(1, 0);
+		mySwapChain->Present(0, 0);
 		myContext->ClearRenderTargetView(myBackbufferTarget, myClearColor);
 		myContext->ClearDepthStencilView(myDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 	}
@@ -105,7 +105,7 @@ namespace Magma
 		swapDesc.BufferCount = 1;
 		swapDesc.BufferDesc.Width = int(aScreenSize.x);
 		swapDesc.BufferDesc.Height = int(aScreenSize.y);
-		swapDesc.BufferDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+		swapDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 		swapDesc.BufferDesc.RefreshRate.Numerator = numerator;
 		swapDesc.BufferDesc.RefreshRate.Denominator = denominator;
 		swapDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT | DXGI_USAGE_SHADER_INPUT;

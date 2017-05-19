@@ -11,8 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonUtilities", "CommonUt
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Application", "Application\Application.vcxproj", "{A3325650-09E3-4A3A-8159-FC1620B5FEC1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3DGame", "3DGame\3DGame.vcxproj", "{82F3AA60-4B84-42D8-9FC6-8258CE21B747}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		DataExporter|Win32 = DataExporter|Win32
@@ -53,14 +51,6 @@ Global
 		{A3325650-09E3-4A3A-8159-FC1620B5FEC1}.Internal|Win32.Build.0 = Release|Win32
 		{A3325650-09E3-4A3A-8159-FC1620B5FEC1}.Release|Win32.ActiveCfg = Release|Win32
 		{A3325650-09E3-4A3A-8159-FC1620B5FEC1}.Release|Win32.Build.0 = Release|Win32
-		{82F3AA60-4B84-42D8-9FC6-8258CE21B747}.DataExporter|Win32.ActiveCfg = Debug|Win32
-		{82F3AA60-4B84-42D8-9FC6-8258CE21B747}.DataExporter|Win32.Build.0 = Debug|Win32
-		{82F3AA60-4B84-42D8-9FC6-8258CE21B747}.Debug|Win32.ActiveCfg = Debug|Win32
-		{82F3AA60-4B84-42D8-9FC6-8258CE21B747}.Debug|Win32.Build.0 = Debug|Win32
-		{82F3AA60-4B84-42D8-9FC6-8258CE21B747}.Internal|Win32.ActiveCfg = Release|Win32
-		{82F3AA60-4B84-42D8-9FC6-8258CE21B747}.Internal|Win32.Build.0 = Release|Win32
-		{82F3AA60-4B84-42D8-9FC6-8258CE21B747}.Release|Win32.ActiveCfg = Release|Win32
-		{82F3AA60-4B84-42D8-9FC6-8258CE21B747}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

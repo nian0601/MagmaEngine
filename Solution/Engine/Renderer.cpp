@@ -457,6 +457,7 @@ namespace Magma
 		if (myEffectVariablesIds.KeyExists(aEffectID))
 		{
 			myEffectVariablesIds[aEffectID].Clear();
+			myEffectVariables[aEffectID].Clear();
 		}
 	}
 

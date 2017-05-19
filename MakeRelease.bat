@@ -1,7 +1,7 @@
-rd /s /q Release
+rd /s /q Engine
 
-xcopy /e Solution\Engine\*.h Release\Include\
-del Release\Include\stdafx.h
+xcopy /e Solution\Engine\*.h Engine\Include\
+del Engine\Include\stdafx.h
 
-xcopy Libs\Engine_Debug.lib Release\Lib\
-xcopy Libs\Engine_Release.lib Release\Lib\
+xcopy Libs\Engine_Debug.lib Engine\Lib\
+xcopy Libs\Engine_Release.lib Engine\Lib\
