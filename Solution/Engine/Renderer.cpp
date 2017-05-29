@@ -43,9 +43,9 @@ namespace Magma
 	}
 
 	void Renderer::AddModelCommand(ModelID aModelID, EffectID aEffectID
-		, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale)
+		, const CU::Matrix44<float>& aOrientation, const CU::Vector4<float>& aColor, const CU::Vector3<float>& aScale)
 	{
-		myModelCommands.Add(ModelCommand(aModelID, aEffectID, aOrientation, aScale));
+		myModelCommands.Add(ModelCommand(aModelID, aEffectID, aOrientation, aColor, aScale));
 	}
 
 
@@ -67,6 +67,8 @@ namespace Magma
 
 	void Renderer::RenderModels(const Camera& aCamera)
 	{
+		PROFILE_FUNCTION;
+
 		for each (const ModelCommand& command in myModelCommands)
 		{
 			SetEffect(command.myEffectID);
@@ -74,6 +76,7 @@ namespace Magma
 			SetMatrix("World", command.myOrientation);
 			SetVector("CameraPosition", aCamera.GetPosition());
 			SetVector("Scale", command.myScale);
+			SetVector("Color", command.myColor);
 
 			RenderModel(command.myModelID);
 		}
@@ -314,6 +317,8 @@ namespace Magma
 
 	void Renderer::RenderGPUData(const GPUData& someData)
 	{
+		PROFILE_FUNCTION;
+
 		ID3D11DeviceContext* context = myGPUContext.GetContext();
 
 		const unsigned int byteOffset = 0;

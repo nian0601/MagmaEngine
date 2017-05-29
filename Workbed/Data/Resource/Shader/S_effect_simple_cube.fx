@@ -16,7 +16,7 @@ Pixel_ColoredCube VertexShader_SimpleCube(Vertex_ColoredCube aInput)
 GBuffer PixelShader_SimpleCube(Pixel_ColoredCube aInput) : SV_Target
 {
 	//float4 AlbedoColor = aInput.Color;
-	float4 AlbedoColor = float4(1.f, 1.f, 1.f, 1.f);
+	float4 AlbedoColor = Color;
 	//float4 AlbedoColor = float4(norm, 1.f);
 	float4 AmbientOcclusion = 0.f;
 	float Metalness = 1.f;

@@ -9,6 +9,7 @@ namespace CU
 	{
 	public:
 		Vector3();
+		Vector3(T aValue);
 		Vector3(T aX, T aY, T aZ);
 		~Vector3();
 

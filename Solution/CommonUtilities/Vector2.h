@@ -14,18 +14,18 @@ namespace CU
 	}
 
 	template <typename T>
+	Vector2<T>::Vector2(T aValue)
+	{
+		x = aValue;
+		y = aValue;
+	}
+
+	template <typename T>
 	Vector2<T>::Vector2(T aX, T aY)
 	{
 		x = aX;
 		y = aY;
 	}
-
-	//template <typename T>
-	//Vector2<T>::Vector2(Vector3<T> aVector3)
-	//{
-	//	x = aVector3.x;
-	//	y = aVector3.y;
-	//}
 
 	template <typename T>
 	Vector2<T>::~Vector2()

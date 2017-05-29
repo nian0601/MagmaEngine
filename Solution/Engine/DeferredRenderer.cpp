@@ -45,6 +45,8 @@ namespace Magma
 
 	void DeferredRenderer::RenderToGBuffer(const Camera& aCamera)
 	{
+		PROFILE_FUNCTION;
+
 		myRenderer.SetDepthStencilState(ENABLED);
 		myRenderer.SetRasterizerState(CULL_BACK);
 

@@ -58,7 +58,7 @@ namespace Magma
 		~Renderer();
 
 		void AddModelCommand(ModelID myModelID, EffectID aEffectID
-			, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale);
+			, const CU::Matrix44<float>& aOrientation, const CU::Vector4<float>& aColor, const CU::Vector3<float>& aScale);
 		void AddSpriteCommand(Texture* aTexture, const CU::Matrix44<float>& aOrientation
 			, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale);
 		void AddTextCommand(const CU::String& aString, const CU::Vector2<float>& aPosition);
@@ -138,13 +138,15 @@ namespace Magma
 			ModelCommand()
 			{}
 			ModelCommand(ModelID aModelID, EffectID aEffectID
-				, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale)
+				, const CU::Matrix44<float>& aOrientation, const CU::Vector4<float>& aColor, const CU::Vector3<float>& aScale)
 				: myModelID(aModelID)
 				, myEffectID(aEffectID)
 				, myOrientation(aOrientation)
+				, myColor(aColor)
 				, myScale(aScale)
 			{}
 			CU::Matrix44<float> myOrientation;
+			CU::Vector4<float> myColor;
 			CU::Vector3<float> myScale;
 			Magma::ModelID myModelID;
 			Magma::EffectID myEffectID;

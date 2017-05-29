@@ -43,14 +43,14 @@
     <OutDir>$(SolutionDir)..\Workbed\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\RTS_Game;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)..\Workbed\</OutDir>
     <IntDir>$(SolutionDir)..\temp\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\Game;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonUtilities;$(SolutionDir)\Engine;$(SolutionDir)\RTS_Game;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\Libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -91,6 +91,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Game\Game.vcxproj">
       <Project>{d19e4f72-cade-4aed-8ef1-835407517fc0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\RTS_Game\RTS_Game.vcxproj">
+      <Project>{1638b359-f7e7-415b-81cb-8bf7131e6fd0}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

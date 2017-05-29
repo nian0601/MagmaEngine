@@ -4,6 +4,7 @@
 #include "Font.h"
 #include "Profiler.h"
 #include "RendererProxy.h"
+#include <InputWrapper.h>
 
 namespace Magma
 {
@@ -36,6 +37,50 @@ namespace Magma
 		myCurrentEntry = nullptr;
 	}
 
+	void Profiler::UpdateInput()
+	{
+		if (mySelectedEntry == nullptr)
+			return;
+
+		CU::InputWrapper* inputWrapper = CU::InputWrapper::GetInstance();
+
+		enum eDirection
+		{
+			NONE,
+			UP,
+			DOWN,
+			LEFT,
+			RIGHT
+		};
+		eDirection direction = NONE;
+
+		if (inputWrapper->KeyDown(DIK_UPARROW))
+			direction = UP;
+		else if (inputWrapper->KeyDown(DIK_DOWNARROW))
+			direction = DOWN;
+		else if (inputWrapper->KeyDown(DIK_LEFTARROW))
+			direction = LEFT;
+		else if (inputWrapper->KeyDown(DIK_RIGHTARROW))
+			direction = RIGHT;
+
+		if (direction == UP || direction == DOWN)
+		{
+			EntryArray& parentArray = mySelectedEntry->myParent == nullptr ? myEntries[myActiveArrayIndex] : mySelectedEntry->myChildren;
+			int currentIndex = parentArray.Find(mySelectedEntry);
+
+			if (direction == UP)
+				currentIndex = max(0, currentIndex - 1);
+			else if (direction == DOWN)
+				currentIndex = min(parentArray.Size() - 1, currentIndex + 1);
+
+			mySelectedEntry = parentArray[currentIndex];
+		}
+		else if (direction == LEFT || direction == RIGHT)
+		{
+
+		}
+	}
+
 	void Profiler::Render(RendererProxy& aRendererProxy)
 	{
 		PROFILE_FUNCTION;
@@ -63,12 +108,19 @@ namespace Magma
 		else
 		{
 			ProfilerEntry* existingEntry = nullptr;
-			for (ProfilerEntry* entry : myCurrentEntry->myChildren)
+			if (myCurrentEntry->myText == aText)
 			{
-				if (entry->myText == aText)
+				existingEntry = myCurrentEntry;
+			}
+			else
+			{
+				for (ProfilerEntry* entry : myCurrentEntry->myChildren)
 				{
-					existingEntry = entry;
-					break;
+					if (entry->myText == aText)
+					{
+						existingEntry = entry;
+						break;
+					}
 				}
 			}
 
@@ -89,6 +141,9 @@ namespace Magma
 		QueryPerformanceCounter(&largeInteger);
 		myCurrentEntry->myStartTime = largeInteger.QuadPart * 1000000 / myFrequency;
 		myCurrentEntry->myText = aText;
+
+		if (!mySelectedEntry)
+			mySelectedEntry = myCurrentEntry;
 	}
 
 	void Profiler::EndEntry()

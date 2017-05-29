@@ -9,8 +9,8 @@ namespace CU
 	{
 	public:
 		Vector2();
+		Vector2(T aValue);
 		Vector2(T aX, T aY);
-		//Vector2(Vector3<T> aVector);
 		~Vector2();
 
 		Vector2<T> operator-()

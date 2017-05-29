@@ -1,25 +1,11 @@
 struct Vertex_ColoredCube
 {
 	float4 Position : POSITION;
-	float4 Color : COLOR;
 };
 
 struct Pixel_ColoredCube
 {
 	float4 Position : SV_POSITION;
-	float4 Color : COLOR0;
-};
-
-struct Vertex_ColoredCube_Normal
-{
-	float4 Position : POSITION;
-	float3 Normal : NORMAL;
-};
-
-struct Pixel_ColoredCube_Normal
-{
-	float4 Position : SV_POSITION;
-	float3 Normal : NORMAL;
 };
 
 

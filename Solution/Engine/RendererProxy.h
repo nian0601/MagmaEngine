@@ -14,7 +14,7 @@ namespace Magma
 		~RendererProxy();
 
 		void RenderModel(ModelID aModelID, EffectID aEffectID
-			, const CU::Matrix44<float>& aOrientation, const CU::Vector3<float>& aScale = CU::Vector3<float>());
+			, const CU::Matrix44<float>& aOrientation, const CU::Vector4<float>& aColor = CU::Vector4<float>(1.f), const CU::Vector3<float>& aScale = CU::Vector3<float>());
 		void RenderSprite(Texture* aTexture, const CU::Matrix44<float>& aOrientation
 			, const CU::Vector4<float>& aSizeAndHotSpot, const CU::Vector4<float>& aPositionAndScale);
 		void RenderText(const CU::String& aString, const CU::Vector2<float>& aPosition);

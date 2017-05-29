@@ -18,6 +18,15 @@ namespace CU
 	}
 
 	template <typename T>
+	Vector4<T>::Vector4(T aValue)
+	{
+		x = aValue;
+		y = aValue;
+		z = aValue;
+		w = aValue;
+	}
+
+	template <typename T>
 	Vector4<T>::Vector4(T aX, T aY, T aZ, T aW)
 	{
 		x = aX;
