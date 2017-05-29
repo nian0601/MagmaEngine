@@ -16,6 +16,9 @@ namespace Magma
 		void Move(const CU::Vector3<float>& aMoveAmount);
 		void Rotate(const CU::Matrix44<float>& aRotation);
 
+		void RotateX(float aRadian);
+		void RotateY(float aRadian);
+		void RotateZ(float aRadian);
 
 		const CU::Matrix44<float>& GetView() const;
 		const CU::Matrix44<float>& GetNotInvertedView() const;

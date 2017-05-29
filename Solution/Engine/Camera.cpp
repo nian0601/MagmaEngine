@@ -48,4 +48,19 @@ namespace Magma
 		myIsDirty = true;
 	}
 
+	void Camera::RotateX(float aRadian)
+	{
+		Rotate(CU::Matrix44<float>::CreateRotateAroundX(aRadian));
+	}
+
+	void Camera::RotateY(float aRadian)
+	{
+		Rotate(CU::Matrix44<float>::CreateRotateAroundY(aRadian));
+	}
+
+	void Camera::RotateZ(float aRadian)
+	{
+		Rotate(CU::Matrix44<float>::CreateRotateAroundZ(aRadian));
+	}
+
 }
