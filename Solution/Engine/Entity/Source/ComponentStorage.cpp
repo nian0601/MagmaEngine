@@ -84,4 +84,13 @@ namespace Magma
 
 		return myEntitiesToReturn;
 	}
+
+	bool ComponentStorage::GetEntityComponentArray(Entity aEntity, EntityComponentArray& outArray) const
+	{
+		if (myEntityComponents.Size() <= aEntity)
+			return false;
+
+		outArray = myEntityComponents[aEntity];
+		return true;
+	}
 }

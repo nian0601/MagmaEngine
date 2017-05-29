@@ -46,6 +46,18 @@
       <Filter>Precompile</Filter>
     </ClCompile>
     <ClCompile Include="RTS_Game.cpp" />
+    <ClCompile Include="AABBComponent.cpp">
+      <Filter>Entity\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AABBProcessor.cpp">
+      <Filter>Entity\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectedComponent.cpp">
+      <Filter>Entity\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectedProcessor.cpp">
+      <Filter>Entity\Processors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputComponent.h">
@@ -82,5 +94,17 @@
       <Filter>Precompile</Filter>
     </ClInclude>
     <ClInclude Include="RTS_Game.h" />
+    <ClInclude Include="AABBComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AABBProcessor.h">
+      <Filter>Entity\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectedComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectedProcessor.h">
+      <Filter>Entity\Processors</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

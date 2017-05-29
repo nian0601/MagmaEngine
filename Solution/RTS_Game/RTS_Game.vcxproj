@@ -77,12 +77,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AABBComponent.cpp" />
+    <ClCompile Include="AABBProcessor.cpp" />
     <ClCompile Include="RTS_Game.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="PostMaster.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="RenderProcessor.cpp" />
+    <ClCompile Include="SelectedComponent.cpp" />
+    <ClCompile Include="SelectedProcessor.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -91,6 +95,8 @@
     <ClCompile Include="TranslationComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AABBComponent.h" />
+    <ClInclude Include="AABBProcessor.h" />
     <ClInclude Include="RTS_Game.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputProcessor.h" />
@@ -100,6 +106,8 @@
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="RenderMessage.h" />
     <ClInclude Include="RenderProcessor.h" />
+    <ClInclude Include="SelectedComponent.h" />
+    <ClInclude Include="SelectedProcessor.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Subscriber.h" />
     <ClInclude Include="TranslationComponent.h" />

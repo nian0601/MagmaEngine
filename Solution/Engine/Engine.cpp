@@ -117,7 +117,7 @@ namespace Magma
 					PROFILE_END();
 				}
 
-				Profiler::GetInstance()->Render(*myRendererProxy);
+				//Profiler::GetInstance()->Render(*myRendererProxy);
 				Profiler::GetInstance()->EndFrame();
 
 				DebugDrawer::GetInstance()->ClearDebugTexts();

@@ -25,6 +25,8 @@ namespace Magma
 
 		const CU::GrowingArray<Entity>& GetEntities(const ComponentFilter& aFilter);
 
+		bool GetEntityComponentArray(Entity aEntity, EntityComponentArray& outArray) const;
+
 	private:
 		CU::GrowingArray<ComponentArray> myComponents;
 		CU::GrowingArray<EntityComponentArray> myEntityComponents;

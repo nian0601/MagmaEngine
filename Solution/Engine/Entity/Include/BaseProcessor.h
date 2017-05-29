@@ -25,7 +25,14 @@ namespace Magma
 		template<typename T>
 		T& GetComponent(Entity aEntity);
 
+		template<typename T>
+		bool HasComponent(Entity aEntity);
+
 		virtual void OnEvent(const Event& aEvent);
+
+		const ComponentFilter& GetComponentFilter() const { return myComponentFilter; }
+
+		virtual void EntityRemoved(Entity /*aEntity*/) {};
 
 	private:
 		void operator=(BaseProcessor&) = delete;
@@ -49,5 +56,11 @@ namespace Magma
 	T& BaseProcessor::GetComponent(Entity aEntity)
 	{
 		return myWorld.GetComponent<T>(aEntity);
+	}
+
+	template<typename T>
+	bool BaseProcessor::HasComponent(Entity aEntity)
+	{
+		return myWorld.HasComponent<T>(aEntity);
 	}
 }

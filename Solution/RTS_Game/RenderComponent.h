@@ -10,5 +10,6 @@ public:
 
 	Magma::ModelID myModelID;
 	Magma::EffectID myEffectID;
+	CU::Vector4<float> myColor;
 };
 

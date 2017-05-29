@@ -49,4 +49,54 @@ namespace Magma
 		}
 	}
 
+	void World::ModifiedEntity(Entity aEntity, int aComponentID, bool aAddedComponent)
+	{
+		EntityComponentArray components;
+		if (!myComponentStorage->GetEntityComponentArray(aEntity, components))
+			return;
+
+
+		for each (BaseProcessor* processor in myProcessors)
+		{
+			EntityComponentArray modifiedComponents = components;
+			const ComponentFilter& filter = processor->GetComponentFilter();
+
+			bool wasRemoved = false;
+			bool wasAdded = false;
+
+			if (aAddedComponent)
+			{
+				bool matchedAfter = filter.Compare(modifiedComponents);
+				modifiedComponents[aComponentID] = -1;
+
+				bool matchedBefore = filter.Compare(modifiedComponents);
+
+				if (matchedBefore && !matchedAfter)
+					wasRemoved = true;
+
+				if (!matchedBefore && matchedAfter)
+					wasAdded = true;
+			}
+			else
+			{
+				bool matchedBefore = filter.Compare(modifiedComponents);
+				modifiedComponents[aComponentID] = -1;
+
+				bool matchedAfter = filter.Compare(modifiedComponents);
+
+				if (matchedBefore && !matchedAfter)
+					wasRemoved = true;
+
+				if (!matchedBefore && matchedAfter)
+					wasAdded = true;
+			}
+
+			if (wasRemoved)
+				processor->EntityRemoved(aEntity);
+			
+
+			
+		}
+	}
+
 }

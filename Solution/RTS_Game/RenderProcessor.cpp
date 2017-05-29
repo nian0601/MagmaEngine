@@ -25,7 +25,6 @@ void RenderProcessor::Update(float aDelta)
 		TranslationComponent& translation = GetComponent<TranslationComponent>(entity);
 		RenderComponent& render = GetComponent<RenderComponent>(entity);
 
-		CU::Vector4<float> color(0.f, 1.f, 0.f, 1.f);
-		PostMaster::GetInstance()->SendMessage(RenderMessage(translation.myOrientation, color, translation.myScale, render.myModelID, render.myEffectID));
+		PostMaster::GetInstance()->SendMessage(RenderMessage(translation.myOrientation, render.myColor, translation.myScale, render.myModelID, render.myEffectID));
 	}
 }

@@ -14,12 +14,15 @@
 #include "RenderComponent.h"
 #include "TranslationComponent.h"
 #include "InputComponent.h"
+#include "AABBComponent.h"
 
 #include <Entity/Include/TypeID.h>
 
 #include <Entity/Include/ComponentFilter.h>
 #include "RenderProcessor.h"
 #include "InputProcessor.h"
+#include "AABBProcessor.h"
+#include "SelectedProcessor.h"
 
 #include <ProfilerInclude.h>
 
@@ -40,12 +43,18 @@ void RTS_Game::Init(Magma::Engine& aEngine)
 	myCamera->Move({ 4.f, 10.f, -5.f });
 	myCamera->RotateX(PI * 0.25f);
 
+
 	myRendererProxy = &aEngine.GetRendererProxy();
 
 	LoadLevel(aEngine.GetAssetContainer());
 
 	myWorld.AddProcessor<RenderProcessor>();
 	myWorld.AddProcessor<InputProcessor>();
+
+	AABBProcessor* aabbProcessor = new AABBProcessor(myWorld, *myCamera);
+	myWorld.AddProcessor(aabbProcessor);
+
+	myWorld.AddProcessor<SelectedProcessor>();
 
 	PostMaster::GetInstance()->Subscribe(this, eMessageType::RENDER);
 }
@@ -184,10 +193,10 @@ void RTS_Game::LoadLevel(Magma::AssetContainer& aAssetContainer)
 	reader.CloseDocument();
 	*/
 
-
-	for (int z = 0; z < 10; ++z)
+	int gridSize = 20;
+	for (int z = 0; z < 20; ++z)
 	{
-		for (int x = 0; x < 10; ++x)
+		for (int x = 0; x < 20; ++x)
 		{
 			lastEntity = CreateCube(aAssetContainer, CU::Vector3<float>(x, 0.f, z));
 		}
@@ -211,6 +220,8 @@ Magma::Entity RTS_Game::CreateCube(Magma::AssetContainer& aAssetContainer, const
 	Magma::Entity entity = myWorld.CreateEntity();
 	myWorld.AddComponent<TranslationComponent>(entity);
 	myWorld.AddComponent<RenderComponent>(entity);
+	myWorld.AddComponent<AABBComponent>(entity);
+
 	TranslationComponent& comp = myWorld.GetComponent<TranslationComponent>(entity);
 	comp.myScale = scale;
 
@@ -225,6 +236,11 @@ Magma::Entity RTS_Game::CreateCube(Magma::AssetContainer& aAssetContainer, const
 	const char* cubeShader = "Data/Resource/Shader/S_effect_simple_cube.fx";
 	renderComp.myModelID = aAssetContainer.LoadCube(cubeShader);
 	renderComp.myEffectID = aAssetContainer.LoadEffect(cubeShader);
+	renderComp.myColor = CU::Vector4<float>(1.f, 1.f, 1.f, 1.f);
+
+	AABBComponent& aabbComp = myWorld.GetComponent<AABBComponent>(entity);
+	aabbComp.myAABB = CU::Intersection::AABB(position, scale);
+	//aabbComp.myAABB.Transform(comp.myOrientation);
 
 	return entity;
 }
