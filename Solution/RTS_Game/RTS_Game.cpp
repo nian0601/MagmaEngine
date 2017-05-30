@@ -20,9 +20,11 @@
 
 #include <Entity/Include/ComponentFilter.h>
 #include "RenderProcessor.h"
-#include "InputProcessor.h"
+#include "ManualMovementProcessor.h"
+#include "SelectionProcessor.h"
+#include "HighlightingProcessor.h"
 #include "AABBProcessor.h"
-#include "SelectedProcessor.h"
+#include "MovementProcessor.h"
 
 #include <ProfilerInclude.h>
 
@@ -49,12 +51,14 @@ void RTS_Game::Init(Magma::Engine& aEngine)
 	LoadLevel(aEngine.GetAssetContainer());
 
 	myWorld.AddProcessor<RenderProcessor>();
-	myWorld.AddProcessor<InputProcessor>();
+	myWorld.AddProcessor<ManualMovementProcessor>();
 
-	AABBProcessor* aabbProcessor = new AABBProcessor(myWorld, *myCamera);
-	myWorld.AddProcessor(aabbProcessor);
+	SelectionProcessor* selectionProcessor = new SelectionProcessor(myWorld, *myCamera);
+	myWorld.AddProcessor(selectionProcessor);
 
-	myWorld.AddProcessor<SelectedProcessor>();
+	myWorld.AddProcessor<HighlightingProcessor>();
+	myWorld.AddProcessor<AABBProcessor>();
+	myWorld.AddProcessor<MovementProcessor>();
 
 	PostMaster::GetInstance()->Subscribe(this, eMessageType::RENDER);
 }
@@ -79,9 +83,8 @@ bool RTS_Game::Update(float aDelta)
 	return true;
 }
 
-void RTS_Game::OnResize(float aWidth, float aHeight)
+void RTS_Game::OnResize(float /*aWidth*/, float /*aHeight*/)
 {
-	//throw std::logic_error("The method or operation is not implemented.");
 }
 
 void RTS_Game::ReceiveMessage(const RenderMessage& aMessage)
@@ -147,8 +150,6 @@ void RTS_Game::UpdateCamera(float aDelta)
 
 void RTS_Game::LoadLevel(Magma::AssetContainer& aAssetContainer)
 {
-	Magma::Entity lastEntity = 0;
-
 	/*
 	XMLReader reader;
 	reader.OpenDocument("Data/Resource/Level/Level_01.xml");
@@ -194,15 +195,13 @@ void RTS_Game::LoadLevel(Magma::AssetContainer& aAssetContainer)
 	*/
 
 	int gridSize = 20;
-	for (int z = 0; z < 20; ++z)
+	for (int z = 0; z < gridSize; ++z)
 	{
-		for (int x = 0; x < 20; ++x)
+		for (int x = 0; x < gridSize; ++x)
 		{
-			lastEntity = CreateCube(aAssetContainer, CU::Vector3<float>(x, 0.f, z));
+			CreateCube(aAssetContainer, CU::Vector3<float>(x, 0.f, z));
 		}
 	}
-
-	myWorld.AddComponent<InputComponent>(lastEntity);
 
 }
 
@@ -236,7 +235,9 @@ Magma::Entity RTS_Game::CreateCube(Magma::AssetContainer& aAssetContainer, const
 	const char* cubeShader = "Data/Resource/Shader/S_effect_simple_cube.fx";
 	renderComp.myModelID = aAssetContainer.LoadCube(cubeShader);
 	renderComp.myEffectID = aAssetContainer.LoadEffect(cubeShader);
-	renderComp.myColor = CU::Vector4<float>(1.f, 1.f, 1.f, 1.f);
+	renderComp.myColor = CU::Math::RandomVector(CU::Vector4f(0.f), CU::Vector4f(1.f));
+	renderComp.myColor.w = 1.f;
+	renderComp.myOriginalColor = renderComp.myColor;
 
 	AABBComponent& aabbComp = myWorld.GetComponent<AABBComponent>(entity);
 	aabbComp.myAABB = CU::Intersection::AABB(position, scale);

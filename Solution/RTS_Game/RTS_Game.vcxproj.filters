@@ -30,9 +30,6 @@
     <ClCompile Include="TranslationComponent.cpp">
       <Filter>Entity\Components</Filter>
     </ClCompile>
-    <ClCompile Include="InputProcessor.cpp">
-      <Filter>Entity\Processors</Filter>
-    </ClCompile>
     <ClCompile Include="RenderProcessor.cpp">
       <Filter>Entity\Processors</Filter>
     </ClCompile>
@@ -49,13 +46,25 @@
     <ClCompile Include="AABBComponent.cpp">
       <Filter>Entity\Components</Filter>
     </ClCompile>
-    <ClCompile Include="AABBProcessor.cpp">
-      <Filter>Entity\Processors</Filter>
-    </ClCompile>
     <ClCompile Include="SelectedComponent.cpp">
       <Filter>Entity\Components</Filter>
     </ClCompile>
-    <ClCompile Include="SelectedProcessor.cpp">
+    <ClCompile Include="HighlightingProcessor.cpp">
+      <Filter>Entity\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectionProcessor.cpp">
+      <Filter>Entity\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="AABBProcessor.cpp">
+      <Filter>Entity\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualMovementProcessor.cpp">
+      <Filter>Entity\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementTargetComponent.cpp">
+      <Filter>Entity\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementProcessor.cpp">
       <Filter>Entity\Processors</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,9 +77,6 @@
     </ClInclude>
     <ClInclude Include="TranslationComponent.h">
       <Filter>Entity\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="InputProcessor.h">
-      <Filter>Entity\Processors</Filter>
     </ClInclude>
     <ClInclude Include="RenderProcessor.h">
       <Filter>Entity\Processors</Filter>
@@ -97,13 +103,25 @@
     <ClInclude Include="AABBComponent.h">
       <Filter>Entity\Components</Filter>
     </ClInclude>
-    <ClInclude Include="AABBProcessor.h">
-      <Filter>Entity\Processors</Filter>
-    </ClInclude>
     <ClInclude Include="SelectedComponent.h">
       <Filter>Entity\Components</Filter>
     </ClInclude>
-    <ClInclude Include="SelectedProcessor.h">
+    <ClInclude Include="HighlightingProcessor.h">
+      <Filter>Entity\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectionProcessor.h">
+      <Filter>Entity\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="AABBProcessor.h">
+      <Filter>Entity\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualMovementProcessor.h">
+      <Filter>Entity\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementTargetComponent.h">
+      <Filter>Entity\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementProcessor.h">
       <Filter>Entity\Processors</Filter>
     </ClInclude>
   </ItemGroup>

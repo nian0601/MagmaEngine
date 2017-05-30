@@ -1,22 +1,24 @@
 #include "stdafx.h"
 
 #include "InputComponent.h"
-#include "InputProcessor.h"
+#include "ManualMovementProcessor.h"
 #include "TranslationComponent.h"
+#include "SelectedComponent.h"
+#include "MovementTargetComponent.h"
 
 #include <InputWrapper.h>
 
-InputProcessor::InputProcessor(Magma::World& aWorld)
-	: Magma::BaseProcessor(aWorld, Magma::CreateFilter<Magma::Requires<InputComponent, TranslationComponent>>())
+ManualMovementProcessor::ManualMovementProcessor(Magma::World& aWorld)
+	: Magma::BaseProcessor(aWorld, Magma::CreateFilter<Magma::Requires<MovementTargetComponent, TranslationComponent>>())
 {
 }
 
 
-InputProcessor::~InputProcessor()
+ManualMovementProcessor::~ManualMovementProcessor()
 {
 }
 
-void InputProcessor::Update(float aDelta)
+void ManualMovementProcessor::Update(float aDelta)
 {
 	CU::InputWrapper* inputWrapper = CU::InputWrapper::GetInstance();
 

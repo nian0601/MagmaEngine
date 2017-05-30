@@ -2,11 +2,11 @@
 
 #include <Entity/Include/BaseProcessor.h>
 
-class SelectedProcessor : public Magma::BaseProcessor
+class HighlightingProcessor : public Magma::BaseProcessor
 {
 public:
-	SelectedProcessor(Magma::World& aWorld);
-	~SelectedProcessor();
+	HighlightingProcessor(Magma::World& aWorld);
+	~HighlightingProcessor();
 
 	void Update(float aDelta) override;
 	void EntityRemoved(Magma::Entity aEntity) override;
