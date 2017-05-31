@@ -51,7 +51,7 @@ Release/
 *.DS_store
 
 *.dds
-
+*.fbx
 *.lib
 /UnityProject/Easy3D-Project/Library
 /UnityProject/Easy3D-Project/Temp
