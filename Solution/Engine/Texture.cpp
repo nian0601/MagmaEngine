@@ -69,7 +69,7 @@ namespace Magma
 
 		ID3D11Texture2D* tex2D = nullptr;
 		hr = resource->QueryInterface(&tex2D);
-		DL_ASSERT_EXP(SUCCEEDED(hr), "Failed to get size of texture %s", myFilePath.c_str());
+		DL_ASSERT_EXP(SUCCEEDED(hr), CU::Concatenate("Failed to get size of texture %s", myFilePath.c_str()));
 
 		D3D11_TEXTURE2D_DESC desc;
 		tex2D->GetDesc(&desc);

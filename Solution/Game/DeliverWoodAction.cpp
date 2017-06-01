@@ -23,10 +23,10 @@ void DeliverWoodAction::Init()
 	myStockpileToDeliverTo = PollingStation::GetInstance()->FindFreeStockpile();
 }
 
-bool DeliverWoodAction::Update(float aDelta)
+bool DeliverWoodAction::Update(float /*aDelta*/)
 {
 	StockpileComponent* stockpile = myStockpileToDeliverTo->GetComponent<StockpileComponent>();
-	DL_ASSERT_EXP(stockpile, "Tried to Deliver Wood to a non-stockpile entity");
+	DL_ASSERT_EXP(stockpile != nullptr, "Tried to Deliver Wood to a non-stockpile entity");
 
 	stockpile->PlaceResource(TREE);
 

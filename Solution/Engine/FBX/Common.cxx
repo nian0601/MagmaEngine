@@ -115,7 +115,7 @@ bool LoadScene(FbxManager* pManager, FbxDocument* pScene, const char* pFilename)
     int lFileMajor, lFileMinor, lFileRevision;
     int lSDKMajor,  lSDKMinor,  lSDKRevision;
     //int lFileFormat = -1;
-    int i, lAnimStackCount;
+    int lAnimStackCount;
     bool lStatus;
     char lPassword[1024];
 

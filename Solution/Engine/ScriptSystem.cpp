@@ -62,12 +62,13 @@ namespace Magma
 		if (lua_isnil(myCurrentState, -1))
 		{
 			int apa = 5;
+			++apa;
 		}
 
 		lua_pcall(myCurrentState, 0, 0, 0);
 	}
 
-	void ScriptSystem::GetArgFromLua(int aIndex, char* aString)
+	void ScriptSystem::GetArgFromLua(int /*aIndex*/, char* /*aString*/)
 	{
 		//aString = lua_tostring(myCurrentState, aIndex);
 	}
@@ -84,7 +85,11 @@ namespace Magma
 
 	void ScriptSystem::GetArgFromLua(int aIndex, bool& aBool)
 	{
-		aBool = static_cast<bool>(lua_toboolean(myCurrentState, aIndex));
+		int result = lua_toboolean(myCurrentState, aIndex);
+		if (result == 0)
+			aBool = false;
+		else
+			aBool = true;
 	}
 
 	void ScriptSystem::CheckError(int aErrorCode)

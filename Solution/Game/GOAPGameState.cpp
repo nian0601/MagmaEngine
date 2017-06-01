@@ -35,7 +35,7 @@ void GOAPGameState::SetEntityState(const GOAPGameState& aGOAPState)
 void GOAPGameState::ResetEntityState(eEntityState aState)
 {
 	char& stateStatus = InternalGetState(aState);
-	stateStatus = 0.f;
+	stateStatus = 0;
 }
 
 bool GOAPGameState::GetEntityState(eEntityState aState) const
@@ -77,7 +77,7 @@ void GOAPGameState::SetWorldState(const GOAPGameState& aGOAPState)
 void GOAPGameState::ResetWorldState(eWorldState aState)
 {
 	char& stateStatus = InternalGetState(aState);
-	stateStatus = 0.f;
+	stateStatus = 0;
 }
 
 bool GOAPGameState::GetWorldState(eWorldState aState) const

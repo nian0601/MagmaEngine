@@ -36,7 +36,7 @@ namespace Magma
 
 	void ComponentStorage::AddComponent(Entity aEntity, BaseComponent* aComponent, unsigned int aComponentID)
 	{
-		DL_ASSERT_EXP(myEntityComponents.Size() > aEntity, "Invalid Entity-ID");
+		DL_ASSERT_EXP(myEntityComponents.Size() > static_cast<int>(aEntity), "Invalid Entity-ID");
 		DL_ASSERT_EXP(myEntityComponents[aEntity][aComponentID] == -1, "Tried to add a component twice");
 
 		myComponents[aComponentID].Add(aComponent);
@@ -63,7 +63,7 @@ namespace Magma
 
 	bool ComponentStorage::HasComponent(Entity aEntity, unsigned int aComponentID)
 	{
-		if (myEntityComponents.Size() <= aEntity)
+		if (myEntityComponents.Size() <= static_cast<int>(aEntity))
 		{
 			return false;
 		}
@@ -87,7 +87,7 @@ namespace Magma
 
 	bool ComponentStorage::GetEntityComponentArray(Entity aEntity, EntityComponentArray& outArray) const
 	{
-		if (myEntityComponents.Size() <= aEntity)
+		if (myEntityComponents.Size() <= static_cast<int>(aEntity))
 			return false;
 
 		outArray = myEntityComponents[aEntity];

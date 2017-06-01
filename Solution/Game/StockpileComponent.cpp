@@ -96,7 +96,7 @@ void StockpileComponent::PlaceResource(eResourceType aResourceType)
 		{
 			slot.myTexture = myResourceTextures[aResourceType];
 			slot.myType = aResourceType;
-			DL_ASSERT_EXP(slot.myTexture, "Found an uninitialized resourcetexture");
+			DL_ASSERT_EXP(slot.myTexture != nullptr, "Found an uninitialized resourcetexture");
 			return;
 		}
 	}

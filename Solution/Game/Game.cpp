@@ -129,7 +129,7 @@ bool Game::Update(float aDelta)
 	return true;
 }
 
-void Game::OnResize(float aWidth, float aHeight)
+void Game::OnResize(float /*aWidth*/, float /*aHeight*/)
 {
 	//throw std::logic_error("The method or operation is not implemented.");
 }

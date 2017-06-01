@@ -51,7 +51,7 @@ namespace Magma
 		{
 			CharData charData = aFont->GetCharData(aString[i]);
 			if (charData.myHeight > height)
-				height = charData.myHeight;
+				height = static_cast<float>(charData.myHeight);
 
 
 			float left = drawX + charData.myXOffset;

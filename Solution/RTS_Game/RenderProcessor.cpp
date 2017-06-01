@@ -17,7 +17,7 @@ RenderProcessor::~RenderProcessor()
 {
 }
 
-void RenderProcessor::Update(float aDelta)
+void RenderProcessor::Update(float /*aDelta*/)
 {
 	CU::GrowingArray<Magma::Entity> entities = GetEntities();
 	for each (const Magma::Entity& entity in entities)

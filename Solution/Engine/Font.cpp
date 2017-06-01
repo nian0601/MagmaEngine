@@ -29,8 +29,8 @@ namespace Magma
 		myYOffset = static_cast<float>(atof(yoffset.c_str()));
 		myXAdvance = static_cast<float>(atof(xadvance.c_str()));
 
-		myTopLeftUV.x = myX;
-		myTopLeftUV.y = myY;
+		myTopLeftUV.x = static_cast<float>(myX);
+		myTopLeftUV.y = static_cast<float>(myY);
 		myBottomRightUV.x = myTopLeftUV.x + myWidth;
 		myBottomRightUV.y = myTopLeftUV.y + myHeight;
 
@@ -76,7 +76,6 @@ namespace Magma
 		std::getline(stream, line); //first line is just the name of the font, dont care
 		std::getline(stream, line); //the second like is the number of characers in the file ("chars count=191"), dont care
 
-		int counter = 0;
 		while (std::getline(stream, line))
 		{
 			CharData data;
@@ -84,7 +83,7 @@ namespace Magma
 			myCharacters[data.myID] = data;
 
 			if (data.myHeight > myMaxHeight)
-				myMaxHeight = data.myHeight;
+				myMaxHeight = static_cast<float>(data.myHeight);
 		}
 
 		

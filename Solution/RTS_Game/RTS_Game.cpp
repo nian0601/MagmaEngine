@@ -204,7 +204,7 @@ void RTS_Game::LoadLevel(Magma::AssetContainer& aAssetContainer)
 	{
 		for (int x = 0; x < gridSize; ++x)
 		{
-			CreateCube(aAssetContainer, CU::Vector3<float>(x, 0.f, z));
+			CreateCube(aAssetContainer, CU::Vector3<float>(static_cast<float>(x), 0.f, static_cast<float>(z)));
 		}
 	}
 

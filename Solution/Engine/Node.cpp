@@ -8,7 +8,7 @@ namespace Magma
 	Node::Node()
 		: myGraph(nullptr)
 		, myIsInitNode(false)
-		, myUID(-1)
+		, myUID(static_cast<unsigned long long>(-1))
 		, myFileName("not set")
 	{
 	}
@@ -22,7 +22,7 @@ namespace Magma
 		tinyxml2::XMLElement* nameElement = aReader.ForceFindFirstChild(aNodeElement, "Name");
 		tinyxml2::XMLElement* uidElement = aReader.ForceFindFirstChild(aNodeElement, "UID");
 		tinyxml2::XMLElement* filePathElement = aReader.ForceFindFirstChild(aNodeElement, "FilePath");
-		tinyxml2::XMLElement* connectionsElement = aReader.ForceFindFirstChild(aNodeElement, "Connections");
+		//tinyxml2::XMLElement* connectionsElement = aReader.ForceFindFirstChild(aNodeElement, "Connections");
 
 
 		myUID = std::atoll(uidElement->GetText());

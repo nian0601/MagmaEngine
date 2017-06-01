@@ -14,7 +14,7 @@ HighlightingProcessor::~HighlightingProcessor()
 {
 }
 
-void HighlightingProcessor::Update(float aDelta)
+void HighlightingProcessor::Update(float /*aDelta*/)
 {
 	CU::GrowingArray<Magma::Entity> entities = GetEntities();
 	for each (const Magma::Entity& entity in entities)

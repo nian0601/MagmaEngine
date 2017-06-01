@@ -23,10 +23,10 @@ void DeliverWaterAction::Init()
 	myStockpileToDeliverTo = PollingStation::GetInstance()->FindFreeStockpile();
 }
 
-bool DeliverWaterAction::Update(float aDelta)
+bool DeliverWaterAction::Update(float /*aDelta*/)
 {
 	StockpileComponent* stockpile = myStockpileToDeliverTo->GetComponent<StockpileComponent>();
-	DL_ASSERT_EXP(stockpile, "Tried to Deliver Water to a non-stockpile entity");
+	DL_ASSERT_EXP(stockpile != nullptr, "Tried to Deliver Water to a non-stockpile entity");
 
 	stockpile->PlaceResource(WATER);
 
