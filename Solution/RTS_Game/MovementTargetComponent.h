@@ -8,5 +8,7 @@ public:
 	~MovementTargetComponent();
 
 	CU::Vector3f myTargetPosition;
+	CU::GrowingArray<CU::Vector3f> myPath;
+	bool myHasPath;
 };
 

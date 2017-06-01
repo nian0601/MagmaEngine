@@ -5,6 +5,7 @@
 #include <Entity/Include/World.h>
 
 #include "Subscriber.h"
+#include "NavGrid.h"
 
 namespace Magma
 {
@@ -34,5 +35,7 @@ private:
 	Magma::RendererProxy* myRendererProxy;
 
 	Magma::World myWorld;
+
+	NavGrid myNavGrid;
 };
 

@@ -3,6 +3,7 @@
 
 
 MovementTargetComponent::MovementTargetComponent()
+	: myHasPath(false)
 {
 }
 

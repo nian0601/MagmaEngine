@@ -6,6 +6,8 @@
 
 namespace CU
 {
+	typedef Vector2<float> Vector2f;
+	typedef Vector2<int> Vector2i;
 	template <typename T>
 	Vector2<T>::Vector2()
 	{

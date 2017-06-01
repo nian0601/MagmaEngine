@@ -58,7 +58,9 @@ void RTS_Game::Init(Magma::Engine& aEngine)
 
 	myWorld.AddProcessor<HighlightingProcessor>();
 	myWorld.AddProcessor<AABBProcessor>();
-	myWorld.AddProcessor<MovementProcessor>();
+
+	MovementProcessor* movementProcessor = new MovementProcessor(myWorld, myNavGrid);
+	myWorld.AddProcessor(movementProcessor);
 
 	PostMaster::GetInstance()->Subscribe(this, eMessageType::RENDER);
 }
@@ -195,6 +197,9 @@ void RTS_Game::LoadLevel(Magma::AssetContainer& aAssetContainer)
 	*/
 
 	int gridSize = 20;
+
+	myNavGrid.Init(gridSize);
+
 	for (int z = 0; z < gridSize; ++z)
 	{
 		for (int x = 0; x < gridSize; ++x)

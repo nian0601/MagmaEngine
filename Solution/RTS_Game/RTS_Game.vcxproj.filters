@@ -19,6 +19,9 @@
     <Filter Include="Precompile">
       <UniqueIdentifier>{5c4ade04-0ca0-43d2-8d0d-2967a8ccbee8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Navigation">
+      <UniqueIdentifier>{688b4a7d-282b-4e1d-bf15-070480e1d49c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InputComponent.cpp">
@@ -66,6 +69,9 @@
     </ClCompile>
     <ClCompile Include="MovementProcessor.cpp">
       <Filter>Entity\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="NavGrid.cpp">
+      <Filter>Navigation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +129,9 @@
     </ClInclude>
     <ClInclude Include="MovementProcessor.h">
       <Filter>Entity\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="NavGrid.h">
+      <Filter>Navigation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

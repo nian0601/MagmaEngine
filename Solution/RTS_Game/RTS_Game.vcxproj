@@ -81,6 +81,7 @@
     <ClCompile Include="AABBProcessor.cpp" />
     <ClCompile Include="MovementProcessor.cpp" />
     <ClCompile Include="MovementTargetComponent.cpp" />
+    <ClCompile Include="NavGrid.cpp" />
     <ClCompile Include="SelectionProcessor.cpp" />
     <ClCompile Include="RTS_Game.cpp" />
     <ClCompile Include="InputComponent.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="AABBProcessor.h" />
     <ClInclude Include="MovementProcessor.h" />
     <ClInclude Include="MovementTargetComponent.h" />
+    <ClInclude Include="NavGrid.h" />
     <ClInclude Include="SelectionProcessor.h" />
     <ClInclude Include="RTS_Game.h" />
     <ClInclude Include="InputComponent.h" />
