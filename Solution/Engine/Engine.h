@@ -5,11 +5,6 @@
 #include <windef.h>
 #include <WinUser.h>
 
-#undef CreateWindow
-
-struct ID3D11Device;
-struct ID3D11DeviceContext;
-
 namespace CU
 {
 	class TimerManager;
@@ -17,12 +12,9 @@ namespace CU
 
 namespace Magma
 {
-	struct Backbuffer;
-
 	class AssetContainer;
 	class Camera;
 	class DeferredRenderer;
-	class DirectX;
 	class GPUContext;
 	class WindowHandler;
 	class IGame;
