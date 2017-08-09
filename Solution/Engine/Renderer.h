@@ -13,9 +13,6 @@
 struct ID3DX11EffectVariable;
 struct ID3D11RenderTargetView;
 struct ID3D11DepthStencilView;
-struct ID3D11RasterizerState;
-struct ID3D11DepthStencilState;
-struct ID3D11BlendState;
 
 namespace Magma
 {
@@ -26,30 +23,6 @@ namespace Magma
 	class Texture;
 
 	class Font;
-
-	enum eDepthState
-	{
-		ENABLED,
-		DISABLED,
-		READ_NO_WRITE,
-		NO_READ_NO_WRITE,
-		_DEPTH_COUNT
-	};
-
-	enum eRasterizer
-	{
-		CULL_BACK,
-		WIRE_FRAME,
-		NO_CULLING,
-		_RAZTER_COUNT
-	};
-
-	enum eBlendState
-	{
-		NO_BLEND,
-		ALPHA_BLEND,
-		_BLEND_COUNT
-	};
 
 	class Renderer
 	{
@@ -106,10 +79,6 @@ namespace Magma
 		ID3DX11EffectVariable* GetEffectVariable(EffectVariableID aEffectVariable);
 		void RenderModelData(const ModelData& someData);
 
-		void CreateRasterizerStates();
-		void CreateDepthStencilStates();
-		void CreateBlendStates();
-
 		void ClearShaderVariables(EffectID aEffectID);
 
 		EffectID myCurrentEffect;
@@ -125,10 +94,6 @@ namespace Magma
 		CU::Map<EffectID, CU::Map<EffectVariableID, ID3DX11EffectVariable*>> myEffectVariablesIds;
 		CU::Map<CU::String, ID3DX11EffectVariable*>* myCurrentEffectVariables;
 		CU::Map<EffectVariableID, ID3DX11EffectVariable*>* myCurrentEffectVariablesIds;
-
-		ID3D11RasterizerState* myRasterizerStates[static_cast<int>(eRasterizer::_RAZTER_COUNT)];
-		ID3D11DepthStencilState* myDepthStencilStates[static_cast<int>(eDepthState::_DEPTH_COUNT)];
-		ID3D11BlendState* myBlendStates[static_cast<int>(eBlendState::_BLEND_COUNT)];
 
 		AssetContainer& myAssetContainer;
 		QuadRenderer myQuadRenderer;

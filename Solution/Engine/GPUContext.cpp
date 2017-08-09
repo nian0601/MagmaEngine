@@ -2,6 +2,7 @@
 
 #include "DirectX.h"
 #include "GPUContext.h"
+#include "DirectXFactory.h"
 
 namespace Magma
 {
@@ -9,11 +10,14 @@ namespace Magma
 	{
 		myDirectX = new DirectX();
 		myDirectX->Init(aHwnd, aScreenSize);
+
+		myGPUFactory = new DirectXFactory(*myDirectX);
 	}
 
 
 	GPUContext::~GPUContext()
 	{
+		SAFE_DELETE(myGPUFactory);
 		SAFE_DELETE(myDirectX);
 	}
 
@@ -43,5 +47,18 @@ namespace Magma
 		myDirectX->GetBackbuffer(aBackbufferOut);
 	}
 
+	void GPUContext::SetRasterizerState(eRasterizer anRasterizerState)
+	{
+		myGPUFactory->SetRasterizerState(anRasterizerState);
+	}
 
+	void GPUContext::SetDepthStencilState(eDepthState anDepthStencilState)
+	{
+		myGPUFactory->SetDepthStencilState(anDepthStencilState);
+	}
+
+	void GPUContext::SetBlendState(eBlendState anBlendState)
+	{
+		myGPUFactory->SetBlendState(anBlendState);
+	}
 }

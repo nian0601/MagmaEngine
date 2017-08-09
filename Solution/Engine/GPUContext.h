@@ -9,6 +9,8 @@ namespace Magma
 	struct Backbuffer;
 
 	class DirectX;
+	class IGPUFactory;
+
 	class GPUContext
 	{
 	public:
@@ -23,7 +25,12 @@ namespace Magma
 		void SetBackbufferAsRenderTarget();
 		void GetBackbuffer(Backbuffer& aBackbufferOut);
 
+		void SetRasterizerState(eRasterizer anRasterizerState);
+		void SetDepthStencilState(eDepthState anDepthStencilState);
+		void SetBlendState(eBlendState anBlendState);
+
 	private:
 		DirectX* myDirectX;
+		IGPUFactory* myGPUFactory;
 	};
 }

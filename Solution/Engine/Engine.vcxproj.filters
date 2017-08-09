@@ -145,6 +145,12 @@
     <ClInclude Include="ProfilerInclude.h">
       <Filter>Debugging</Filter>
     </ClInclude>
+    <ClInclude Include="IGPUFactory.h">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXFactory.h">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -244,6 +250,12 @@
     </ClCompile>
     <ClCompile Include="ProfilerInclude.cpp">
       <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="IGPUFactory.cpp">
+      <Filter>Rendering\GPUContext</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXFactory.cpp">
+      <Filter>Rendering\GPUContext</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

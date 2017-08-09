@@ -24,7 +24,6 @@ namespace Magma
 		myClearColor[3] = 1.f;
 	}
 
-
 	DirectX::~DirectX()
 	{
 		mySwapChain->SetFullscreenState(FALSE, NULL);
@@ -76,7 +75,6 @@ namespace Magma
 	{
 		return myContext;
 	}
-
 
 	void DirectX::SetBackbufferAsRenderTarget()
 	{
@@ -238,7 +236,7 @@ namespace Magma
 
 		DL_ASSERT_EXP(SUCCEEDED(myDevice->CreateTexture2D(&texDesc, NULL, &aTextureOut)) == TRUE, "Failed to CreateTexture2D");
 	}
-
+	
 	void DirectX::CreateDepthStencilView(ID3D11DepthStencilView*& aViewOut, unsigned int aFormat, unsigned int aViewDimension, ID3D11Texture2D* aTexture)
 	{
 		D3D11_DEPTH_STENCIL_VIEW_DESC stencilDesc;
