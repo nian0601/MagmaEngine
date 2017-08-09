@@ -38,6 +38,9 @@ namespace Magma
 	private:
 		void operator=(Engine&) = delete;
 
+		void Update();
+		void Render();
+
 		void OnResize();
 
 		IGame& myGame;

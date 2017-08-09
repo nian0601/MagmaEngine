@@ -65,7 +65,6 @@ namespace Magma
 	void Engine::Run()
 	{
 		myIsRunning = true;
-		CU::String windowTitle;
 		while (myIsRunning == true)
 		{
 			if (myWindowHandler->PumpEvent() == false)
@@ -79,43 +78,14 @@ namespace Magma
 					myWindowHandler->HasResized();
 					myWindowSize = myWindowHandler->GetNewSize();
 
-					//OnResize();
-					myGame.OnResize(myWindowSize.x, myWindowSize.y);
+					OnResize();
 				}
 
-				{
-					PROFILE_START("Engine: Update");
-					myTimerManager->Update();
-
-					{
-						PROFILE_START("Input");
-						CU::InputWrapper::GetInstance()->Update();
-						PROFILE_END();
-					}
-
-					myAssetContainer->FlushFileWatcher();
-
-					float deltaTime = myTimerManager->GetFrameTime();
-
-					FPS = static_cast<int>(1.f / deltaTime);
-					DT = deltaTime * 1000.f;
-					DEBUG_PRINT(FPS);
-					DEBUG_PRINT(DT);
-
-
-					myIsRunning = myGame.Update(deltaTime);
-
-					PROFILE_END();
-				}
-
-				{
-					PROFILE_START("Engine: Render");
-					myDeferredRenderer->Render(*myCamera);
-					myRenderer->RenderSprites(*myCamera);
-					myRenderer->RenderText(*myCamera);
-					myGPUContext->FinishFrame();
-					PROFILE_END();
-				}
+				//TODO: Thread-shenanigans
+				//Let Render() run on the mainthread, since the mainthread owns the window
+				//Run Update() on separate thread
+				Update();
+				Render();
 
 				//Profiler::GetInstance()->Render(*myRendererProxy);
 				Profiler::GetInstance()->EndFrame();
@@ -126,10 +96,50 @@ namespace Magma
 		}
 	}
 
+	void Engine::Update()
+	{
+		PROFILE_START("Engine: Update");
+		myTimerManager->Update();
+
+		{
+			PROFILE_START("Input");
+			CU::InputWrapper::GetInstance()->Update();
+			PROFILE_END();
+		}
+
+		myAssetContainer->FlushFileWatcher();
+
+		float deltaTime = myTimerManager->GetFrameTime();
+
+		FPS = static_cast<int>(1.f / deltaTime);
+		DT = deltaTime * 1000.f;
+		DEBUG_PRINT(FPS);
+		DEBUG_PRINT(DT);
+
+		myIsRunning = myGame.Update(deltaTime);
+
+		PROFILE_END();
+	}
+
+	void Engine::Render()
+	{
+		PROFILE_START("Engine: Render");
+		myDeferredRenderer->Render(*myCamera);
+		myRenderer->RenderSprites(*myCamera);
+		myRenderer->RenderText(*myCamera);
+		myGPUContext->FinishFrame();
+		PROFILE_END();
+	}
+
 	void Engine::OnResize()
 	{
-		myDeferredRenderer->Resize(myWindowSize.x, myWindowSize.y);
-		myCamera->Resize(myWindowSize);
+		//TODO: DeferredRenderer needs to properly resize
+		//Need Texture-resizing for all the back/offscreen-buffers
+
+		//myDeferredRenderer->Resize(myWindowSize.x, myWindowSize.y);
+		//myCamera->Resize(myWindowSize);
+
+		myGame.OnResize(myWindowSize.x, myWindowSize.y);
 	}
 
 }
