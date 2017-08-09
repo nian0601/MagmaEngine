@@ -44,7 +44,7 @@ namespace Magma
 
 		void UpdateBuffers(int aIndexCount, char* aIndexData, int aVertexCount, int aVertexStride, char* aVertexData, GPUContext& aGPUContext);
 	private:
-		void InitInputLayout(D3D11_INPUT_ELEMENT_DESC* aVertexDescArray, int aArraySize, EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
+		void InitInputLayout(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer);
 		void InitVertexBuffer(int aVertexSize, int aBufferUsage, int aCPUUsage);
 		void InitIndexBuffer();
 

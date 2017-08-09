@@ -22,7 +22,6 @@ namespace Magma
 	{
 	}
 
-
 	GPUData::~GPUData()
 	{
 		SAFE_DELETE(myIndexData);
@@ -45,15 +44,7 @@ namespace Magma
 
 	void GPUData::Init(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
 	{
-		const int size = myVertexFormat.Size();
-		D3D11_INPUT_ELEMENT_DESC* vertexDesc = new D3D11_INPUT_ELEMENT_DESC[size];
-		for (int i = 0; i < myVertexFormat.Size(); ++i)
-		{
-			vertexDesc[i] = *myVertexFormat[i];
-		}
-
-		InitInputLayout(vertexDesc, size, aEffect, aGPUContext, aAssetContainer);
-		delete[] vertexDesc;
+		InitInputLayout(aEffect, aGPUContext, aAssetContainer);
 
 		InitVertexBuffer(myVertexData->myStride, D3D11_USAGE_IMMUTABLE, 0);
 		InitIndexBuffer();
@@ -67,15 +58,7 @@ namespace Magma
 	void GPUData::Init(EffectID aEffect, int aIndexCount, char* aIndexData
 		, int aVertexCount, int aVertexStride, char* aVertexData, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
 	{
-		const int size = myVertexFormat.Size();
-		D3D11_INPUT_ELEMENT_DESC* vertexDesc = new D3D11_INPUT_ELEMENT_DESC[size];
-		for (int i = 0; i < myVertexFormat.Size(); ++i)
-		{
-			vertexDesc[i] = *myVertexFormat[i];
-		}
-
-		InitInputLayout(vertexDesc, size, aEffect, aGPUContext, aAssetContainer);
-		delete[] vertexDesc;
+		InitInputLayout(aEffect, aGPUContext, aAssetContainer);
 
 		InitVertexBuffer(aVertexStride, D3D11_USAGE_IMMUTABLE, 0);
 		InitIndexBuffer();
@@ -214,15 +197,7 @@ namespace Magma
 
 	void GPUData::InitWithoutBufferSetup(EffectID aEffect, int aVertexStride, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
 	{
-		const int size = myVertexFormat.Size();
-		D3D11_INPUT_ELEMENT_DESC* vertexDesc = new D3D11_INPUT_ELEMENT_DESC[size];
-		for (int i = 0; i < myVertexFormat.Size(); ++i)
-		{
-			vertexDesc[i] = *myVertexFormat[i];
-		}
-
-		InitInputLayout(vertexDesc, size, aEffect, aGPUContext, aAssetContainer);
-		delete[] vertexDesc;
+		InitInputLayout(aEffect, aGPUContext, aAssetContainer);
 
 		InitVertexBuffer(aVertexStride, D3D11_USAGE_IMMUTABLE, 0);
 		InitIndexBuffer();
@@ -254,18 +229,28 @@ namespace Magma
 		myVertexData->myStride = aVertexStride;
 	}
 
-	void GPUData::InitInputLayout(D3D11_INPUT_ELEMENT_DESC* aVertexDescArray, int aArraySize, EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
+	void GPUData::InitInputLayout(EffectID aEffect, GPUContext& aGPUContext, AssetContainer& aAssetContainer)
 	{
-		Effect* effect = aAssetContainer.GetEffect(aEffect);
-
 		D3DX11_PASS_DESC passDesc;
+		Effect* effect = aAssetContainer.GetEffect(aEffect);
 		effect->GetTechnique("Render")->GetPassByIndex(0)->GetDesc(&passDesc);
-		HRESULT hr = aGPUContext.GetDevice()->CreateInputLayout(aVertexDescArray
-			, aArraySize, passDesc.pIAInputSignature, passDesc.IAInputSignatureSize, &myInputLayout);
+
+		const int size = myVertexFormat.Size();
+		D3D11_INPUT_ELEMENT_DESC* vertexDesc = new D3D11_INPUT_ELEMENT_DESC[size];
+		for (int i = 0; i < myVertexFormat.Size(); ++i)
+		{
+			vertexDesc[i] = *myVertexFormat[i];
+		}
+
+		HRESULT hr = aGPUContext.GetDevice()->CreateInputLayout(vertexDesc
+			, myVertexFormat.Size(), passDesc.pIAInputSignature, passDesc.IAInputSignatureSize, &myInputLayout);
+		delete[] vertexDesc;
+
 		if (FAILED(hr) != S_OK)
 		{
 			DL_MESSAGE_BOX("Failed to CreateInputLayout", "GPUData::Init", MB_ICONWARNING);
 		}
+
 	}
 
 	void GPUData::InitVertexBuffer(int aVertexSize, int aBufferUsage, int aCPUUsage)

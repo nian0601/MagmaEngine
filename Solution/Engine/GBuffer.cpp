@@ -42,20 +42,6 @@ namespace Magma
 		SAFE_DELETE(myDepthStencil);
 	}
 
-	void GBuffer::Set(Effect* aEffect)
-	{
-		aEffect->SetAlbedoMetalness(myAlbedoAndMetalness->GetShaderView());
-		aEffect->SetNormalRoughness(myNormalAndRoughness->GetShaderView());
-		aEffect->SetDepth(myDepth->GetShaderView());
-	}
-
-	void GBuffer::UnSet(Effect* aEffect)
-	{
-		aEffect->SetAlbedoMetalness(nullptr);
-		aEffect->SetNormalRoughness(nullptr);
-		aEffect->SetDepth(nullptr);
-	}
-
 	void GBuffer::Clear(const CU::Vector4<float>& aColor)
 	{
 		float clearColor[4];

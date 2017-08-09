@@ -86,11 +86,15 @@ PBLData CalculatePBLData(float2 aTexCoord, float3 aVertexNormal, float3 aVertexB
 
 PBLData CalculatePBLData_GBuffer(float2 aTexCoord)
 {
+/*
 	float4 AlbedoMetalness = AlbedoMetalnessTexture.Sample(pointSampling, aTexCoord);
 	float4 NormalRoughness = NormalRoughnessTexture.Sample(pointSampling, aTexCoord);
 	float Depth = DepthTexture.Sample(pointSampling, aTexCoord).x;
 
 	float3 Albedo = AlbedoMetalness.xyz;
+*/
+
+/*
 	float3 Metalness = float3(AlbedoMetalness.w, AlbedoMetalness.w, AlbedoMetalness.w);
 
 	float3 Normal = NormalRoughness.xyz;
@@ -108,9 +112,20 @@ PBLData CalculatePBLData_GBuffer(float2 aTexCoord)
 	WorldPosition = mul(WorldPosition, InvertedProjection);
 	WorldPosition /= WorldPosition.w;
 	WorldPosition = mul(WorldPosition, NotInvertedView);
+*/
 
+	float3 Albedo = float3(1, 1, 1);
 	PBLData output;
 	output.Albedo = Albedo;
+	output.Normal = Albedo;
+	output.Metalness = Albedo;
+	output.Roughness = 1.f;
+	output.AmbientOcclusion = Albedo;
+	output.MetalnessAlbedo = Albedo;
+	output.Substance = Albedo;
+	output.RoughnessOffsetted = 1.f;
+	output.WorldPosition = float4(1, 1, 1, 1);
+/*
 	output.Normal = Normal;
 	output.Metalness = Metalness;
 	output.Roughness = Roughness;
@@ -121,7 +136,7 @@ PBLData CalculatePBLData_GBuffer(float2 aTexCoord)
 	output.RoughnessOffsetted = pow(8192, output.Roughness);
 
 	output.WorldPosition = WorldPosition;
-
+*/
 	return output;
 }
 
